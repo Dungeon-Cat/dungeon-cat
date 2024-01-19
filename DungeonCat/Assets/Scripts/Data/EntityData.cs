@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Numerics;
 
-namespace Model
+namespace Data
 {
     /// <summary>
     /// This is the base object that 
     /// </summary>
     [Serializable]
-    public class Entity
+    public class EntityData
     {
         /// <summary>
         /// What level this Entity is currently in

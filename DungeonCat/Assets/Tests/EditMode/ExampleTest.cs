@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Numerics;
-using Model;
+using Data;
 using NUnit.Framework;
 using UnityEngine.TestTools;
 
-namespace Tests
+namespace Tests.EditMode
 {
     public class ExampleTest
     {
@@ -13,7 +13,7 @@ namespace Tests
         public void ExampleTestSimplePasses()
         {
             // Use the Assert class to test conditions
-            var cat = new Cat
+            var cat = new CatData
             {
                 Position = new Vector2(0, 0)
             };

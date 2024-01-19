@@ -1,11 +1,12 @@
 ﻿using System;
-namespace Model
+
+namespace Data
 {
     /// <summary>
     /// A character is an entity 
     /// </summary>
     [Serializable]
-    public class Character : Entity
+    public class CharacterData : EntityData
     {
         public int hp;
         

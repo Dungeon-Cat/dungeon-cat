@@ -1,5 +1,6 @@
 ﻿using System;
-namespace Model
+
+namespace Data
 {
     /// <summary>
     /// Serializable class that holds all of the current information about the game that needs to be saved
@@ -7,6 +8,6 @@ namespace Model
     [Serializable]
     public class GameState
     {
-        public Entity[] entities;
+        public EntityData[] entities;
     }
 }

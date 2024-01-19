@@ -1,11 +1,12 @@
 ﻿using System;
-namespace Model
+
+namespace Data
 {
     /// <summary>
     /// The player controlled character
     /// </summary>
     [Serializable]
-    public class Cat : Character
+    public class CatData : CharacterData
     {
     }
 }
