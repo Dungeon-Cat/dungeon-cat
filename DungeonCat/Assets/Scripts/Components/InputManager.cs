@@ -1,7 +1,6 @@
 ﻿using Input;
 using UnityEngine;
-
-namespace Components
+namespace Scripts.Components
 {
     public class InputManager : MonoBehaviour
     {
@@ -11,6 +10,19 @@ namespace Components
         {
             Actions = new InputActions();
             Actions.Enable();
+        }
+
+        private void FixedUpdate()
+        {
+            if (Actions.Player.Move.IsPressed())
+            {
+                var input = Actions.Player.Move.ReadValue<Vector2>();
+                var cat = UnityState.Instance.cat;
+            
+                cat.transform.Translate(input.x, input.y, 0);
+                cat.SyncToData();
+            }
+
         }
     }
 }

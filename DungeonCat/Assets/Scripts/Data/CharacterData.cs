@@ -1,9 +1,8 @@
 ﻿using System;
-
-namespace Data
+namespace Scripts.Data
 {
     /// <summary>
-    /// A character is an entity 
+    /// A character is an entity that 
     /// </summary>
     [Serializable]
     public class CharacterData : EntityData

@@ -1,37 +1,21 @@
 ﻿using System;
-using System.Numerics;
-
-namespace Data
+using UnityEngine;
+namespace Scripts.Data
 {
     /// <summary>
-    /// This is the base object that 
+    /// An entity is any object within the game that data that needs to be saved
     /// </summary>
     [Serializable]
     public class EntityData
     {
         /// <summary>
-        /// What level this Entity is currently in
+        /// What scene this Entity is currently in
         /// </summary>
-        public string level;
-
+        public string scene;
+        
         /// <summary>
-        /// Current X position of this entity within the level
+        /// Current Y position of this entity within the scene
         /// </summary>
-        public float x;
-
-        /// <summary>
-        /// Current Y position of this entity within the level
-        /// </summary>
-        public float y;
-
-        public Vector2 Position
-        {
-            get => new(x, y);
-            set
-            {
-                x = value.X;
-                y = value.Y;
-            }
-        }
+        public Vector2 position;
     }
 }

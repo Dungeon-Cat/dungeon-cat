@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Numerics;
-using Data;
 using NUnit.Framework;
+using Scripts.Data;
+using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace Tests.EditMode
@@ -15,10 +15,10 @@ namespace Tests.EditMode
             // Use the Assert class to test conditions
             var cat = new CatData
             {
-                Position = new Vector2(0, 0)
+                position = new Vector2(0, 0)
             };
 
-            Assert.AreEqual(cat.x, 0);
+            Assert.AreEqual(cat.position.x, 0);
         }
 
         // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use

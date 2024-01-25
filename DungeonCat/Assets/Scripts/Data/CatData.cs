@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Data
+namespace Scripts.Data
 {
     /// <summary>
     /// The player controlled character

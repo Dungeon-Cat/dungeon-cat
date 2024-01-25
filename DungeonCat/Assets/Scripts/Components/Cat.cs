@@ -1,20 +1,14 @@
-﻿using Data;
+﻿using Scripts.Data;
 using UnityEngine;
-
-namespace Components
+namespace Scripts.Components
 {
-    public class Cat : Component<CatData>
+    public class Cat : EntityComponent<CatData>
     {
-        private void Awake()
+        
+        
+        public void Meow()
         {
-            DontDestroyOnLoad(gameObject);
-        }
-
-        private void FixedUpdate()
-        {
-            var input = InputManager.Actions.Player.Move.ReadValue<Vector2>();
-            
-            transform.Translate(input.x, input.y, 0);
+            Debug.Log("Meow");
         }
     }
 }
