@@ -1,7 +1,9 @@
 {
-    "name": "Data",
-    "rootNamespace": "",
-    "references": [],
+    "name": "Scripts",
+    "rootNamespace": "Scripts",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
@@ -10,5 +12,5 @@
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
-    "noEngineReferences": true
+    "noEngineReferences": false
 }

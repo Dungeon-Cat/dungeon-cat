@@ -1,6 +1,6 @@
 ﻿using System;
-
-namespace Data
+using System.Collections.Generic;
+namespace Scripts.Data
 {
     /// <summary>
     /// Serializable class that holds all of the current information about the game that needs to be saved
@@ -8,6 +8,11 @@ namespace Data
     [Serializable]
     public class GameState
     {
-        public EntityData[] entities;
+        public CatData cat;
+
+        public string currentScene = "Level0";
+
+        public Dictionary<string, SceneData> scenes;
+        
     }
 }
