@@ -10,13 +10,13 @@
 
 - 
 
-#### Current Goals
+#### Plans and Goals
 
 - 
 
-## Individal Contributions
+## Individual Contributions
 
-### Brandon
+### Taryn
 
 #### Previous Goals
 
@@ -26,7 +26,7 @@
 
 - 
 
-#### Current Goals
+#### Plans and Goals
 
 - 
 
@@ -41,22 +41,7 @@
 
 - 
 
-#### Current Goals
-
-- 
-
-
-### Mark
-
-#### Previous Goals
-
-- 
-
-#### Progress and Issues
-
-- 
-
-#### Current Goals
+#### Plans and Goals
 
 - 
 
@@ -71,12 +56,12 @@
 
 - 
 
-#### Current Goals
+#### Plans and Goals
 
 - 
 
 
-### Taryn
+### Brandon
 
 #### Previous Goals
 
@@ -86,6 +71,21 @@
 
 - 
 
-#### Current Goals
+#### Plans and Goals
+
+- 
+
+
+### Mark
+
+#### Previous Goals
+
+- 
+
+#### Progress and Issues
+
+- 
+
+#### Plans and Goals
 
 - 
