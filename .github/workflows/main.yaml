@@ -1,13 +1,19 @@
 name: Actions
 
-on: [push, pull_request]
+on: 
+  push:
+    paths: 
+      - "DungeonCat/**"
+  pull_request:
+    paths:
+      - "**/*"
 
 concurrency:
   group: james_license
   
 jobs:
   build:
-    name: Build Project
+    name: Build Project 
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
@@ -33,7 +39,6 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          unityVersion: 2022.3.17f1
           projectPath: DungeonCat
 
       # Build
@@ -45,6 +50,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: StandaloneLinux64
+          projectPath: DungeonCat
 
       # Output
       # - uses: actions/upload-artifact@v3
