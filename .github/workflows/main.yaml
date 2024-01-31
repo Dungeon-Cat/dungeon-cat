@@ -3,6 +3,7 @@ name: Actions
 on: 
   push:
     paths: 
+      - ".github/workflows/**"
       - "DungeonCat/**"
   pull_request:
     paths:
