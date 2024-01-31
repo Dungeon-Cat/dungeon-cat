@@ -52,6 +52,7 @@ jobs:
         with:
           targetPlatform: StandaloneLinux64
           projectPath: DungeonCat
+          allowDirtyBuild: true
 
       # Output
       # - uses: actions/upload-artifact@v3
