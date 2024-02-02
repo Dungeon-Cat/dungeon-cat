@@ -16,12 +16,14 @@ MonoBehaviour:
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
-  - m_Id: 0
+  - m_Id: 1
     m_Sprites:
-    - {fileID: 21300096, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
-    - {fileID: 21300020, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
-    - {fileID: 21300098, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
-    - {fileID: 21300094, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
+    - {fileID: 21300054, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
+    - {fileID: 21300028, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
+    - {fileID: 21300054, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
+    - {fileID: 21300088, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
+    - {fileID: 21300090, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
+    - {fileID: 21300092, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
