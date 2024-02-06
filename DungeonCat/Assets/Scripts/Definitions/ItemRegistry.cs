@@ -8,13 +8,19 @@ namespace Scripts.Definitions
 {
     public static class ItemRegistry
     {
+        private static bool initialized;
+
         private static readonly Dictionary<Type, ItemDef> ItemsByType = new();
         public static readonly Dictionary<string, ItemDef> Items = new();
-        
+
         public static T Instance<T>() where T : ItemDef => ItemsByType.GetValueOrDefault(typeof(T)) as T;
 
         public static void Initialize()
         {
+            if (initialized) return;
+
+            initialized = true;
+
             var assembly = Assembly.GetExecutingAssembly();
 
             var items = assembly.GetTypes()
