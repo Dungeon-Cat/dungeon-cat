@@ -1,4 +1,6 @@
-﻿namespace Scripts.Definitions
+﻿using Scripts.Data;
+
+namespace Scripts.Definitions
 {
     /// <summary>
     /// Class that defines a particular type of item
@@ -16,5 +18,15 @@
         public virtual string DisplayName => Id;
 
         public virtual string Description => "";
+        
+        public virtual void OnPickup(CharacterData character)
+        {
+            // Do Nothing
+        }
+
+        public virtual void OnDrop(CharacterData character)
+        {
+            // Do Nothing
+        }
     }
 }

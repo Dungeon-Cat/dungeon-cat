@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 namespace Scripts.Data
 {
@@ -27,5 +28,7 @@ namespace Scripts.Data
         /// Current Y position of this entity within the scene
         /// </summary>
         public Vector2 position;
+        
+        public List<string> tags = new();
     }
 }
