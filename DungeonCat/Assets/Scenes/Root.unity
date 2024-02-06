@@ -632,9 +632,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
+    id: 
+    destroyed: 0
     scene: 
     position: {x: 0, y: 0}
     hp: 0
+    inventory:
+      slots: 10
+      items:
+      - id: BowlOfMilk
+        count: 1
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
 --- !u!222 &1091367756
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1117,7 +1142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: b37e274da6a6a02419f69dbdda8c5907, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: b37e274da6a6a02419f69dbdda8c5907,
+    type: 3}
   m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 1864303665}
   m_DeviceLostEvent:
@@ -1211,7 +1237,8 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: b37e274da6a6a02419f69dbdda8c5907, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: b37e274da6a6a02419f69dbdda8c5907,
+    type: 3}
   m_PointAction: {fileID: 2008895830}
   m_MoveAction: {fileID: 68344139}
   m_SubmitAction: {fileID: 2007404863}
