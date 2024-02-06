@@ -9,6 +9,16 @@ namespace Scripts.Data
     public class EntityData
     {
         /// <summary>
+        /// Unique identifier for this entity
+        /// </summary>
+        public string id;
+
+        /// <summary>
+        /// Whether this entity has been destroyed and should no longer be active in the scene
+        /// </summary>
+        public bool destroyed;
+        
+        /// <summary>
         /// What scene this Entity is currently in
         /// </summary>
         public string scene;
