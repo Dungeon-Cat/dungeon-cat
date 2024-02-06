@@ -18,14 +18,14 @@ namespace Tests.EditMode
 
             var key = ItemData.Create<TutorialKey>();
 
-            Assert.IsTrue(cat.inventory.TryAdd(key));
+            Assert.IsTrue(cat.TryPickupItem(key));
             Assert.AreEqual(1, cat.inventory.TotalCount);
             Assert.AreEqual(1, cat.inventory.UsedSlots);
             
             
             var keys = ItemData.Create<TutorialKey>(2);
             
-            Assert.IsTrue(cat.inventory.TryAdd(keys));
+            Assert.IsTrue(cat.TryPickupItem(keys));
             Assert.AreEqual(3, cat.inventory.TotalCount);
             Assert.AreEqual(1, cat.inventory.UsedSlots);
         }

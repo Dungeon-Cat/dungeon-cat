@@ -16,7 +16,7 @@ namespace Scripts.Data
         {
             if (inventory.TryAdd(item))
             {
-                // TODO trigger an event
+                GameStateManager.onItemPickedUp?.Invoke(this, item);
                 return true;
             }
 

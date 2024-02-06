@@ -1,4 +1,5 @@
-﻿using Scripts.Data;
+﻿using System;
+using Scripts.Data;
 using UnityEngine;
 namespace Scripts.Components
 {
@@ -14,7 +15,18 @@ namespace Scripts.Components
             GameStateManager.Init(cat.data);
             
             // other startup tasks
-            
+
+            GameStateManager.onItemPickedUp += OnItemPickedUp;
+
+        }
+        private void OnItemPickedUp(CatData _, ItemData item)
+        {
+            Debug.Log($"Picked up {item.id}");
+        }
+
+        private void OnDestroy()
+        {
+            GameStateManager.onItemPickedUp -= OnItemPickedUp;
         }
     }
 }

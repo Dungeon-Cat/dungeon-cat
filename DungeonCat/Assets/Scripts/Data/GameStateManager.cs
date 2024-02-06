@@ -15,7 +15,7 @@ namespace Scripts.Data
         {
             CurrentState = new GameState
             {
-                cat = initialCatData ??= new CatData()
+                cat = initialCatData ?? new CatData()
             };
             
             ItemRegistry.Initialize();
@@ -24,6 +24,11 @@ namespace Scripts.Data
         public static void Register(EntityData entity)
         {
         }
-        
+
+        #region Events
+
+        public static EventHandler<CatData, ItemData> onItemPickedUp;
+
+        #endregion
     }
 }
