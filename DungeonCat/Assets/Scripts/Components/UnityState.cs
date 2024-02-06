@@ -4,14 +4,17 @@ namespace Scripts.Components
 {
     public class UnityState : MonoBehaviour
     {
-        public Cat cat;
         public static UnityState Instance { get; private set; }
 
+        public Cat cat;
+        
         private void Awake()
         {
             Instance = this;
-            GameStateManager.Init();
+            GameStateManager.Init(cat.data);
+            
             // other startup tasks
+            
         }
     }
 }
