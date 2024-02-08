@@ -17,6 +17,7 @@ namespace Scripts.Data
             if (inventory.TryAdd(item))
             {
                 GameStateManager.onItemPickedUp?.Invoke(this, item);
+                item.GetItemDef().OnPickup(this);
                 return true;
             }
 
