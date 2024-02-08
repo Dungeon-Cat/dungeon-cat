@@ -28,6 +28,13 @@ namespace Tests.EditMode
             Assert.IsTrue(cat.TryPickupItem(keys));
             Assert.AreEqual(3, cat.inventory.TotalCount);
             Assert.AreEqual(1, cat.inventory.UsedSlots);
+
+            var boots = ItemData.Create<Boots>();
+            
+            Assert.IsTrue((cat.TryPickupItem(boots)));
+            Assert.AreEqual(4, cat.inventory.TotalCount);
+            Assert.AreEqual(2, cat.inventory.UsedSlots);
+            Assert.IsTrue(cat.tags.Contains(Boots.FlyingTag));
         }
     }
 }
