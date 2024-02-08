@@ -796,9 +796,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
+    id: 
+    destroyed: 0
     scene: 
     position: {x: 0, y: 0}
     hp: 0
+    inventory:
+      slots: 10
+      items:
+      - id: BowlOfMilk
+        count: 1
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
+      - id: 
+        count: 0
 --- !u!222 &1091367756
 CanvasRenderer:
   m_ObjectHideFlags: 0
