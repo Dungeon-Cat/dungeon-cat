@@ -9,6 +9,13 @@ namespace Scripts.Components
     {
         public ComponentWithData<EntityData>[] defaultEntities;
 
+        private void Awake()
+        {
+            defaultEntities = gameObject.scene.GetRootGameObjects()
+                .SelectMany(o => o.transform.GetComponentsInChildren<ComponentWithData<EntityData>>())
+                .ToArray();
+        }
+
         public override void SyncToData()
         {
             data.entities = gameObject.scene.GetRootGameObjects()
