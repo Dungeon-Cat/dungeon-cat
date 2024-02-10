@@ -9,6 +9,8 @@ namespace Scripts.Components
         public void Meow()
         {
             Debug.Log("Meow");
+            Interaction interaction = Interaction.Basic("cat", new []{"meow", "nyan", "mrao"});
+            UnityState.Instance.dialogue.StartInteraction(interaction);
         }
     }
 }
