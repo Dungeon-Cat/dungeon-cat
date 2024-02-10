@@ -4,14 +4,15 @@ namespace Scripts.Definitions.Items
 {
     public class Boots : EquipmentDef
     {
+        public static readonly string FlyingTag = "Flying";
         public override void OnPickup(CharacterData character)
         {
-            character.tags.Add("Flying");
+            character.tags.Add(FlyingTag);
         }
 
         public override void OnDrop(CharacterData character)
         {
-            character.tags.Remove("Flying");
+            character.tags.Remove(FlyingTag);
         }
     }
 }
