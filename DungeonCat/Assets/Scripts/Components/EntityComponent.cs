@@ -16,6 +16,7 @@ namespace Scripts.Components
         public override void SyncToData()
         {
             data.position = transform.position;
+            data.scene = gameObject.scene.name;
         }
     }
 }

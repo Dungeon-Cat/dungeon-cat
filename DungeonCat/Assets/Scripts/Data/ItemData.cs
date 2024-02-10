@@ -38,12 +38,7 @@ namespace Scripts.Data
         public ItemDef GetItemDef()
         {
             // TODO replace null with NullItem (will have to have a static reference in ItemRegistry?)
-            ItemDef itemDef;
-            if (ItemRegistry.Items.TryGetValue(id, out itemDef))
-            {
-                return itemDef;
-            }
-            return null;
+            return ItemRegistry.Items.GetValueOrDefault(id, ItemRegistry.Instance<NullItem>());
         }
     }
 }
