@@ -11,20 +11,8 @@ namespace Scripts.Data
     [Serializable]
     public class DialogueData : EntityData
     {
-        public TMP_Text text;
-        public Queue<DialogueEntry> DialogueEntries = new();
-    }
-
-    [Serializable]
-    public struct DialogueEntry
-    {
-        public String author;
-        public String text;
-
-        public DialogueEntry(String author, String text)
-        {
-            this.author = author;
-            this.text = text;
-        }
+        public TMP_Text author_vis;
+        public TMP_Text text_vis;
+        public Queue<Interaction> Interactions = new();
     }
 }

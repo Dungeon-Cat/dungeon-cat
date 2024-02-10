@@ -8,6 +8,7 @@ namespace Scripts.Components
         public static UnityState Instance { get; private set; }
 
         public Cat cat;
+        public Dialogue dialogue;
         
         private void Awake()
         {

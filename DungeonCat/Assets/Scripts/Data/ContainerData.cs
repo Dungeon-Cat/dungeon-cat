@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Newtonsoft.Json;
+using Unity.Plastic.Newtonsoft.Json;
+
 namespace Scripts.Data
 {
     /// <summary>

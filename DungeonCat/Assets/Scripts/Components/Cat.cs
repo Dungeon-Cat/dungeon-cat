@@ -1,11 +1,11 @@
-﻿using Scripts.Data;
+﻿using System;
+using System.Collections.Generic;
+using Scripts.Data;
 using UnityEngine;
 namespace Scripts.Components
 {
     public class Cat : EntityComponent<CatData>
     {
-        
-        
         public void Meow()
         {
             Debug.Log("Meow");
