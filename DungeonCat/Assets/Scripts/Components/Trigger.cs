@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Scripts.Components
 {
+    // A class to controller the interaction trigger to open a wooden door (could be more general)s
     public class Trigger : MonoBehaviour
     {
         [SerializeField] private bool triggerActive = false;
