@@ -3,7 +3,7 @@ namespace Scripts.Components
 {
     public abstract class EntityComponent<T> : ComponentWithData<T> where T : EntityData
     {
-        protected virtual void Awake()
+        protected virtual void Start()
         {
             GameStateManager.Register(data);
         }

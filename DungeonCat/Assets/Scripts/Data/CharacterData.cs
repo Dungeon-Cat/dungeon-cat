@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 namespace Scripts.Data
 {
     /// <summary>
@@ -8,6 +9,7 @@ namespace Scripts.Data
     public class CharacterData : EntityData
     {
         public int hp;
-        
+
+        public Vector2 facing = Vector2.up;
     }
 }

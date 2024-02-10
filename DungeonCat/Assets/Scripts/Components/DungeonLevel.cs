@@ -7,9 +7,9 @@ namespace Scripts.Components
     /// </summary>
     public class DungeonLevel : ComponentWithData<SceneData>
     {
-        public ComponentWithData<EntityData>[] defaultEntities;
+        /*public ComponentWithData<EntityData>[] defaultEntities;
 
-        private void Awake()
+        private void Start()
         {
             defaultEntities = gameObject.scene.GetRootGameObjects()
                 .SelectMany(o => o.transform.GetComponentsInChildren<ComponentWithData<EntityData>>())
@@ -21,7 +21,7 @@ namespace Scripts.Components
             data.entities = gameObject.scene.GetRootGameObjects()
                 .SelectMany(o => o.transform.GetComponentsInChildren<ComponentWithData<EntityData>>())
                 .Select(e => e.data)
-                .ToList();
-        }
+                .ToDictionary(e => e.id);
+        }*/
     }
 }

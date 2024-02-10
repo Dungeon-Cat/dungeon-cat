@@ -1,4 +1,5 @@
 ﻿using System;
+using Scripts.Utility;
 
 namespace Scripts.Data
 {
@@ -22,6 +23,25 @@ namespace Scripts.Data
             }
 
             return false;
+        }
+
+        public void DropAllItems()
+        {
+            foreach (var itemData in inventory.items)
+            {
+                if (itemData.IsEmpty()) return;
+
+                GameStateManager.CreateEntity(new ItemEntityData
+                {
+                    item = itemData,
+                    id = itemData.id + idCounter++,
+                    scene = GameStateManager.CurrentScene,
+                    position = position + facing * 5
+                });
+            }
+
+            inventory.Clear();
+
         }
     }
 }

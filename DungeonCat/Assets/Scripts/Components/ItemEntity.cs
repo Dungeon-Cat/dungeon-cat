@@ -8,9 +8,9 @@ namespace Scripts.Components
     {
         public SpriteRenderer spriteRenderer;
 
-        protected override void Awake()
+        public override void SyncFromData()
         {
-            base.Awake();
+            base.SyncFromData();
             LoadSprite();
         }
 
@@ -25,7 +25,7 @@ namespace Scripts.Components
 
         public void OnCollisionEnter2D(Collision2D other)
         {
-            
+            Debug.Log("Happening!");
         }
 
         protected override void OnValidateInEditor()

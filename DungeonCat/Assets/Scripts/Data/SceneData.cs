@@ -5,6 +5,6 @@ namespace Scripts.Data
     [Serializable]
     public class SceneData
     {
-        public List<EntityData> entities = new();
+        public Dictionary<string, EntityData> entities = new();
     }
 }

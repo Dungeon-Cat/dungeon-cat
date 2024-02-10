@@ -30,5 +30,7 @@ namespace Scripts.Data
         public Vector2 position;
         
         public List<string> tags = new();
+        
+        public static int idCounter;
     }
 }

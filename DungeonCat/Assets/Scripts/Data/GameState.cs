@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 namespace Scripts.Data
 {
     /// <summary>
@@ -10,9 +11,11 @@ namespace Scripts.Data
     {
         public CatData cat;
 
-        public string currentScene = "Level0";
+        public string currentScene = "Root";
 
         public Dictionary<string, SceneData> scenes;
-        
+
+        [JsonIgnore]
+        public SceneData CurrentScene => scenes[currentScene];
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Newtonsoft.Json;
+using Scripts.Utility;
 namespace Scripts.Data
 {
     /// <summary>
@@ -14,13 +15,13 @@ namespace Scripts.Data
         public ItemData[] items;
 
         [JsonIgnore]
-        public int TotalCount => items.Where(item => item != null).Sum(item => item.count);
+        public int TotalCount => items.Where(item => !item.IsEmpty()).Sum(item => item.count);
 
         [JsonIgnore]
-        public int FreeSlots => items.Count(item => item == null);
+        public int FreeSlots => items.Count(item => item .IsEmpty());
         
         [JsonIgnore]
-        public int UsedSlots => items.Count(item => item != null);
+        public int UsedSlots => items.Count(item => !item.IsEmpty());
 
         public ContainerData(int slots)
         {
@@ -91,7 +92,7 @@ namespace Scripts.Data
         /// </summary>
         public void Clear()
         {
-            items = Array.Empty<ItemData>();
+            items = new ItemData[slots];
         }
     }
 }

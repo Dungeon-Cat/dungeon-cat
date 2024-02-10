@@ -36,5 +36,23 @@ namespace Tests.EditMode
             Assert.AreEqual(2, cat.inventory.UsedSlots);
             Assert.IsTrue(cat.tags.Contains(Boots.FlyingTag));
         }
+
+        [Test]
+        public void DropItemTest()
+        {
+            var cat = GameStateManager.CurrentState.cat;
+
+            var key = ItemData.Create<TutorialKey>();
+            Assert.IsTrue(cat.TryPickupItem(key));
+            Assert.AreEqual(1, cat.inventory.TotalCount);
+
+            var before = GameStateManager.CurrentState.CurrentScene.entities.Count;
+            
+            cat.DropAllItems();
+
+            var after = GameStateManager.CurrentState.CurrentScene.entities.Count;
+            
+            Assert.AreEqual(before + 1, after);
+        }
     }
 }
