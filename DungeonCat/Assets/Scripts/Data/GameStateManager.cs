@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Scripts.Definitions;
 using Scripts.Utility;
-using UnityEngine;
 
 namespace Scripts.Data
 {
@@ -44,6 +43,22 @@ namespace Scripts.Data
 
             sceneData.entities.TryAdd(entity.id, entity);
         }
+        
+        /// <summary>
+        /// Ensures that the Data for an entity is properly registered within its scene
+        /// </summary>
+        /// <param name="entity"></param>
+        public static void Unregister(EntityData entity)
+        {
+            var scene = entity.scene;
+
+            if (!CurrentState.scenes.TryGetValue(scene, out var sceneData))
+            {
+                throw new KeyNotFoundException($"Scene {scene} was not yet registered in the game state");
+            }
+
+            sceneData.entities.Remove(entity.id);
+        }
 
         public static void CreateEntity(EntityData entity)
         {
@@ -51,10 +66,17 @@ namespace Scripts.Data
             onEntityCreated?.Invoke(entity);
         }
 
+        public static void RemoveEntity(EntityData entity)
+        {
+            Unregister(entity);
+            onEntityDestroyed?.Invoke(entity);
+        }
+
         #region Events
 
         public static EventHandler<CatData, ItemData> onItemPickedUp;
         public static EventHandler<EntityData> onEntityCreated;
+        public static EventHandler<EntityData> onEntityDestroyed;
 
         #endregion
     }

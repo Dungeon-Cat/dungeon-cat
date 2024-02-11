@@ -152,9 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd45af15ad2745b898295874d656bfde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    entities: []
-  defaultEntities: []
 --- !u!4 &225010733
 Transform:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ namespace Scripts.Data
         public int TotalCount => items.Where(item => !item.IsEmpty()).Sum(item => item.count);
 
         [JsonIgnore]
-        public int FreeSlots => items.Count(item => item .IsEmpty());
+        public int FreeSlots => items.Count(item => item.IsEmpty());
         
         [JsonIgnore]
         public int UsedSlots => items.Count(item => !item.IsEmpty());
@@ -39,17 +39,19 @@ namespace Scripts.Data
         {
             if (slot >= slots || slot < 0) return false;
 
-            switch (items[slot])
+            if (items[slot].IsEmpty())
             {
-                case null:
-                    items[slot] = item;
-                    return true;
-                case var i when i.id == item.id:
-                    i.count += item.count;
-                    return true;
-                default:
-                    return false;
+                items[slot] = item;
+                return true;
             }
+
+            if (items[slot].id == item.id)
+            {
+                items[slot].count += item.count;
+                return true;
+            }
+            
+            return false;
         }
         
         /// <summary>

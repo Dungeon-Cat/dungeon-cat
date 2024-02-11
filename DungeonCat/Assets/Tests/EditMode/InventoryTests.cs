@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 using Scripts.Data;
 using Scripts.Definitions.Items;
 namespace Tests.EditMode
@@ -53,6 +54,26 @@ namespace Tests.EditMode
             var after = GameStateManager.CurrentState.CurrentScene.entities.Count;
             
             Assert.AreEqual(before + 1, after);
+        }
+        
+        [Test]
+        public void DropThenPickUpTest()
+        {
+            var cat = GameStateManager.CurrentState.cat;
+
+            var key = ItemData.Create<TutorialKey>();
+            Assert.IsTrue(cat.TryPickupItem(key));
+            Assert.AreEqual(1, cat.inventory.TotalCount);
+            
+            cat.DropAllItems();
+            
+            Assert.AreEqual(0, cat.inventory.TotalCount);
+
+            var itemEntity = GameStateManager.CurrentState.CurrentScene.entities.Values.OfType<ItemEntityData>().First();
+
+            Assert.IsTrue(cat.TryPickupItem(itemEntity));
+            
+            Assert.AreEqual(1, cat.inventory.TotalCount);
         }
     }
 }

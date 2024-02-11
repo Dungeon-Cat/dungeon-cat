@@ -1,8 +1,11 @@
 ﻿using Scripts.Data;
+
 namespace Scripts.Components
 {
-    public abstract class EntityComponent<T> : ComponentWithData<T> where T : EntityData
+    public abstract class EntityComponent<T> : ComponentWithData<T>, IEntityComponent where T : EntityData
     {
+        public string Id => data.id;
+        
         protected virtual void Start()
         {
             GameStateManager.Register(data);

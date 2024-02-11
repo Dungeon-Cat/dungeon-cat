@@ -24,24 +24,31 @@ namespace Scripts.Data
 
             return false;
         }
+        
+        public bool TryPickupItem(ItemEntityData item)
+        {
+            if (!TryPickupItem(item.item)) return false;
+            
+            GameStateManager.RemoveEntity(item);
+            return true;
+        }
 
         public void DropAllItems()
         {
             foreach (var itemData in inventory.items)
             {
-                if (itemData.IsEmpty()) return;
+                if (itemData.IsEmpty()) continue;
 
                 GameStateManager.CreateEntity(new ItemEntityData
                 {
                     item = itemData,
                     id = itemData.id + idCounter++,
                     scene = GameStateManager.CurrentScene,
-                    position = position + facing * 5
+                    position = position + facing * 10
                 });
             }
 
             inventory.Clear();
-
         }
     }
 }

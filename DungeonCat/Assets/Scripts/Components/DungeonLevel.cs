@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Scripts.Data;
+using UnityEngine;
+
 namespace Scripts.Components
 {
     /// <summary>
@@ -7,6 +10,21 @@ namespace Scripts.Components
     /// </summary>
     public class DungeonLevel : ComponentWithData<SceneData>
     {
+        public Dictionary<string, GameObject> entities = new();
+
+        private void Awake()
+        {
+            GameStateManager.CurrentState.scenes.TryAdd(gameObject.scene.name, new SceneData());
+        }
+
+        private void Start()
+        {
+            entities = gameObject.scene
+                .GetRootGameObjects()
+                .SelectMany(o => o.GetComponentsInChildren<IEntityComponent>())
+                .ToDictionary(e => e.Id, e => e.GameObject);
+        }
+
         /*public ComponentWithData<EntityData>[] defaultEntities;
 
         private void Start()

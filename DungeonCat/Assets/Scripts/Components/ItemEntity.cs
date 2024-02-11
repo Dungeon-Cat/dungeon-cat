@@ -1,5 +1,6 @@
 ﻿using Scripts.Data;
 using Scripts.Definitions;
+using Scripts.Utility;
 using UnityEngine;
 
 namespace Scripts.Components
@@ -25,7 +26,10 @@ namespace Scripts.Components
 
         public void OnCollisionEnter2D(Collision2D other)
         {
-            Debug.Log("Happening!");
+            if (other.gameObject.HasComponent(out Cat cat))
+            {
+                cat.data.TryPickupItem(data);
+            }
         }
 
         protected override void OnValidateInEditor()
