@@ -3,8 +3,8 @@ using System.Collections.Generic;
 namespace Scripts.Data
 {
     [Serializable]
-    public class SceneData
+    public class SceneData : Data
     {
-        public List<EntityData> entities = new();
+        public Dictionary<string, EntityData> entities = new();
     }
 }
