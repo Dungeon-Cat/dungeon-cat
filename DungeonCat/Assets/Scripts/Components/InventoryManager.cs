@@ -48,7 +48,8 @@ namespace Scripts.Components
 
                     itemName.text = item.id;
                     itemCount.text = Convert.ToString(item.count);
-                    itemIcon.sprite = Resources.Load<Sprite>("Images/Items/"+item.id);
+                    var itemDef = item.GetItemDef();
+                    itemIcon.sprite = Resources.Load<Sprite>(itemDef.Icon);
                 }
             }
         }
