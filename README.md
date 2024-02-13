@@ -3,8 +3,11 @@
 Dungeon Cat is a 2D top-down adventure/puzzle game based around a cat exploring a dungeon. This dungeon is filled with strange beasts, puzzles, and hidden secrets.
 
 ## Current Functionality
-- The cat can navigate a scene and interact with some tiles and entities.
-- The structure of the project is such that a future saving feature is possible.
+The vast majority of the core extensible components on which the entirety of the game is built are now implemented. They include:
+- Basic navigation of the scene by the user with our cat avatar.
+- User interaction with various entities, including structural entities (doors, walls, etc.) and items.
+- User interaction with characters for dialogue.
+Because our envisioned structure is quite minimal, there are only two major building blocks we have yet to implement, the saving functionality and a fighting system.
 
 ## Local Development
 
