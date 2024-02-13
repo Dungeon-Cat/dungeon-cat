@@ -21,13 +21,13 @@ namespace Scripts.Components
             var touching = cat.collider.Distance(witch.collider).distance < 5;
             
             // trigger dialogue
-            // if (touching != door.IsOpen)
+            // if (touching != dialogue.isDone)
             // {
-            //     door.SetOpen(touching);
+            //     dialogue.start();
             // }
             
             // after dialogue
-            // if (isDone) 
+            // if (dialogue.isDone) 
             // {
             //      Destroy(gameObject);
             // }
