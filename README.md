@@ -2,6 +2,32 @@
 
 Dungeon Cat is a 2D top-down adventure/puzzle game based around a cat exploring a dungeon. This dungeon is filled with strange beasts, puzzles, and hidden secrets.
 
+## Current Functionality
+- The cat can navigate a scene and interact with some tiles and entities.
+- The structure of the project is such that a future saving feature is possible.
+
+## Local Development
+
+### Prerequisites: 
+
+The Unity Editor version required for the project is [**2022.3.17f**](https://unity.com/releases/editor/qa/lts-releases#:~:text=January%209%2C%202024-,LTS%20Release,2022.3.17f1,-Released%3A%20January)
+
+The preferred IDE for scripting is [JetBrains Rider](https://www.jetbrains.com/lp/dotnet-unity/)
+
+### Instructions:
+1. Clone this repository
+2. Navigate to the root directory of the cloned repository
+3. Open ./DungeonCat with the specified Unity Editor
+
+### Testing:
+To run the tests locally, from the Unity Editor top bar open `Window > General > Test Runner`. 
+
+### Running:
+To run the project, press the play button at the top middle of the Unity Editor. Press it again to stop the project.
+
+### Building:
+TBD
+
 ## Repo Structure
 
 ### Unity Project
@@ -21,13 +47,4 @@ Our project reports are stored in `/reports`
 ### CI / CD
 
 Out GitHub actions scripts will be in `/.github/workflows` 
-
-## Devloping Locally
-
-The Unity Editor version required for the project is [**2022.3.17f**](https://unity.com/releases/editor/qa/lts-releases#:~:text=January%209%2C%202024-,LTS%20Release,2022.3.17f1,-Released%3A%20January)
-
-We'll be using [JetBrains Rider](https://www.jetbrains.com/lp/dotnet-unity/) as our primary IDE for developing the project, default settings
-
-To run the tests locally, from the Unity Editor top bar open `Window > General > Test Runner`
-
 <!-- TODO saved Rider run configuration for running the tests -->
