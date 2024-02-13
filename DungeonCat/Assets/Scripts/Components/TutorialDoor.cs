@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using Codice.CM.WorkspaceServer.Lock;
+using UnityEngine;
 
 namespace Scripts.Components
 {
     /// <summary>
-    /// Controls the behavior of the door in the tutorial, currently opening if the player is nearby or closing if not
+    /// Controls the behavior of the door in the tutorial, currently opening if the player is nearby
+    /// or closing if not.
     /// </summary>
     public class TutorialDoor : MonoBehaviour
     {
