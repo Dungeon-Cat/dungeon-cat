@@ -18,6 +18,7 @@ namespace Scripts.Components
         public void SetOpen(bool isOpen)
         {
             data.isOpen = isOpen;
+            
             spriteRenderer.sprite = isOpen ? openSprite : closedSprite;
         }
 
