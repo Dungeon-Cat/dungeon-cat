@@ -13,9 +13,8 @@ namespace Scripts.Components
         private Interaction? _currentInteraction;
         private IEnumerator? _coroutine;
         public const string DefaultDialogueOption = "MEOW";
-        public new void Awake()
+        public void Awake()
         {
-            base.Awake();
             gameObject.SetActive(true);
             data.text_vis.text = "blank";
             data.author_vis.text = "blank";
