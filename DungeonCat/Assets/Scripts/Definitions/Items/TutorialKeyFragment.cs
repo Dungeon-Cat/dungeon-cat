@@ -2,6 +2,6 @@
 {
     public class TutorialKeyFragment : ItemDef
     {
-        public override int StackSize => 3;
+        public override int StackSize => 1;
     }
 }

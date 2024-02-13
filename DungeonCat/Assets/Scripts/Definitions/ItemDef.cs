@@ -1,4 +1,5 @@
-﻿using Scripts.Data;
+﻿using System.Collections.Generic;
+using Scripts.Data;
 
 namespace Scripts.Definitions
 {
@@ -9,7 +10,7 @@ namespace Scripts.Definitions
     {
         public virtual string Id => GetType().Name;
 
-        public virtual int StackSize => 1;
+        public virtual int StackSize => 64;
 
         public virtual string Icon => "Unknown";
 
@@ -18,6 +19,11 @@ namespace Scripts.Definitions
         public virtual string DisplayName => Id;
 
         public virtual string Description => "";
+
+        public virtual IEnumerable<ItemCombination> AddCombinations()
+        {
+            yield break;
+        }
         
         public virtual void OnPickup(CharacterData character)
         {
@@ -28,5 +34,7 @@ namespace Scripts.Definitions
         {
             // Do Nothing
         }
+
+        public bool isMaterial;
     }
 }

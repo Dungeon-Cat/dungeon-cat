@@ -1,6 +1,7 @@
 ﻿using System;
 using Scripts.Data;
 using UnityEngine;
+
 namespace Scripts.Utility
 {
     public static class Extensions
@@ -20,5 +21,15 @@ namespace Scripts.Utility
         public static bool HasComponent<T>(this GameObject gameObject) where T : MonoBehaviour => gameObject.GetComponent<T>() != null;
 
         public static bool HasComponent<T>(this GameObject gameObject, out T component) where T : MonoBehaviour => (component = gameObject.GetComponent<T>()) != null;
+    }
+}
+
+namespace System.Runtime.CompilerServices
+{
+    /// <summary>
+    /// Allows init only properties pre net5
+    /// </summary>
+    internal static class IsExternalInit
+    {
     }
 }

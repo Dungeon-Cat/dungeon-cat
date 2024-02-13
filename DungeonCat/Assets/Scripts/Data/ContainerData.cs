@@ -19,7 +19,7 @@ namespace Scripts.Data
 
         [JsonIgnore]
         public int FreeSlots => items.Count(item => item.IsEmpty());
-        
+
         [JsonIgnore]
         public int UsedSlots => items.Count(item => !item.IsEmpty());
 
@@ -28,7 +28,7 @@ namespace Scripts.Data
             this.slots = slots;
             items = new ItemData[slots];
         }
-        
+
         /// <summary>
         /// Tries to add an item to a specific slot of this container
         /// </summary>
@@ -45,15 +45,15 @@ namespace Scripts.Data
                 return true;
             }
 
-            if (items[slot].id == item.id)
+            if (items[slot].id == item.id && items[slot].count + item.count <= item.GetItemDef().StackSize)
             {
                 items[slot].count += item.count;
                 return true;
             }
-            
+
             return false;
         }
-        
+
         /// <summary>
         /// Tries to add an Item to this container at the first available slot
         /// </summary>
@@ -85,7 +85,6 @@ namespace Scripts.Data
 
             items[slot] = null;
 
-            
             return item;
         }
 
