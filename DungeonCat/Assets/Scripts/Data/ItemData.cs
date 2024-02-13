@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Scripts.Definitions;
+using Scripts.Definitions.Items;
 
 namespace Scripts.Data
 {
@@ -32,5 +34,11 @@ namespace Scripts.Data
             id = ItemRegistry.Instance<T>().Id,
             count = count
         };
+
+        public ItemDef GetItemDef()
+        {
+            // TODO replace null with NullItem (will have to have a static reference in ItemRegistry?)
+            return ItemRegistry.Items.GetValueOrDefault(id, ItemRegistry.Instance<NullItem>());
+        }
     }
 }

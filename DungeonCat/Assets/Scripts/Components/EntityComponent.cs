@@ -1,9 +1,12 @@
 ﻿using Scripts.Data;
+
 namespace Scripts.Components
 {
-    public abstract class EntityComponent<T> : ComponentWithData<T> where T : EntityData
+    public abstract class EntityComponent<T> : ComponentWithData<T>, IEntityComponent where T : EntityData
     {
-        protected virtual void Awake()
+        public string Id => data.id;
+        
+        protected virtual void Start()
         {
             GameStateManager.Register(data);
         }
@@ -16,6 +19,7 @@ namespace Scripts.Components
         public override void SyncToData()
         {
             data.position = transform.position;
+            data.scene = gameObject.scene.name;
         }
     }
 }
