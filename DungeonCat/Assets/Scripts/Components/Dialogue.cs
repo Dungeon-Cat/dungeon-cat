@@ -48,7 +48,7 @@ namespace Scripts.Components
             StartCoroutine(_coroutine);
         }
 
-        public void ProgressInteraction(string dialogueOption)
+        private void ProgressInteraction(string dialogueOption)
         {
             if (_currentInteraction == null) return;
             var result = _currentInteraction.GetNext(dialogueOption);

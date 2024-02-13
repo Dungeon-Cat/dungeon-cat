@@ -2,6 +2,7 @@
 using System.Linq;
 using Unity.Plastic.Newtonsoft.Json;
 using Scripts.Utility;
+
 namespace Scripts.Data
 {
     /// <summary>
