@@ -204,14 +204,16 @@ namespace Scripts.Components
             }
         }
 
-        public void AddStartCallBack(Action action)
+        public DialogueLine AddStartCallBack(Action action)
         {
             _callbacksOnStart.Add(action);
+            return this;
         }
         
-        public void AddEndCallBack(Action action)
+        public DialogueLine AddEndCallBack(Action action)
         {
             _callbacksOnEnd.Add(action);
+            return this;
         }
     }
 
