@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 namespace Scripts.Components
 {
     /// <summary>
-    /// Controls the behavior of the door in the tutorial, currently opening if the player is nearby
-    /// or closing if not.
+    /// Controls the behavior of the door in the tutorial.
+    /// Currently opens if key dropped on door.
     /// </summary>
     public class TutorialDoor : MonoBehaviour
     {
