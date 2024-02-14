@@ -13,8 +13,30 @@ namespace Scripts.Components
         public void Meow()
         {
             Debug.Log("Meow");
-            Interaction interaction = Interaction.Basic("cat", new []{"meow", "nyan", "mrao"});
-            UnityState.Instance.dialogue.StartInteraction(interaction);
+            UnityState.Instance.dialogue.StartInteraction(new Interaction(
+                Line("I'm Momo!")
+                    .AddNext(
+                        Line("Welcome to the magical world of Dungeon Cat."),
+                        "Alright, sounds interesting...",
+                        Color.black
+                    )
+                    .AddNext(
+                        Line("Hiss....."),
+                        "I don't want to do this anymore...",
+                        Color.black
+                    ).AddNext(
+                        Line("I am a noncommittal cat, you see...")
+                        )
+            ));
+        }
+
+        static DialogueLine Line(string text)
+        {
+            return new DialogueLine(
+                    "Cat",
+                    text
+                ).AuthorColor(Color.blue)
+                .TextColor(Color.white);
         }
     }
 }

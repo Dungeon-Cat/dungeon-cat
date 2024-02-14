@@ -11,8 +11,7 @@ namespace Scripts.Data
     [Serializable]
     public class DialogueData : EntityData
     {
-        public TMP_Text author_vis;
-        public TMP_Text text_vis;
+        public TMP_Text authorVis, textVis, option1, option2, option3, option4;
         public Queue<Interaction> Interactions = new();
     }
 }

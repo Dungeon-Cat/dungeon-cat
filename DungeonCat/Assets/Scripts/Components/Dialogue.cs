@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Scripts.Data;
+using TMPro;
 using UnityEngine;
 
 #nullable enable
@@ -13,12 +15,22 @@ namespace Scripts.Components
         private Interaction? _currentInteraction;
         private IEnumerator? _coroutine;
         private bool _inInteractionChain;
-        public const string DefaultDialogueOption = "meow";
+        private readonly List<TMP_Text> _dialogueOptions = new();
+        public const string DefaultDialogueOption = "";
+        
         public void Awake()
         {
-            gameObject.SetActive(true);
-            data.text_vis.text = "";
-            data.author_vis.text = "";
+            gameObject.SetActive(false);
+            data.textVis.text = "";
+            data.authorVis.text = "";
+            _dialogueOptions.Add(data.option1);
+            _dialogueOptions.Add(data.option2);
+            _dialogueOptions.Add(data.option3);
+            _dialogueOptions.Add(data.option4);
+            foreach (var tmpText in _dialogueOptions)
+            {
+                tmpText.text = "";
+            }
         }
 
         public void StartInteraction(Interaction interaction)
@@ -39,7 +51,7 @@ namespace Scripts.Components
         private void CurrentInteraction()
         {
             if (!_inInteractionChain) return;
-            gameObject.SetActive(_currentInteraction == null);
+            gameObject.SetActive(_currentInteraction != null);
             if (_currentInteraction != null)
             {
                 Display(_currentInteraction.First());
@@ -78,20 +90,38 @@ namespace Scripts.Components
         
         private IEnumerator TypeSentence(DialogueLine line)
         {
-            data.author_vis.text = line.author;
-            data.author_vis.color = line.authorColor;
-            data.text_vis.text = "";
-            data.text_vis.color = line.textColor;
+            data.authorVis.text = line.author;
+            data.authorVis.color = line.authorColor;
+            data.textVis.text = "";
+            data.textVis.color = line.textColor;
             foreach (var letter in line.text)
             {
-                data.text_vis.text += letter;
+                data.textVis.text += letter;
                 yield return new WaitForSeconds(0.05f);
             }
+            yield return new WaitForSeconds(0.05f);
+            if (!(line.Options.Count == 1 && line.Options[0].Item1 == ""))
+            {
+                for (var i = 0; i < line.Options.Count; i++)
+                {
+                    var (option, color) = line.Options[i];
+                    _dialogueOptions[i].text = option;
+                    _dialogueOptions[i].color = color;
+                }
+            }
+            
             yield return new WaitUntil(() => InputManager.Actions.Player.Interact.IsPressed());
-            data.text_vis.text = "";
-            data.text_vis.color = Color.white;
-            data.author_vis.text = "";
-            data.text_vis.color = Color.white;
+            yield return new WaitForSeconds(0.10f);
+            foreach (var option in _dialogueOptions)
+            {
+                option.text = "";
+                option.color = Color.white;
+            }
+            
+            data.textVis.text = "";
+            data.textVis.color = Color.white;
+            data.authorVis.text = "";
+            data.textVis.color = Color.white;
             ProgressInteraction(DefaultDialogueOption);
         }
     }
@@ -108,6 +138,7 @@ namespace Scripts.Components
         // Most of the time, the default dialogue option to progress to the next
         // next will be 'meow'.
         // Provisional upper limit of four dialogue options.
+        public List<(string, Color)> Options = new();
         private Dictionary<string, (Color, DialogueLine)> _options = new();
         // A node in an interaction takes these actions when it is reached.
         // This is to signal choices that might affect the character with whom the
@@ -131,20 +162,18 @@ namespace Scripts.Components
             textColor = color;
             return this;
         }
-
-        public void AddNext(DialogueLine node)
-        {
-            _options.Add(Dialogue.DefaultDialogueOption, (Color.white, node));
-        }
         
-        public void AddNext(string option, DialogueLine node)
+ 
+        public DialogueLine AddNext(DialogueLine node, string option, Color color)
         {
-            _options.Add(option, (Color.white, node));
-        }
-        
-        public void AddNext(string option, Color color, DialogueLine node)
-        {
+            Options.Add((option, color));
             _options.Add(option, (color, node));
+            return this;
+        }
+        
+        public DialogueLine AddNext(DialogueLine node, string option = Dialogue.DefaultDialogueOption)
+        {
+            return AddNext(node, option, Color.white);
         }
 
         public DialogueLine? GetNext(string option)
@@ -194,11 +223,15 @@ namespace Scripts.Components
     [Serializable]
     public class Interaction
     {
-        private DialogueLine? _start;
         private DialogueLine? _curr;
         // A node doesn't know whether it's the end, so to end an interaction, we have a
         // separate set of callbacks.
         private List<Action> _onEndCallbacks = new();
+        
+        public Interaction(DialogueLine curr)
+        {
+            _curr = curr;
+        }
         
         public DialogueLine? First()
         {
@@ -235,11 +268,10 @@ namespace Scripts.Components
         // Produces an interaction from an author and a list of text options.
         public static Interaction Basic(string author, IEnumerable<string> iterator)
         {
-            Interaction interaction = new();
             DialogueLine curr = new(author, "");
             DialogueLine? next = null;
-            interaction._curr = curr;
             
+            Interaction interaction = new(curr);
             foreach (var text in iterator)
             {
                 if (text == null) return interaction;
@@ -249,7 +281,7 @@ namespace Scripts.Components
                     curr = next;
                 }
                 curr.text = text;
-                next = new(author, "");
+                next = new DialogueLine(author, "");
             }
 
             return interaction;
