@@ -11,6 +11,8 @@ namespace Scripts.Components
         public Cat cat;
         public static UnityState Instance { get; private set; }
 
+        public Dialogue dialogue;
+        
         private void Awake()
         {
             Instance = this;
