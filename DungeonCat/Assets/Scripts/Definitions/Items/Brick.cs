@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-namespace Scripts.Definitions.Items
+﻿namespace Scripts.Definitions.Items
 {
     public class Brick : ItemDef
     {
