@@ -13,6 +13,9 @@ namespace Scripts.Data
         public int slots;
 
         public ItemData[] items;
+        
+        [JsonIgnore]
+        public bool isDirty;
 
         [JsonIgnore]
         public int TotalCount => items.Where(item => !item.IsEmpty()).Sum(item => item.count);
@@ -42,12 +45,14 @@ namespace Scripts.Data
             if (items[slot].IsEmpty())
             {
                 items[slot] = item;
+                isDirty = true;
                 return true;
             }
 
             if (items[slot].id == item.id && items[slot].count + item.count <= item.GetItemDef().StackSize)
             {
                 items[slot].count += item.count;
+                isDirty = true;
                 return true;
             }
 
@@ -85,6 +90,8 @@ namespace Scripts.Data
 
             items[slot] = null;
 
+            isDirty = true;
+
             return item;
         }
 
@@ -94,6 +101,7 @@ namespace Scripts.Data
         public void Clear()
         {
             items = new ItemData[slots];
+            isDirty = true;
         }
     }
 }

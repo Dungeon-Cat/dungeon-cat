@@ -48,31 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd330f96cd1544a72943b7d9c17db0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
   cat: {fileID: 0}
-  catComponent: {fileID: 0}
-  itemsData:
-    slots: 10
-    items:
-    - id: BowlOfMilk
-      count: 1
-    - id: brick
-      count: 0
-    - id: 
-      count: 0
-    - id: 
-      count: 0
-    - id: 
-      count: 0
-    - id: 
-      count: 0
-    - id: 
-      count: 0
-    - id: 
-      count: 0
-    - id: 
-      count: 0
-    - id: 
-      count: 0
   itemContent: {fileID: 0}
   inventoryItem: {fileID: 6561423788115865924, guid: 2c488648c4a4946bb850bf774685f316,
     type: 3}
