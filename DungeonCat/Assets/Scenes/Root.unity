@@ -136,6 +136,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cat
       objectReference: {fileID: 0}
+    - target: {fileID: 3384297482565960500, guid: d7ea482c4bfd649fb83a7d29165e53d9,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3384297482565960500, guid: d7ea482c4bfd649fb83a7d29165e53d9,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6697103593926213204, guid: d7ea482c4bfd649fb83a7d29165e53d9,
         type: 3}
       propertyPath: m_Pivot.x

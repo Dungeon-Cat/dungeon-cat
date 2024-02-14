@@ -1,12 +1,13 @@
 ﻿using Scripts.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Scripts.Components
 {
     public abstract class EntityComponent<T> : ComponentWithData<T>, IEntityComponent where T : EntityData
     {
-        public new Collider2D collider;
-
+        [FormerlySerializedAs("collider")]
+        public Collider2D collider2d;
         
         public string Id => data.id;
         

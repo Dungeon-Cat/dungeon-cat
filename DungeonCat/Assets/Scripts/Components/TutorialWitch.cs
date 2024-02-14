@@ -18,7 +18,7 @@ namespace Scripts.Components
         {
             var cat = UnityState.Instance.cat;
 
-            var touching = cat.collider.Distance(witch.collider).distance < 5;
+            var touching = cat.collider2d.Distance(witch.collider2d).distance < 5;
             
             // trigger dialogue
             // if (touching != dialogue.isDone)

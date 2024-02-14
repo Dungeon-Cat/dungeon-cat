@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Scripts.Data;
 using UnityEngine;
 
@@ -21,6 +24,8 @@ namespace Scripts.Utility
         public static bool HasComponent<T>(this GameObject gameObject) where T : MonoBehaviour => gameObject.GetComponent<T>() != null;
 
         public static bool HasComponent<T>(this GameObject gameObject, out T component) where T : MonoBehaviour => (component = gameObject.GetComponent<T>()) != null;
+
+        public static TResult FirstNonNull<TSource, TResult>(this IEnumerable<TSource> sequence, Func<TSource, TResult> mapper) => sequence.Select(mapper).First(arg => arg != null);
     }
 }
 
