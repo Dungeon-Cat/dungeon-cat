@@ -30,7 +30,7 @@ namespace Scripts.Components
             ));
         }
 
-        static DialogueLine Line(string text)
+        private static DialogueLine Line(string text)
         {
             return new DialogueLine(
                     "Cat",
