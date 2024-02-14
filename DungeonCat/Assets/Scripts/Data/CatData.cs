@@ -2,6 +2,7 @@
 using System.Linq;
 using Scripts.Definitions;
 using Scripts.Utility;
+using UnityEngine;
 
 namespace Scripts.Data
 {
@@ -12,6 +13,7 @@ namespace Scripts.Data
     public class CatData : CharacterData
     {
         public const int MaxInventorySlots = 10;
+        public const float Reach = 10f;
 
         public ContainerData inventory = new(MaxInventorySlots);
 
@@ -26,15 +28,23 @@ namespace Scripts.Data
 
             return false;
         }
-        
+
+        /// <summary>
+        /// Tries to make the cat pick up an item entity from the ground to its inventory
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public bool TryPickupItem(ItemEntityData item)
         {
             if (!TryPickupItem(item.item)) return false;
-            
+
             GameStateManager.RemoveEntity(item);
             return true;
         }
 
+        /// <summary>
+        /// Drops all items in the cats inventory to the ground
+        /// </summary>
         public void DropAllItems()
         {
             foreach (var itemData in inventory.items)
@@ -47,15 +57,33 @@ namespace Scripts.Data
             inventory.Clear();
         }
 
-        public void DropItem(ItemData itemData)
+        /// <summary>
+        /// Drops an item to the ground in front of the cat
+        /// </summary>
+        /// <param name="itemData"></param>
+        /// <param name="desiredPos"></param>
+        public void DropItem(ItemData itemData, Vector2? desiredPos = null)
         {
+            var direction = desiredPos.HasValue ? (desiredPos.Value - position).normalized : facing;
+            var pos = position + direction * Reach;
+
             GameStateManager.CreateEntity(new ItemEntityData
             {
                 item = itemData,
                 id = itemData.id + idCounter++,
                 scene = GameStateManager.CurrentScene,
-                position = position + facing * 10
+                position = pos
             });
+        }
+
+        /// <summary>
+        /// Drops the item at the particular slot in the cat's inventory to the ground
+        /// </summary>
+        /// <param name="slot"></param>
+        /// <param name="desiredPos"></param>
+        public void DropItem(int slot, Vector2? desiredPos = null)
+        {
+            DropItem(inventory.ClearSlot(slot), desiredPos);
         }
 
         /// <summary>
@@ -82,7 +110,7 @@ namespace Scripts.Data
                 id = combination.result,
                 count = combination.amount
             };
-            
+
             foreach (var (itemId, count) in itemsToCombine)
             {
                 for (var i = 0; i < count; i++)

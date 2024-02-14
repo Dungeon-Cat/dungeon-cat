@@ -42,8 +42,10 @@ namespace Scripts.Components
 
             // Read inventory item data from cat's inventory
             // Render each item in cat's inventory
-            foreach (var item in cat.data.inventory.items)
+            for (var slot = 0; slot < cat.data.inventory.items.Length; slot++)
             {
+                var item = cat.data.inventory.items[slot];
+                
                 // Render if item ID is valid
                 if (!item.IsEmpty())
                 {
@@ -52,10 +54,13 @@ namespace Scripts.Components
                     var itemCount = obj.transform.Find("ItemCount").GetComponent<Text>();
                     var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
 
+                    obj.GetComponent<InventoryItem>().slot = slot;
+
                     itemName.text = item.id;
                     itemCount.text = Convert.ToString(item.count);
                     var itemDef = item.GetItemDef();
                     itemIcon.sprite = Resources.Load<Sprite>(itemDef.Icon);
+                    itemIcon.preserveAspect = true;
                 }
             }
         }

@@ -80,23 +80,13 @@ namespace Tests.EditMode
         {
             var cat = GameStateManager.CurrentState.cat;
 
-            const int keyFragmentsPerKey = 3;
+            var fragment1 = ItemData.Create<TutorialKeyFragment1>();
+            Assert.IsTrue(cat.TryPickupItem(fragment1));
+            
+            var fragment2 = ItemData.Create<TutorialKeyFragment2>();
+            Assert.IsTrue(cat.TryPickupItem(fragment2));
 
-            for (var i = 0; i < keyFragmentsPerKey; i++)
-            {
-                var keyFragment = ItemData.Create<TutorialKeyFragment>();
-
-                Assert.IsTrue(cat.TryPickupItem(keyFragment));
-            }
-
-            Assert.AreEqual(keyFragmentsPerKey, cat.inventory.TotalCount);
-
-            for (var i = 1; i < keyFragmentsPerKey; i++)
-            {
-                Assert.IsFalse(cat.TryCombine(Enumerable.Range(0, i).ToArray()));
-            }
-
-            Assert.IsTrue(cat.TryCombine(Enumerable.Range(0, keyFragmentsPerKey).ToArray()));
+            Assert.IsTrue(cat.TryCombine(0, 1));
 
             Assert.AreEqual(1, cat.inventory.TotalCount);
             Assert.AreEqual(nameof(TutorialKey), cat.inventory.items[0].id);
