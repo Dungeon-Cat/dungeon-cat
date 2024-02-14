@@ -2,6 +2,7 @@
 using System.Linq;
 using Newtonsoft.Json;
 using Scripts.Utility;
+using UnityEngine;
 
 namespace Scripts.Data
 {
@@ -14,13 +15,16 @@ namespace Scripts.Data
         public int slots;
 
         public ItemData[] items;
+        
+        [JsonIgnore]
+        public bool isDirty;
 
         [JsonIgnore]
         public int TotalCount => items.Where(item => !item.IsEmpty()).Sum(item => item.count);
 
         [JsonIgnore]
         public int FreeSlots => items.Count(item => item.IsEmpty());
-        
+
         [JsonIgnore]
         public int UsedSlots => items.Count(item => !item.IsEmpty());
 
@@ -29,7 +33,7 @@ namespace Scripts.Data
             this.slots = slots;
             items = new ItemData[slots];
         }
-        
+
         /// <summary>
         /// Tries to add an item to a specific slot of this container
         /// </summary>
@@ -43,18 +47,20 @@ namespace Scripts.Data
             if (items[slot].IsEmpty())
             {
                 items[slot] = item;
+                isDirty = true;
                 return true;
             }
 
-            if (items[slot].id == item.id)
+            if (items[slot].id == item.id && items[slot].count + item.count <= item.GetItemDef().StackSize)
             {
                 items[slot].count += item.count;
+                isDirty = true;
                 return true;
             }
-            
+
             return false;
         }
-        
+
         /// <summary>
         /// Tries to add an Item to this container at the first available slot
         /// </summary>
@@ -86,7 +92,8 @@ namespace Scripts.Data
 
             items[slot] = null;
 
-            
+            isDirty = true;
+
             return item;
         }
 
@@ -96,6 +103,45 @@ namespace Scripts.Data
         public void Clear()
         {
             items = new ItemData[slots];
+            isDirty = true;
+        }
+        
+
+        /// <summary>
+        /// Drops all items in the cats inventory to the ground
+        /// </summary>
+        public void DropAllItems(Vector2 pos)
+        {
+            foreach (var itemData in items)
+            {
+                if (itemData.IsEmpty()) continue;
+
+                DropItem(itemData, pos);
+            }
+
+            Clear();
+        }
+
+        /// <summary>
+        /// Drops an item to the ground in front of the cat
+        /// </summary>
+        public void DropItem(ItemData itemData, Vector2 pos)
+        {
+            GameStateManager.CreateEntity(new ItemEntityData
+            {
+                item = itemData,
+                id = itemData.id + EntityData.idCounter++,
+                scene = GameStateManager.CurrentScene,
+                position = pos
+            });
+        }
+
+        /// <summary>
+        /// Drops the item at the particular slot in the cat's inventory to the ground
+        /// </summary>
+        public void DropItem(int slot, Vector2 pos)
+        {
+            DropItem(ClearSlot(slot), pos);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using Scripts.Data;
+using Scripts.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +16,10 @@ namespace Scripts.Components
         private void Awake()
         {
             Instance = this;
+            if (!SceneManager.GetSceneByName(GameState.DefaultRoom).IsValid())
+            {
+                SceneManager.LoadScene(GameState.DefaultRoom, LoadSceneMode.Additive);
+            }
             GameStateManager.Init(cat.data);
 
             // listen to events
@@ -25,11 +29,22 @@ namespace Scripts.Components
         }
 
         public static DungeonLevel GetScene(string sceneName) =>
-            SceneManager.GetSceneByName(sceneName).GetRootGameObjects().First().GetComponentInChildren<DungeonLevel>();
+            SceneManager.GetSceneByName(sceneName).GetRootGameObjects().FirstNonNull(o => o.GetComponent<DungeonLevel>());
 
+        /// <summary>
+        /// Callback for when an entity is created within the game data to create the corresponding entity game object
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="NotImplementedException"></exception>
         private static void OnEntityCreated(EntityData entity)
         {
             var scene = GetScene(entity.scene);
+            if (scene == null)
+            {
+                Debug.LogError($"Scene was not found for {entity.scene}");
+            }
+
             var prefab = Resources.Load<GameObject>(entity switch
             {
                 CatData => throw new InvalidOperationException("Creating a new Cat entity is not allowed"),
@@ -41,10 +56,14 @@ namespace Scripts.Components
             var newEntity = newGameObject.GetComponent<IEntityComponent>();
             newEntity.SetData(entity);
             newEntity.SyncFromData();
-            
+
             scene.entities.Add(newEntity.Id, newGameObject);
         }
 
+        /// <summary>
+        /// Callback for when an entity is destroyed within the game data to destroy the corresponding entity game object
+        /// </summary>
+        /// <param name="entity"></param>
         private static void OnEntityDestroyed(EntityData entity)
         {
             var scene = GetScene(entity.scene);
@@ -58,7 +77,7 @@ namespace Scripts.Components
 
         private void OnItemPickedUp(CatData _, ItemData item)
         {
-            Debug.Log($"Picked up {item.id}");
+            // Debug.Log($"Picked up {item.id}");
         }
 
         private void OnDestroy()

@@ -9,9 +9,11 @@ namespace Scripts.Data
     [Serializable]
     public class GameState
     {
+        public const string DefaultRoom = "Room1";
+        
         public CatData cat;
 
-        public string currentScene = "Root";
+        public string currentScene = DefaultRoom;
 
         public Dictionary<string, SceneData> scenes;
 

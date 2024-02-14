@@ -56,6 +56,7 @@ MonoBehaviour:
     item:
       id: 
       count: 1
+  collider2d: {fileID: 0}
   spriteRenderer: {fileID: 678317633296857406}
 --- !u!212 &678317633296857406
 SpriteRenderer:
@@ -97,7 +98,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 7fd4819dd7015b747adaad12bb5482fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
