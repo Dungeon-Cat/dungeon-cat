@@ -141,10 +141,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 3384297482565960500, guid: d7ea482c4bfd649fb83a7d29165e53d9,
+    - target: {fileID: 6547500608235498063, guid: d7ea482c4bfd649fb83a7d29165e53d9,
         type: 3}
-      propertyPath: m_SortingLayerID
-      value: 0
+      propertyPath: data.inventory.items.Array.data[0].id
+      value: RedHerring
       objectReference: {fileID: 0}
     - target: {fileID: 6697103593926213204, guid: d7ea482c4bfd649fb83a7d29165e53d9,
         type: 3}

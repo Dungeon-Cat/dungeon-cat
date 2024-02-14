@@ -37,7 +37,7 @@ namespace Tests.PlayMode
         {
             var item = GameStateManager.CurrentState.cat.inventory.items[0];
             Assert.IsNotNull(item);
-            Assert.AreEqual(nameof(BowlOfMilk), item.id);
+            Assert.AreEqual(nameof(RedHerring), item.id);
         }
     }
 }
