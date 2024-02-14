@@ -30,7 +30,7 @@ RectTransform:
   m_GameObject: {fileID: 571205246743789093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,6 +83,7 @@ MonoBehaviour:
         count: 0
       - id: 
         count: 0
+  collider: {fileID: 1936148237237513739}
 --- !u!222 &-8688874081758292224
 CanvasRenderer:
   m_ObjectHideFlags: 0
