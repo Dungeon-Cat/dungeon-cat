@@ -247,11 +247,22 @@ namespace Input
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7da1e605-64eb-4eb7-85e9-1717752195da"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""edc40973-2a4f-4a2d-9ff3-36ee07c0bf58"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Drop Item"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
