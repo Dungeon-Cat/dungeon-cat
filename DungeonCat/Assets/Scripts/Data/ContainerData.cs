@@ -95,7 +95,7 @@ namespace Scripts.Data
         /// </summary>
         public void Clear()
         {
-            items = Array.Empty<ItemData>();
+            items = new ItemData[slots];
         }
     }
 }
