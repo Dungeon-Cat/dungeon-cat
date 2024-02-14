@@ -19,15 +19,17 @@ namespace Scripts.Components
             }
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (Actions.Player.Move.IsPressed())
             {
                 var input = Actions.Player.Move.ReadValue<Vector2>();
                 var cat = UnityState.Instance.cat;
-
-                cat.transform.Translate(input.x, input.y, 0);
                 cat.data.facing = input;
+
+                var movement = input * (Time.deltaTime * 50);
+
+                cat.transform.Translate(movement.x, movement.y, 0);
                 cat.SyncToData();
             }
 

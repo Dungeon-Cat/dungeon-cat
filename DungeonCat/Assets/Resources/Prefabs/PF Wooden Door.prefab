@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1576726695675646601}
   - component: {fileID: 200168365961432302}
   - component: {fileID: 7267497814735801289}
+  - component: {fileID: 1180415943192740456}
   m_Layer: 5
   m_Name: PF Wooden Door
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300158, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -118,7 +119,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0005656481, y: 0.049043536}
+  m_Offset: {x: -0.0028658211, y: 0.78371996}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -129,8 +130,31 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0975325, y: 0.09808707}
+  m_Size: {x: 1.1949718, y: 1.571139}
   m_EdgeRadius: 0
+--- !u!114 &1180415943192740456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5414525912930826128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ae59b348144020994f777b8717d7fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    id: TutorialDoor
+    destroyed: 0
+    scene: Room1
+    position: {x: 52.31481, y: 16.574074}
+    tags: []
+    isOpen: 0
+  collider: {fileID: 7267497814735801289}
+  spriteRenderer: {fileID: 200168365961432302}
+  openSprite: {fileID: 21300160, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
+  closedSprite: {fileID: 21300158, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
 --- !u!1 &5664717838772255325
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4180916435639698130}
   - component: {fileID: 7181006428467709238}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +182,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.155, y: 0, z: 0.004}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.8643, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1576726695675646601}
@@ -201,9 +225,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1869315837
-  m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300098, guid: ed7554aeefd5da44a9fe1ee9b93afe77, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
