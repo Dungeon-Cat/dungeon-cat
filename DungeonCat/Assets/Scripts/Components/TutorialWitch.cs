@@ -7,8 +7,12 @@ namespace Scripts.Components
     /// </summary>
     public class TutorialWitch : MonoBehaviour
     {
+        private const string Author = "Witch Statue";
+
         // currently using basic item entity
-        public ItemEntity witch;
+        public Collider2D collider2d;
+
+        public bool dialogueTriggered;
 
         // update witch state
         //  should trigger dialogue on proximity
@@ -18,19 +22,16 @@ namespace Scripts.Components
         {
             var cat = UnityState.Instance.cat;
 
-            var touching = cat.collider2d.Distance(witch.collider2d).distance < 5;
-            
-            // trigger dialogue
-            // if (touching != dialogue.isDone)
-            // {
-            //     dialogue.start();
-            // }
-            
-            // after dialogue
-            // if (dialogue.isDone) 
-            // {
-            //      Destroy(gameObject);
-            // }
+            if (!dialogueTriggered &&
+                cat.collider2d.Distance(collider2d).distance < 5 &&
+                InputManager.Actions.Player.Interact.IsPressed())
+            {
+                dialogueTriggered = true;
+                UnityState.Instance.dialogue.StartInteraction(new Interaction(
+                    new DialogueLine(Author, "The door is locked").AuthorColor(Color.blue).TextColor(Color.black)
+                        .AddNext(new DialogueLine(Author, "There used to be a key around here somewhere, but it may have been broken...").AuthorColor(Color.blue).TextColor(Color.black))
+                ));
+            }
         }
     }
 }
