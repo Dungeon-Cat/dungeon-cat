@@ -8,7 +8,7 @@ namespace Scripts.Data
     {
         public static GameState CurrentState { get; private set; }
 
-        public static string CurrentScene { get; private set; } = "Root";
+        public static string CurrentScene { get; private set; } = GameState.DefaultRoom;
 
         /// <summary>
         /// Initializes the GameState
@@ -21,7 +21,8 @@ namespace Scripts.Data
                 cat = initialCatData ?? new CatData(),
                 scenes = new Dictionary<string, SceneData>
                 {
-                    {"Root", new SceneData()}
+                    {"Root", new SceneData()},
+                    {GameState.DefaultRoom, new SceneData()}
                 }
             };
 

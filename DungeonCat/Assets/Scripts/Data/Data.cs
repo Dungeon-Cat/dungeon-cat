@@ -1,4 +1,4 @@
-﻿namespace Scripts.Data
+namespace Scripts.Data
 {
     public abstract class Data
     {
