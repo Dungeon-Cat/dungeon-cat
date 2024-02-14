@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Newtonsoft.Json;
-using Scripts.Components;
 using Scripts.Utility;
 using UnityEngine;
+
 namespace Scripts.Data
 {
     /// <summary>
@@ -105,7 +105,6 @@ namespace Scripts.Data
             items = new ItemData[slots];
             isDirty = true;
         }
-        
         
 
         /// <summary>
