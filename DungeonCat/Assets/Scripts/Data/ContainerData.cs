@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Newtonsoft.Json;
+using Scripts.Components;
 using Scripts.Utility;
+using UnityEngine;
 namespace Scripts.Data
 {
     /// <summary>
@@ -102,6 +104,45 @@ namespace Scripts.Data
         {
             items = new ItemData[slots];
             isDirty = true;
+        }
+        
+        
+
+        /// <summary>
+        /// Drops all items in the cats inventory to the ground
+        /// </summary>
+        public void DropAllItems(Vector2 pos)
+        {
+            foreach (var itemData in items)
+            {
+                if (itemData.IsEmpty()) continue;
+
+                DropItem(itemData, pos);
+            }
+
+            Clear();
+        }
+
+        /// <summary>
+        /// Drops an item to the ground in front of the cat
+        /// </summary>
+        public void DropItem(ItemData itemData, Vector2 pos)
+        {
+            GameStateManager.CreateEntity(new ItemEntityData
+            {
+                item = itemData,
+                id = itemData.id + EntityData.idCounter++,
+                scene = GameStateManager.CurrentScene,
+                position = pos
+            });
+        }
+
+        /// <summary>
+        /// Drops the item at the particular slot in the cat's inventory to the ground
+        /// </summary>
+        public void DropItem(int slot, Vector2 pos)
+        {
+            DropItem(ClearSlot(slot), pos);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Scripts.Data
     /// Data for a door that can be open or closed
     /// </summary>
     [Serializable]
-    public class DoorData : EntityData
+    public class OpenableEntityData : EntityData
     {
         public bool isOpen;
     }

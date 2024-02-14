@@ -42,19 +42,20 @@ namespace Scripts.Data
             return true;
         }
 
+        private Vector2 ItemDropPos(Vector2? desiredPos = null)
+        {
+            var direction = desiredPos.HasValue ? (desiredPos.Value - position).normalized : facing;
+            var pos = position + direction * Reach;
+
+            return pos;
+        }
+
         /// <summary>
         /// Drops all items in the cats inventory to the ground
         /// </summary>
         public void DropAllItems()
         {
-            foreach (var itemData in inventory.items)
-            {
-                if (itemData.IsEmpty()) continue;
-
-                DropItem(itemData);
-            }
-
-            inventory.Clear();
+            inventory.DropAllItems(ItemDropPos());
         }
 
         /// <summary>
@@ -64,16 +65,7 @@ namespace Scripts.Data
         /// <param name="desiredPos"></param>
         public void DropItem(ItemData itemData, Vector2? desiredPos = null)
         {
-            var direction = desiredPos.HasValue ? (desiredPos.Value - position).normalized : facing;
-            var pos = position + direction * Reach;
-
-            GameStateManager.CreateEntity(new ItemEntityData
-            {
-                item = itemData,
-                id = itemData.id + idCounter++,
-                scene = GameStateManager.CurrentScene,
-                position = pos
-            });
+            inventory.DropItem(itemData, ItemDropPos(desiredPos));
         }
 
         /// <summary>
@@ -83,7 +75,7 @@ namespace Scripts.Data
         /// <param name="desiredPos"></param>
         public void DropItem(int slot, Vector2? desiredPos = null)
         {
-            DropItem(inventory.ClearSlot(slot), desiredPos);
+            inventory.DropItem(slot, ItemDropPos(desiredPos));
         }
 
         /// <summary>

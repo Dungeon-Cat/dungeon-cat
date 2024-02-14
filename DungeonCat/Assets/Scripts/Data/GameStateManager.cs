@@ -21,7 +21,8 @@ namespace Scripts.Data
                 cat = initialCatData ?? new CatData(),
                 scenes = new Dictionary<string, SceneData>
                 {
-                    {"Root", new SceneData()}
+                    {"Root", new SceneData()},
+                    {GameState.DefaultRoom, new SceneData()}
                 }
             };
 
