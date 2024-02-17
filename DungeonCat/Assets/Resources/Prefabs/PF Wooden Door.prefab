@@ -151,7 +151,7 @@ MonoBehaviour:
     position: {x: 52.31481, y: 16.574074}
     tags: []
     isOpen: 0
-  collider: {fileID: 7267497814735801289}
+  collider2d: {fileID: 7267497814735801289}
   spriteRenderer: {fileID: 200168365961432302}
   openSprite: {fileID: 21300160, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   closedSprite: {fileID: 21300158, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
