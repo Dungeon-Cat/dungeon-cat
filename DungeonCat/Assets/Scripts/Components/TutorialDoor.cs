@@ -27,7 +27,8 @@ namespace Scripts.Components
 
             if (door.IsOpen && other.gameObject.HasComponent(out Cat cat))
             {
-                SceneManager.UnloadSceneAsync(door.data.scene);
+                SceneManager.UnloadSceneAsync("Room1");
+                SceneManager.LoadSceneAsync("Room2");
             }
         }
 
