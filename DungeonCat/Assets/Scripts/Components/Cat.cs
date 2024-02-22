@@ -1,4 +1,6 @@
-﻿using Scripts.Data;
+﻿using Scripts.Components.CommonEntities;
+using Scripts.Components.UI;
+using Scripts.Data;
 using UnityEngine;
 namespace Scripts.Components
 {

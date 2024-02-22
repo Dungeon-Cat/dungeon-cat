@@ -1,10 +1,9 @@
 using System;
-using Scripts.Data;
 using Scripts.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scripts.Components
+namespace Scripts.Components.Inventory
 {
     public class InventoryManager : MonoBehaviour
     {

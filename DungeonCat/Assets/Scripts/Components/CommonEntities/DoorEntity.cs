@@ -1,6 +1,6 @@
 ﻿using Scripts.Data;
-using UnityEngine;
-namespace Scripts.Components
+
+namespace Scripts.Components.CommonEntities
 {
     public class DoorEntity : OpenableEntityComponent<DoorEntityData>
     {

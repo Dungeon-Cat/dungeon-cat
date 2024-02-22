@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Scripts.Components.CommonEntities;
+using UnityEngine;
 
-namespace Scripts.Components
+namespace Scripts.Components.Room1
 {
     public class TutorialChest : MonoBehaviour
     {

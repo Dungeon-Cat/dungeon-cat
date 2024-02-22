@@ -1,4 +1,4 @@
-namespace Scripts.Components
+namespace Scripts.Components.CommonEntities
 {
     public interface IEntityComponent : IComponentWithData
     {

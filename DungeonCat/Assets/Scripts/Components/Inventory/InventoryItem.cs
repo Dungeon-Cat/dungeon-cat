@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Scripts.Components.UI;
 using Scripts.Data;
 using Scripts.Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Scripts.Components
+namespace Scripts.Components.Inventory
 {
     /// <summary>
     /// Component that controls the specific behavior of items that appear in the inventory

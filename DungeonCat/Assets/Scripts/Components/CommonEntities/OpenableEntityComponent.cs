@@ -1,6 +1,7 @@
 ﻿using Scripts.Data;
 using UnityEngine;
-namespace Scripts.Components
+
+namespace Scripts.Components.CommonEntities
 {
     /// <summary>
     /// Entity that has an open and closed state with different main sprites

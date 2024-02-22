@@ -1,10 +1,11 @@
-﻿using Scripts.Data;
+﻿using Scripts.Components.CommonEntities;
+using Scripts.Data;
 using Scripts.Definitions.Items;
 using Scripts.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Scripts.Components
+namespace Scripts.Components.Room1
 {
     /// <summary>
     /// Controls the behavior of the door in the tutorial.

@@ -1,6 +1,7 @@
+using Scripts.Components.UI;
 using UnityEngine;
 
-namespace Scripts.Components
+namespace Scripts.Components.Room1
 {
     /// <summary>
     /// Controls the behavior of the Witch in the tutorial.

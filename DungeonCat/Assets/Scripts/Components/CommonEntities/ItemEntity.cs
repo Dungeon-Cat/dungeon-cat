@@ -3,7 +3,7 @@ using Scripts.Definitions;
 using Scripts.Utility;
 using UnityEngine;
 
-namespace Scripts.Components
+namespace Scripts.Components.CommonEntities
 {
     public class ItemEntity : EntityComponent<ItemEntityData>
     {

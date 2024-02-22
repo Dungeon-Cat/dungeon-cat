@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Scripts.Components
+namespace Scripts.Components.CommonEntities
 {
     public abstract class EntityComponent<T> : ComponentWithData<T>, IEntityComponent where T : EntityData
     {

@@ -1,13 +1,14 @@
+#nullable enable
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Components.CommonEntities;
 using Scripts.Data;
 using TMPro;
 using UnityEngine;
 
-#nullable enable
-
-namespace Scripts.Components
+namespace Scripts.Components.UI
 {
     public class Dialogue : EntityComponent<DialogueData>
     {
