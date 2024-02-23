@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Scripts.Components.CommonEntities;
 using Scripts.Components.UI;
 using Scripts.Data;
@@ -14,20 +15,23 @@ namespace Scripts.Components
         public static UnityState Instance { get; private set; }
 
         public Dialogue dialogue;
-        
+
         private void Awake()
         {
             Instance = this;
+#if !UNITY_EDITOR
             if (!SceneManager.GetSceneByName(GameState.DefaultRoom).IsValid())
             {
                 SceneManager.LoadScene(GameState.DefaultRoom, LoadSceneMode.Additive);
             }
+#endif
             GameStateManager.Init(cat.data);
 
             // listen to events
             GameStateManager.onItemPickedUp += OnItemPickedUp;
             GameStateManager.onEntityCreated += OnEntityCreated;
             GameStateManager.onEntityDestroyed += OnEntityDestroyed;
+            GameStateManager.onSceneSwitched += OnSceneSwitched;
         }
 
         public static DungeonLevel GetScene(string sceneName) =>
@@ -39,7 +43,7 @@ namespace Scripts.Components
         /// <param name="entity"></param>
         /// <exception cref="InvalidOperationException"></exception>
         /// <exception cref="NotImplementedException"></exception>
-        private static void OnEntityCreated(EntityData entity)
+        public static void OnEntityCreated(EntityData entity)
         {
             var scene = GetScene(entity.scene);
             if (scene == null)
@@ -66,7 +70,7 @@ namespace Scripts.Components
         /// Callback for when an entity is destroyed within the game data to destroy the corresponding entity game object
         /// </summary>
         /// <param name="entity"></param>
-        private static void OnEntityDestroyed(EntityData entity)
+        public static void OnEntityDestroyed(EntityData entity)
         {
             var scene = GetScene(entity.scene);
 
@@ -88,5 +92,27 @@ namespace Scripts.Components
             GameStateManager.onEntityCreated -= OnEntityCreated;
             GameStateManager.onEntityDestroyed -= OnEntityDestroyed;
         }
+
+        private void OnSceneSwitched(string oldScene, string newScene)
+        {
+            StartCoroutine(SwitchScene(oldScene, newScene));
+        }
+
+        private IEnumerator SwitchScene(string oldScene, string newScene)
+        {
+            cat.SyncFromData();
+
+            var oldLevel = GetScene(oldScene);
+            oldLevel.SyncToData();
+
+            yield return SceneManager.UnloadSceneAsync(oldScene);
+            yield return SceneManager.LoadSceneAsync(newScene, LoadSceneMode.Additive);
+
+            var newLevel = GetScene(newScene);
+            newLevel.Start();
+            newLevel.data = GameStateManager.CurrentState.CurrentScene;
+            newLevel.SyncFromData();
+        }
+
     }
 }

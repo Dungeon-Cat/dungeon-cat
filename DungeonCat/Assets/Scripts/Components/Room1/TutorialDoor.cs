@@ -3,7 +3,6 @@ using Scripts.Data;
 using Scripts.Definitions.Items;
 using Scripts.Utility;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Scripts.Components.Room1
 {
@@ -24,12 +23,6 @@ namespace Scripts.Components.Room1
                 {
                     door.SetOpen(true);
                 }
-            }
-
-            if (door.IsOpen && other.gameObject.HasComponent(out Cat cat))
-            {
-                SceneManager.UnloadSceneAsync("Room1");
-                SceneManager.LoadSceneAsync("Room2");
             }
         }
 

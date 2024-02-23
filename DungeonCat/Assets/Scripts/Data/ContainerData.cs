@@ -131,7 +131,7 @@ namespace Scripts.Data
             {
                 item = itemData,
                 id = itemData.id + EntityData.idCounter++,
-                scene = GameStateManager.CurrentScene,
+                scene = GameStateManager.CurrentState.currentScene,
                 position = pos
             });
         }

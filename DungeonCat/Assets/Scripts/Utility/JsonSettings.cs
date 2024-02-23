@@ -11,7 +11,8 @@ namespace Scripts.Utility
             Converters =
             {
                 new Vector2Converter()
-            }
+            },
+            Formatting = Formatting.Indented
         };
     }
 
