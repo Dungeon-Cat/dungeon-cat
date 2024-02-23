@@ -1,0 +1,22 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "Small webpage that hosts the DungeonCat WebGL build",
+  "main": "index.html",
+  "scripts": {
+    "deployPages": "gh-pages -d ../DungeonCat/build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dungeon-Cat/dungeon-cat.git"
+  },
+  "author": "Dungeon-Cat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dungeon-Cat/dungeon-cat/issues"
+  },
+  "homepage": "https://github.com/Dungeon-Cat/dungeon-cat#readme",
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}
