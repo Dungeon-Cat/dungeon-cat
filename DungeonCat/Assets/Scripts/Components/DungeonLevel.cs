@@ -17,9 +17,12 @@ namespace Scripts.Components
         
         public Dictionary<string, GameObject> entities = new();
 
+        public IEnumerable<IEntityComponent> AllEntities => entities.Values.Select(o => o.GetComponent<IEntityComponent>());
+        
         public void Start()
         {
             if (started) return;
+            started = true;
             
             GameStateManager.CurrentState.scenes.TryAdd(gameObject.scene.name, new SceneData());
             
@@ -28,8 +31,7 @@ namespace Scripts.Components
                 .SelectMany(o => o.GetComponentsInChildren<IEntityComponent>())
                 .ToDictionary(e => e.Id, e => e.GameObject);
 
-            started = true;
-            Debug.Log("Scene start");
+            Debug.Log($"Scene {name} start");
         }
 
         public override void SyncFromData()

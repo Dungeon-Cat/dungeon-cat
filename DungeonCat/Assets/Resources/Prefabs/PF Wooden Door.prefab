@@ -235,7 +235,7 @@ MonoBehaviour:
   data:
     id: TutorialDoor
     destroyed: 0
-    scene: PF Wooden Door
+    scene: Room1
     position: {x: 565, y: 179}
     isDefaultInScene: 0
     tags: []

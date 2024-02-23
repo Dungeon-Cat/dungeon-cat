@@ -15,6 +15,8 @@ namespace Scripts.Components
         public static UnityState Instance { get; private set; }
 
         public Dialogue dialogue;
+        
+        public bool IsSwitchingScenes { get; private set; }
 
         private void Awake()
         {
@@ -33,6 +35,8 @@ namespace Scripts.Components
             GameStateManager.onEntityDestroyed += OnEntityDestroyed;
             GameStateManager.onSceneSwitched += OnSceneSwitched;
         }
+
+        public static DungeonLevel CurrentScene => GetScene(GameStateManager.CurrentState.currentScene);
 
         public static DungeonLevel GetScene(string sceneName) =>
             SceneManager.GetSceneByName(sceneName).GetRootGameObjects().FirstNonNull(o => o.GetComponent<DungeonLevel>());
@@ -91,6 +95,8 @@ namespace Scripts.Components
             GameStateManager.onItemPickedUp -= OnItemPickedUp;
             GameStateManager.onEntityCreated -= OnEntityCreated;
             GameStateManager.onEntityDestroyed -= OnEntityDestroyed;
+            GameStateManager.onSceneSwitched -= OnSceneSwitched;
+            Instance = null;
         }
 
         private void OnSceneSwitched(string oldScene, string newScene)
@@ -100,6 +106,7 @@ namespace Scripts.Components
 
         private IEnumerator SwitchScene(string oldScene, string newScene)
         {
+            IsSwitchingScenes = true;
             cat.SyncFromData();
 
             var oldLevel = GetScene(oldScene);
@@ -112,6 +119,7 @@ namespace Scripts.Components
             newLevel.Start();
             newLevel.data = GameStateManager.CurrentState.CurrentScene;
             newLevel.SyncFromData();
+            IsSwitchingScenes = false;
         }
 
     }
