@@ -1,4 +1,5 @@
-﻿using Scripts.Components.CommonEntities;
+﻿using Pathfinding;
+using Scripts.Components.CommonEntities;
 using Scripts.Components.UI;
 using Scripts.Data;
 using UnityEngine;
@@ -10,7 +11,9 @@ namespace Scripts.Components
         {
             base.Start();
             InputManager.Actions.Player.DropItem.performed += _ => data.DropAllItems();
+
         }
+
 
         public void Meow()
         {
@@ -28,7 +31,7 @@ namespace Scripts.Components
                         Color.black
                     ).AddNext(
                         Line("I am a noncommittal cat, you see...")
-                        )
+                    )
             ));
         }
 
