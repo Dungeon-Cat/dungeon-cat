@@ -555,6 +555,7 @@ GameObject:
   - component: {fileID: 1295436923}
   - component: {fileID: 1295436925}
   - component: {fileID: 1295436926}
+  - component: {fileID: 1295436927}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -646,6 +647,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1295436927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295436922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a35bfd77f584c9aa675340a095260e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDragging: 0
 --- !u!1 &1864303662
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,7 +893,7 @@ MonoBehaviour:
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
     cacheStartup: 0
-  showNavGraphs: 1
+  showNavGraphs: 0
   showUnwalkableNodes: 1
   debugMode: 0
   debugFloor: 0
