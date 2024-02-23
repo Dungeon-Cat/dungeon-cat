@@ -30,6 +30,8 @@ namespace Scripts.Data
         /// </summary>
         public Vector2 position;
 
+        public bool isDefaultInScene;
+        
         public List<string> tags = new();
 
         public static int idCounter;

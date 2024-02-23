@@ -30,7 +30,7 @@ namespace Scripts.Components
         private void OnValidate()
         {
             //Prevents attempts to run while initializing
-            if (!gameObject.activeInHierarchy) return;
+            if (!gameObject.activeInHierarchy || Application.isPlaying) return;
 
             StartCoroutine(DelayedValidate());
         }
