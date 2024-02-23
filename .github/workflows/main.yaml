@@ -18,6 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: false
+          dotnet: false
+
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v4
