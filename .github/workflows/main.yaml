@@ -71,7 +71,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     permissions: write-all
-    # if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     steps:
 
       # Checkout
@@ -83,10 +83,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           merge-multiple: true
-
-      # Verify listed files
-      - name: List
-        run: ls -R
 
       # Publish
       - name: Published Pages
