@@ -14783,7 +14783,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300160, guid: 29c9cded5e558164aaf8c9bf08aa1510,
+      objectReference: {fileID: 21300158, guid: 29c9cded5e558164aaf8c9bf08aa1510,
         type: 3}
     - target: {fileID: 200168365961432302, guid: 3602842a2e6a046f4971c7e877adb5ad,
         type: 3}
@@ -14793,7 +14793,7 @@ PrefabInstance:
     - target: {fileID: 1180415943192740456, guid: 3602842a2e6a046f4971c7e877adb5ad,
         type: 3}
       propertyPath: data.isOpen
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1180415943192740456, guid: 3602842a2e6a046f4971c7e877adb5ad,
         type: 3}
@@ -14814,6 +14814,11 @@ PrefabInstance:
         type: 3}
       propertyPath: data.position.y
       value: 16.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180415943192740456, guid: 3602842a2e6a046f4971c7e877adb5ad,
+        type: 3}
+      propertyPath: data.isDefaultInScene
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1576726695675646601, guid: 3602842a2e6a046f4971c7e877adb5ad,
         type: 3}

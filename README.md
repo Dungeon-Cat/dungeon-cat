@@ -56,7 +56,7 @@ We may eventually try to support a command line based build and test, but that i
 
 Within the Unity Editor you can do `File > Build And Run` to create a standalone build of the game.
 
-If it asks to choose a folder for the build, just choose any directory where you want the build to output to, or create a local "build" directory (part of .gitignore)
+If it asks to choose a folder for the build, just choose any separate directory where you want the build to output to, or create a local `/DungeonCat/build` directory (part of .gitignore, to help prevent the binaries from being accidentally checked into the repository).
 
 ## Repo Structure
 
@@ -68,7 +68,9 @@ The Unity scene files that will be predominantly edited by the Scene Masters are
 
 The Unity scripts that will be predominatly edited by the Scripting Engineers are in `/DungeonCat/Assets/Scripts`
 
-Our test suite is located in `/DungeonCat/Assets/Tests`, both `EditMode` and `PlayMode`
+Our test suite is located in `/DungeonCat/Assets/Tests/...`, with the `EditMode` and `PlayMode` subdirectories for the different types of Unity tests.
+
+To add a new test, add a new .cs file within one of those two above directories, and follow the example shown by `/DungeonCat/Assets/Tests/EditMode/ExampleTest.cs`. For more information on adding tests, see the [Unity Testing Framework Documentation](https://docs.unity3d.com/Packages/com.unity.test-framework@1.1/manual/getting-started.html).
 
 ### Reports
 
@@ -76,4 +78,4 @@ Our project reports are stored in `/reports`
 
 ### CI / CD
 
-Out GitHub actions scripts will be in `/.github/workflows` 
+Out GitHub actions scripts are in `/.github/workflows` 
