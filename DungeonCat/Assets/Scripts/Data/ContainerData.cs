@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Newtonsoft.Json;
+using Scripts.Definitions;
 using Scripts.Utility;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ namespace Scripts.Data
         public int slots;
 
         public ItemData[] items;
-        
+
         [JsonIgnore]
         public bool isDirty;
 
@@ -105,7 +106,7 @@ namespace Scripts.Data
             items = new ItemData[slots];
             isDirty = true;
         }
-        
+
 
         /// <summary>
         /// Drops all items in the cats inventory to the ground
@@ -142,6 +143,29 @@ namespace Scripts.Data
         public void DropItem(int slot, Vector2 pos)
         {
             DropItem(ClearSlot(slot), pos);
+        }
+
+        /// <summary>
+        /// Whether this inventory contains at least a certain amount of a specific ItemDef
+        /// </summary>
+        /// <param name="amount">Minimum amount needed</param>
+        /// <typeparam name="T">The ItemDef</typeparam>
+        /// <returns>Whether at least that many are contained</returns>
+        public bool Contains<T>(int amount = 1) where T : ItemDef => items.Where(item => item.Is<T>()).Sum(data => data.count) >= amount;
+
+        /// <summary>
+        /// Returns the first slot that contains the specified ItemDef
+        /// </summary>
+        /// <typeparam name="T">The ItemDef</typeparam>
+        /// <returns>The first index containing it, or -1 if it doesn't</returns>
+        public int Find<T>() where T : ItemDef
+        {
+            for (var i = 0; i < items.Length; i++)
+            {
+                if (items[i].Is<T>()) return i;
+            }
+            
+            return -1;
         }
     }
 }
