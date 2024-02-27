@@ -10,7 +10,7 @@ namespace Scripts.Components.Room1
     /// Controls the behavior of the door in the tutorial.
     /// Currently opens if key dropped on door.
     /// </summary>
-    public class TutorialDoor : MonoBehaviour
+    public class TutorialDoor : MonoBehaviour, IInteractable
     {
         public DoorEntity door;
 
@@ -25,17 +25,14 @@ namespace Scripts.Components.Room1
                 }
             }
         }
+        
+        public bool CanBeInteractedWith() => !door.IsOpen && UnityState.Instance.cat.data.inventory.Contains<TutorialKey>();
 
-        /*private void FixedUpdate()
+        public void Interact()
         {
-            var cat = UnityState.Instance.cat;
-
-            var touching = cat.collider2d.Distance(door.collider2d).distance < 5;
-
-            if (touching != door.IsOpen)
-            {
-                door.SetOpen(touching);
-            }
-        }*/
+            door.SetOpen(true);
+            var cat = UnityState.Instance.cat.data;
+            cat.inventory.ClearSlot(cat.inventory.Find<TutorialKey>());
+        }
     }
 }
