@@ -21,7 +21,7 @@ namespace Scripts.Components.Inventory
         public void OnBeginDrag(PointerEventData eventData)
         {
             // icon.maskable = false;
-            UiManager.Instance.isDragging = true;
+            // UiManager.Instance.isDragging = true;
         }
 
         public void OnEndDrag(PointerEventData eventData)

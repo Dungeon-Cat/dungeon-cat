@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Input;
 using Pathfinding;
 using Scripts.UI;
@@ -53,18 +51,27 @@ namespace Scripts.Components
 
             var pos = Actions.Player.PointerPosition.ReadValue<Vector2>();
             var target = Camera.main!.ScreenToWorldPoint(pos);
-            Debug.Log($"Tap to move {target}");
 
-            var results = EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current)
+            var uiResults = EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current)
             {
                 position = pos,
                 button = PointerEventData.InputButton.Left
             });
 
-            if (results.All(hit => !hit.gameObject.HasComponent<CanvasRenderer>()))
+            if (uiResults.Any(hit => hit.gameObject.HasComponent<CanvasRenderer>())) return;
+
+            var objectResults = Physics2D.RaycastAll(target, Vector2.zero);
+
+            foreach (var result in objectResults)
             {
-                SetPathTarget(target);
+                if (result.transform.gameObject.HasComponent(out InteractableObject interactable) && interactable.CanBeInteractedWith())
+                {
+                    interactable.Interact();
+                    return;
+                }
             }
+
+            SetPathTarget(target);
         }
 
         private void Update()
@@ -100,7 +107,7 @@ namespace Scripts.Components
             cat.SyncToData();
             path = null;
         }
-        
+
         private void ProcessTapToMove()
         {
             // Check in a loop if we are close enough to the current waypoint to switch to the next one.
