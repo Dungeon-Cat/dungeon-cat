@@ -4,11 +4,14 @@ namespace Scripts.UI
 {
     public class UiManager : MonoBehaviour
     {
+        public Material spriteDefault;
+        public Material spriteHighlight;
+        
         public static UiManager Instance { get; private set; }
-
+        
         public bool isDragging;
 
-        private void Awake()
+        private void Start()
         {
             Instance = this;
         }

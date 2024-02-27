@@ -3,21 +3,16 @@ using UnityEngine;
 
 namespace Scripts.Components.Room1
 {
-    public class TutorialChest : MonoBehaviour
+    public class TutorialChest : MonoBehaviour, IInteractable
     {
         public ChestEntity chest;
 
-        private void FixedUpdate()
-        {
-            var cat = UnityState.Instance.cat;
+        public bool CanBeInteractedWith() => !chest.IsOpen;
 
-            if (!chest.IsOpen &&
-                cat.collider2d.Distance(chest.collider2d).distance < 5 &&
-                InputManager.Actions.Player.Interact.IsPressed())
-            {
-                chest.SetOpen(true);
-                chest.data.DropContents();
-            }
+        public void Interact()
+        {
+            chest.SetOpen(true);
+            chest.data.DropContents();
         }
     }
 }
