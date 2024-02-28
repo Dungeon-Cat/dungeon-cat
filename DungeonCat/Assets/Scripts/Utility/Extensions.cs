@@ -4,6 +4,7 @@ using System.Linq;
 using Scripts.Data;
 using Scripts.Definitions;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Scripts.Utility
 {
@@ -34,6 +35,13 @@ namespace Scripts.Utility
         public static bool HasComponent<T>(this GameObject gameObject, out T component) => (component = gameObject.GetComponent<T>()) != null;
 
         public static TResult FirstNonNull<TSource, TResult>(this IEnumerable<TSource> sequence, Func<TSource, TResult> mapper) => sequence.Select(mapper).First(arg => arg != null);
+
+        public static List<RaycastResult> RaycastAll(this EventSystem eventSystem, PointerEventData data)
+        {
+            var results = new List<RaycastResult>();
+            eventSystem.RaycastAll(data, results);
+            return results;
+        }
     }
 }
 

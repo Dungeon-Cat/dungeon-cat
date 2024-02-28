@@ -19,11 +19,23 @@ namespace Scripts.Components
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
+        public bool CanBeInteractedWith()
+        {
+            if (interactable == null || collider2d == null) return false;
+
+            return UnityState.Instance.cat.collider2d.Distance(collider2d).distance < InteractDistance && interactable.CanBeInteractedWith();
+        }
+
+        public void Interact()
+        {
+            interactable?.Interact();
+        }
+
         private void Update()
         {
             if (interactable == null || collider2d == null) return;
-            
-            if (UnityState.Instance.cat.collider2d.Distance(collider2d).distance < InteractDistance && interactable.CanBeInteractedWith())
+
+            if (CanBeInteractedWith())
             {
                 spriteRenderer.material = UiManager.Instance.spriteHighlight;
                 if (InputManager.Actions.Player.Interact.WasPressedThisFrame())

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using Scripts.Components.CommonEntities;
 using Scripts.Data;
 using UnityEngine;
@@ -32,6 +31,8 @@ namespace Scripts.Components
                 .ToDictionary(e => e.Id, e => e.GameObject);
 
             Debug.Log($"Scene {name} start");
+            
+            UnityState.Instance.gameObject.GetComponent<AstarPath>().Scan();
         }
 
         public override void SyncFromData()

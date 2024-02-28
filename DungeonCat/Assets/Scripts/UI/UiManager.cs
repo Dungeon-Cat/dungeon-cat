@@ -6,8 +6,11 @@ namespace Scripts.UI
     {
         public Material spriteDefault;
         public Material spriteHighlight;
+        public GameObject portraitModeWarning;
         
         public static UiManager Instance { get; private set; }
+        
+        public bool isDragging;
 
         private void Start()
         {
@@ -17,6 +20,11 @@ namespace Scripts.UI
         private void OnDestroy()
         {
             Instance = null;
+        }
+
+        private void Update()
+        {
+            portraitModeWarning.SetActive(Camera.main!.aspect < 1);
         }
     }
 }
