@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Scripts.Components.UI;
+﻿using Scripts.Components.UI;
 using Scripts.Data;
 using Scripts.UI;
 using Scripts.Utility;
@@ -20,16 +19,12 @@ namespace Scripts.Components.Inventory
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            // icon.maskable = false;
-            // UiManager.Instance.isDragging = true;
+            UiManager.Instance.isDragging = true;
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            // icon.maskable = true;
-            
-            var results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(eventData, results);
+            var results = EventSystem.current.RaycastAll(eventData);
 
             var foundInventory = false;
             
