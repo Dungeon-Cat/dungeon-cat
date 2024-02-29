@@ -73,6 +73,15 @@ namespace Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""73a7cf9b-1d7f-4fd1-aa0e-d6783c640142"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -315,6 +324,17 @@ namespace Input
                     ""processors"": """",
                     ""groups"": ""Touch"",
                     ""action"": ""PointerPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a5f708b-eddd-4fe4-a9a4-58c426d1e77e"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -907,6 +927,7 @@ namespace Input
             m_Player_DropItem = m_Player.FindAction("Drop Item", throwIfNotFound: true);
             m_Player_TaptoMove = m_Player.FindAction("Tap to Move", throwIfNotFound: true);
             m_Player_PointerPosition = m_Player.FindAction("PointerPosition", throwIfNotFound: true);
+            m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -985,6 +1006,7 @@ namespace Input
         private readonly InputAction m_Player_DropItem;
         private readonly InputAction m_Player_TaptoMove;
         private readonly InputAction m_Player_PointerPosition;
+        private readonly InputAction m_Player_Inventory;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
@@ -994,6 +1016,7 @@ namespace Input
             public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
             public InputAction @TaptoMove => m_Wrapper.m_Player_TaptoMove;
             public InputAction @PointerPosition => m_Wrapper.m_Player_PointerPosition;
+            public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1018,6 +1041,9 @@ namespace Input
                 @PointerPosition.started += instance.OnPointerPosition;
                 @PointerPosition.performed += instance.OnPointerPosition;
                 @PointerPosition.canceled += instance.OnPointerPosition;
+                @Inventory.started += instance.OnInventory;
+                @Inventory.performed += instance.OnInventory;
+                @Inventory.canceled += instance.OnInventory;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1037,6 +1063,9 @@ namespace Input
                 @PointerPosition.started -= instance.OnPointerPosition;
                 @PointerPosition.performed -= instance.OnPointerPosition;
                 @PointerPosition.canceled -= instance.OnPointerPosition;
+                @Inventory.started -= instance.OnInventory;
+                @Inventory.performed -= instance.OnInventory;
+                @Inventory.canceled -= instance.OnInventory;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1224,6 +1253,7 @@ namespace Input
             void OnDropItem(InputAction.CallbackContext context);
             void OnTaptoMove(InputAction.CallbackContext context);
             void OnPointerPosition(InputAction.CallbackContext context);
+            void OnInventory(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

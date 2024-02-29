@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using Input;
 using Pathfinding;
+using Pathfinding.Util;
+using Scripts.Components.Inventory;
 using Scripts.UI;
 using Scripts.Utility;
 using UnityEngine;
@@ -81,7 +83,7 @@ namespace Scripts.Components
             {
                 CheckPath();
             }
-
+        
             // WASD movement
             if (Actions.Player.Move.IsPressed())
             {
@@ -92,6 +94,12 @@ namespace Scripts.Components
             if (path is {error: false})
             {
                 ProcessTapToMove();
+            }
+            
+            // Inventory open/close
+            if (Actions.Player.Inventory.WasPressedThisFrame())
+            {
+                InventoryManager.Instance.ToggleInventory();
             }
         }
 
@@ -107,6 +115,7 @@ namespace Scripts.Components
             cat.SyncToData();
             path = null;
         }
+
 
         private void ProcessTapToMove()
         {
