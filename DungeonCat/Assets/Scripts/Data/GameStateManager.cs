@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using Scripts.Definitions;
 using Scripts.Utility;
+using UnityEngine;
 
 namespace Scripts.Data
 {
     public static class GameStateManager
     {
         public static GameState CurrentState { get; private set; }
-
-        public static string CurrentScene { get; private set; } = GameState.DefaultRoom;
 
         /// <summary>
         /// Initializes the GameState
@@ -44,9 +44,9 @@ namespace Scripts.Data
 
             sceneData.entities.TryAdd(entity.id, entity);
         }
-        
+
         /// <summary>
-        /// Ensures that the Data for an entity is properly registered within its scene
+        /// Ensures that the Data for an entity is properly unregistered within its scene
         /// </summary>
         /// <param name="entity"></param>
         public static void Unregister(EntityData entity)
@@ -58,7 +58,14 @@ namespace Scripts.Data
                 throw new KeyNotFoundException($"Scene {scene} was not yet registered in the game state");
             }
 
-            sceneData.entities.Remove(entity.id);
+            if (entity.isDefaultInScene)
+            {
+                entity.destroyed = true;
+            }
+            else
+            {
+                sceneData.entities.Remove(entity.id);
+            }
         }
 
         public static void CreateEntity(EntityData entity)
@@ -73,11 +80,25 @@ namespace Scripts.Data
             onEntityDestroyed?.Invoke(entity);
         }
 
+        public static void SwitchScene(string newScene, Vector2 newCatPos)
+        {
+            Debug.Log(JsonConvert.SerializeObject(CurrentState.CurrentScene, JsonSettings.SerializerSettings));
+            if (!CurrentState.scenes.ContainsKey(newScene))
+            {
+                CurrentState.scenes[newScene] = new SceneData();
+            }
+            var oldScene = CurrentState.currentScene;
+            CurrentState.currentScene = newScene;
+            CurrentState.cat.position = newCatPos;
+            onSceneSwitched?.Invoke(oldScene, newScene);
+        }
+
         #region Events
 
         public static EventHandler<CatData, ItemData> onItemPickedUp;
         public static EventHandler<EntityData> onEntityCreated;
         public static EventHandler<EntityData> onEntityDestroyed;
+        public static EventHandler<string, string> onSceneSwitched;
 
         #endregion
     }

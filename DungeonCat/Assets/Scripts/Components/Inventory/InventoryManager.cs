@@ -7,7 +7,6 @@ namespace Scripts.Components.Inventory
 {
     public class InventoryManager : MonoBehaviour
     {
-        public static InventoryManager instance;
 
         public GameObject inventory;
 
@@ -15,11 +14,13 @@ namespace Scripts.Components.Inventory
 
         public Transform itemContent;
         public GameObject inventoryItem;
+        
+        public static InventoryManager Instance { get; private set; }
 
         private void Start()
         {
             // Make sure singleton applied
-            instance = this;
+            Instance = this;
         }
 
         private void Update()
@@ -31,7 +32,7 @@ namespace Scripts.Components.Inventory
             }
         }
 
-        public void ListItems()
+        private void ListItems()
         {
             // Clean previous rendered items in the inventory to make sure we don't duplicate things
             foreach (Transform item in itemContent)

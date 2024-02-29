@@ -16,9 +16,19 @@ namespace Scripts.Components.CommonEntities
             GameStateManager.Register(data);
         }
 
+        protected override void OnValidateInEditor()
+        {
+            base.OnValidateInEditor();
+            data.isDefaultInScene = true;
+        }
+
         public override void SyncFromData()
         {
             transform.position = data.position;
+            if (data.destroyed)
+            {
+                UnityState.OnEntityDestroyed(data);
+            }
         }
 
         public override void SyncToData()

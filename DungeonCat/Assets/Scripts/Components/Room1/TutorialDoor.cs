@@ -3,7 +3,6 @@ using Scripts.Data;
 using Scripts.Definitions.Items;
 using Scripts.Utility;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Scripts.Components.Room1
 {
@@ -11,7 +10,7 @@ namespace Scripts.Components.Room1
     /// Controls the behavior of the door in the tutorial.
     /// Currently opens if key dropped on door.
     /// </summary>
-    public class TutorialDoor : MonoBehaviour
+    public class TutorialDoor : MonoBehaviour, IInteractable
     {
         public DoorEntity door;
 
@@ -25,24 +24,15 @@ namespace Scripts.Components.Room1
                     door.SetOpen(true);
                 }
             }
-
-            if (door.IsOpen && other.gameObject.HasComponent(out Cat cat))
-            {
-                SceneManager.UnloadSceneAsync("Room1");
-                SceneManager.LoadSceneAsync("Room2");
-            }
         }
+        
+        public bool CanBeInteractedWith() => !door.IsOpen && UnityState.Instance.cat.data.inventory.Contains<TutorialKey>();
 
-        /*private void FixedUpdate()
+        public void Interact()
         {
-            var cat = UnityState.Instance.cat;
-
-            var touching = cat.collider2d.Distance(door.collider2d).distance < 5;
-
-            if (touching != door.IsOpen)
-            {
-                door.SetOpen(touching);
-            }
-        }*/
+            door.SetOpen(true);
+            var cat = UnityState.Instance.cat.data;
+            cat.inventory.ClearSlot(cat.inventory.Find<TutorialKey>());
+        }
     }
 }

@@ -11,36 +11,49 @@ namespace Scripts.Components
     /// </summary>
     public class DungeonLevel : ComponentWithData<SceneData>
     {
+        [HideInInspector]
+        public bool started;
+        
         public Dictionary<string, GameObject> entities = new();
 
-        private void Awake()
+        public IEnumerable<IEntityComponent> AllEntities => entities.Values.Select(o => o.GetComponent<IEntityComponent>());
+        
+        public void Start()
         {
+            if (started) return;
+            started = true;
+            
             GameStateManager.CurrentState.scenes.TryAdd(gameObject.scene.name, new SceneData());
-        }
-
-        private void Start()
-        {
+            
             entities = gameObject.scene
                 .GetRootGameObjects()
                 .SelectMany(o => o.GetComponentsInChildren<IEntityComponent>())
                 .ToDictionary(e => e.Id, e => e.GameObject);
+
+            Debug.Log($"Scene {name} start");
+            
+            UnityState.Instance.gameObject.GetComponent<AstarPath>().Scan();
         }
 
-        /*public ComponentWithData<EntityData>[] defaultEntities;
-
-        private void Start()
+        public override void SyncFromData()
         {
-            defaultEntities = gameObject.scene.GetRootGameObjects()
-                .SelectMany(o => o.transform.GetComponentsInChildren<ComponentWithData<EntityData>>())
-                .ToArray();
+            foreach (var (id, entity) in entities.ToList())
+            {
+                var entityComponent = entity.GetComponent<IEntityComponent>();
+                if (GameStateManager.CurrentState.CurrentScene.entities.TryGetValue(id, out var entityData))
+                {
+                    entityComponent.SetData(entityData);
+                    entityComponent.SyncFromData();
+                }
+            }
+
+            foreach (var (id, entityData) in GameStateManager.CurrentState.CurrentScene.entities)
+            {
+                if (!entities.ContainsKey(id) && !entityData.destroyed)
+                {
+                    UnityState.OnEntityCreated(entityData);
+                }
+            }
         }
-
-        public override void SyncToData()
-        {
-            data.entities = gameObject.scene.GetRootGameObjects()
-                .SelectMany(o => o.transform.GetComponentsInChildren<ComponentWithData<EntityData>>())
-                .Select(e => e.data)
-                .ToDictionary(e => e.id);
-        }*/
     }
 }
