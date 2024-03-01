@@ -98,6 +98,7 @@ namespace Scripts.Data
         public static EventHandler<EntityData> onEntityDestroyed;
         public static EventHandler<string, string> onSceneSwitched;
         public static EventHandler<GameState, GameState> onSaveLoaded;
+        public static EventHandler onLoadFailed;
 
         #endregion
     }

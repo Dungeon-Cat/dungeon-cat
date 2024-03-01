@@ -8,5 +8,11 @@ namespace Scripts.Utility
 
         [DllImport("__Internal")]
         public static extern void Alert(string str);
+
+        [DllImport("__Internal")]
+        public static extern void Save(string saveJson);
+        
+        [DllImport("__Internal")]
+        public static extern string Load();
     }
 }
