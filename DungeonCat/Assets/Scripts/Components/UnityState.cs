@@ -34,8 +34,9 @@ namespace Scripts.Components
             GameStateManager.onEntityCreated += OnEntityCreated;
             GameStateManager.onEntityDestroyed += OnEntityDestroyed;
             GameStateManager.onSceneSwitched += OnSceneSwitched;
+            GameStateManager.onSaveLoaded += OnSaveLoaded;
         }
-
+        
         public static DungeonLevel CurrentScene => GetScene(GameStateManager.CurrentState.currentScene);
 
         public static DungeonLevel GetScene(string sceneName) =>
@@ -121,6 +122,18 @@ namespace Scripts.Components
             newLevel.SyncFromData();
             IsSwitchingScenes = false;
         }
+
+        private void OnSaveLoaded(GameState oldState, GameState newGameState)
+        {
+            cat.data = newGameState.cat;
+            var oldLevel = GetScene(oldState.currentScene);
+            oldLevel.data = oldState.CurrentScene;
+            StartCoroutine(SwitchScene(oldState.currentScene, newGameState.currentScene));
+        }
+
+        public void Save() => SaveLoadManager.Save();
+
+        public void Load() => SaveLoadManager.Load();
 
     }
 }

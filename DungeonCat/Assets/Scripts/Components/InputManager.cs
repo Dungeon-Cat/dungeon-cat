@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Input;
 using Pathfinding;
-using Pathfinding.Util;
 using Scripts.Components.Inventory;
 using Scripts.UI;
 using Scripts.Utility;
@@ -20,6 +19,7 @@ namespace Scripts.Components
         private Seeker seeker;
         private Path path;
         private int currentWaypoint;
+        private float lastDistance;
 
         private void Start()
         {
@@ -83,7 +83,7 @@ namespace Scripts.Components
             {
                 CheckPath();
             }
-        
+
             // WASD movement
             if (Actions.Player.Move.IsPressed())
             {
@@ -95,7 +95,7 @@ namespace Scripts.Components
             {
                 ProcessTapToMove();
             }
-            
+
             // Inventory open/close
             if (Actions.Player.Inventory.WasPressedThisFrame())
             {
@@ -157,6 +157,13 @@ namespace Scripts.Components
             cat.data.facing = dir;
             seeker.transform.Translate(velocity * Time.deltaTime);
             cat.SyncToData();
+
+            if (reachedEndOfPath && distanceToWaypoint >= lastDistance)
+            {
+                path = null;
+            }
+
+            lastDistance = distanceToWaypoint;
         }
     }
 }

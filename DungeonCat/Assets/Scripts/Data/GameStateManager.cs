@@ -16,17 +16,15 @@ namespace Scripts.Data
         /// <param name="initialCatData">Existing data for the cat, if any</param>
         public static void Init(CatData initialCatData = null)
         {
-            CurrentState = new GameState
-            {
-                cat = initialCatData ?? new CatData(),
-                scenes = new Dictionary<string, SceneData>
-                {
-                    {"Root", new SceneData()},
-                    {GameState.DefaultRoom, new SceneData()}
-                }
-            };
-
+            CurrentState = GameState.Create(initialCatData);
             ItemRegistry.Initialize();
+        }
+
+        public static void LoadState(GameState newState)
+        {
+            var oldState = CurrentState;
+            CurrentState = newState;
+            onSaveLoaded?.Invoke(oldState, newState);
         }
 
         /// <summary>
@@ -99,6 +97,7 @@ namespace Scripts.Data
         public static EventHandler<EntityData> onEntityCreated;
         public static EventHandler<EntityData> onEntityDestroyed;
         public static EventHandler<string, string> onSceneSwitched;
+        public static EventHandler<GameState, GameState> onSaveLoaded;
 
         #endregion
     }
