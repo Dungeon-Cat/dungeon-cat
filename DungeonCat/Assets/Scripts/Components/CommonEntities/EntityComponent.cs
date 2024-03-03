@@ -1,18 +1,18 @@
 ﻿using Scripts.Data;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Scripts.Components.CommonEntities
 {
     public abstract class EntityComponent<T> : ComponentWithData<T>, IEntityComponent where T : EntityData
     {
-        [FormerlySerializedAs("collider")]
+        [HideInInspector]
         public Collider2D collider2d;
         
         public string Id => data.id;
-        
+
         protected virtual void Start()
         {
+            collider2d = GetComponent<Collider2D>();
             GameStateManager.Register(data);
         }
 

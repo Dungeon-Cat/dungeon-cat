@@ -159,7 +159,7 @@ PrefabInstance:
     - target: {fileID: 3384297482565960500, guid: d7ea482c4bfd649fb83a7d29165e53d9,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6547500608235498063, guid: d7ea482c4bfd649fb83a7d29165e53d9,
         type: 3}
@@ -1302,7 +1302,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1518.9999, y: 50}
+  m_Size: {x: 1517.0001, y: 50}
   m_EdgeRadius: 0
 --- !u!114 &1097638989
 MonoBehaviour:
@@ -1760,7 +1760,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1518.9999, y: 50}
+  m_Size: {x: 1517.0001, y: 50}
   m_EdgeRadius: 0
 --- !u!114 &1465575535
 MonoBehaviour:
