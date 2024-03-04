@@ -156,10 +156,15 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2512003524111001020, guid: d7ea482c4bfd649fb83a7d29165e53d9,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3384297482565960500, guid: d7ea482c4bfd649fb83a7d29165e53d9,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6547500608235498063, guid: d7ea482c4bfd649fb83a7d29165e53d9,
         type: 3}
@@ -316,7 +321,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1561,11 +1566,11 @@ RectTransform:
   m_Children:
   - {fileID: 335482639}
   - {fileID: 481842764}
-  - {fileID: 6869456955094284072}
   - {fileID: 6569180427849055697}
   - {fileID: 1001979202}
   - {fileID: 1511626826}
   - {fileID: 880718051728918211}
+  - {fileID: 6869456955094284072}
   - {fileID: 859537821}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2806,12 +2811,12 @@ PrefabInstance:
     - target: {fileID: 1833066720972535971, guid: f50cc04038dbe534684926cc6e976a5d,
         type: 3}
       propertyPath: data.position.x
-      value: 530.64404
+      value: 528.46625
       objectReference: {fileID: 0}
     - target: {fileID: 1833066720972535971, guid: f50cc04038dbe534684926cc6e976a5d,
         type: 3}
       propertyPath: data.position.y
-      value: 189.41745
+      value: 188.43488
       objectReference: {fileID: 0}
     - target: {fileID: 4502062968791665463, guid: f50cc04038dbe534684926cc6e976a5d,
         type: 3}

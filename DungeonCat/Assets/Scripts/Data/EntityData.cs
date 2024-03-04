@@ -35,5 +35,17 @@ namespace Scripts.Data
         public List<string> tags = new();
 
         public static int idCounter;
+
+        public void AddTag(string tag)
+        {
+            tags.Add(tag);
+            GameStateManager.onTagAdded?.Invoke(this, tag);
+        }
+
+        public void RemoveTag(string tag)
+        {
+            tags.Remove(tag);
+            GameStateManager.onTagRemoved?.Invoke(this, tag);
+        }
     }
 }

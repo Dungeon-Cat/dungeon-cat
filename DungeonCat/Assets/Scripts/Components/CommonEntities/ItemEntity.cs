@@ -35,7 +35,6 @@ namespace Scripts.Components.CommonEntities
         protected override void OnValidateInEditor()
         {
             base.OnValidateInEditor();
-            //Execute unsafe code here...
             ItemRegistry.Initialize();
             LoadSprite();
         }

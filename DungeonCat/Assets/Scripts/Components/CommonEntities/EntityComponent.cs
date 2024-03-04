@@ -7,12 +7,16 @@ namespace Scripts.Components.CommonEntities
     {
         [HideInInspector]
         public Collider2D collider2d;
+
+        [HideInInspector]
+        public Rigidbody2D body;
         
         public string Id => data.id;
 
         protected virtual void Start()
         {
             collider2d = GetComponent<Collider2D>();
+            body = GetComponent<Rigidbody2D>();
             GameStateManager.Register(data);
         }
 

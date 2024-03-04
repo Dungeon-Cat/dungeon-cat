@@ -99,6 +99,8 @@ namespace Scripts.Data
         public static EventHandler<string, string> onSceneSwitched;
         public static EventHandler<GameState, GameState> onSaveLoaded;
         public static EventHandler onLoadFailed;
+        public static EventHandler<EntityData, string> onTagAdded;
+        public static EventHandler<EntityData, string> onTagRemoved;
 
         #endregion
     }
