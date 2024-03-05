@@ -10,7 +10,7 @@ namespace Scripts.Data
     public class GameState
     {
         public const string RootScene = "Root";
-        public const string DefaultRoom = "RoomX";
+        public const string DefaultRoom = "Room1";
 
         public CatData cat;
 
