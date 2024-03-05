@@ -11,26 +11,20 @@ namespace Scripts.Components
         {
             base.Start();
             InputManager.Actions.Player.DropItem.performed += _ => data.DropAllItems();
-
         }
-
-
+        
         public void Meow()
         {
             Debug.Log("Meow");
             UnityState.Instance.dialogue.StartInteraction(new Interaction(
                 Line("I'm Momo!")
-                    .AddNext(
-                        Line("Welcome to the magical world of Dungeon Cat."),
+                    .AddOption(
                         "Alright, sounds interesting...",
-                        Color.black
+                        Line("Welcome to the magical world of Dungeon Cat.")
                     )
-                    .AddNext(
-                        Line("Hiss....."),
+                    .AddOption(
                         "I don't want to do this anymore...",
-                        Color.black
-                    ).AddNext(
-                        Line("I am a noncommittal cat, you see...")
+                        Line("Hiss.....")
                     )
             ));
         }

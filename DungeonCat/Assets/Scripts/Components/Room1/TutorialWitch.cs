@@ -20,7 +20,7 @@ namespace Scripts.Components.Room1
             dialogueTriggered = true;
             UnityState.Instance.dialogue.StartInteraction(new Interaction(
                 new DialogueLine(Author, "The door is locked").AuthorColor(Color.blue).TextColor(Color.black)
-                    .AddNext(new DialogueLine(Author, "There used to be a key around here somewhere, but it may have been broken...").AuthorColor(Color.blue).TextColor(Color.black))
+                    .AddDefault(new DialogueLine(Author, "There used to be a key around here somewhere, but it may have been broken...").AuthorColor(Color.blue).TextColor(Color.black))
             ));
         }
     }
