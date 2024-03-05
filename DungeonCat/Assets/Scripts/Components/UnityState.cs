@@ -34,6 +34,8 @@ namespace Scripts.Components
             GameStateManager.onEntityCreated += OnEntityCreated;
             GameStateManager.onEntityDestroyed += OnEntityDestroyed;
             GameStateManager.onSceneSwitched += OnSceneSwitched;
+            GameStateManager.onSaveLoaded += OnSaveLoaded;
+            GameStateManager.onLoadFailed += OnLoadFailed;
         }
 
         public static DungeonLevel CurrentScene => GetScene(GameStateManager.CurrentState.currentScene);
@@ -92,11 +94,13 @@ namespace Scripts.Components
 
         private void OnDestroy()
         {
+            Instance = null;
             GameStateManager.onItemPickedUp -= OnItemPickedUp;
             GameStateManager.onEntityCreated -= OnEntityCreated;
             GameStateManager.onEntityDestroyed -= OnEntityDestroyed;
             GameStateManager.onSceneSwitched -= OnSceneSwitched;
-            Instance = null;
+            GameStateManager.onSaveLoaded -= OnSaveLoaded;
+            GameStateManager.onLoadFailed -= OnLoadFailed;
         }
 
         private void OnSceneSwitched(string oldScene, string newScene)
@@ -120,6 +124,25 @@ namespace Scripts.Components
             newLevel.data = GameStateManager.CurrentState.CurrentScene;
             newLevel.SyncFromData();
             IsSwitchingScenes = false;
+        }
+
+        private void OnSaveLoaded(GameState oldState, GameState newGameState)
+        {
+            cat.data = newGameState.cat;
+            var oldLevel = GetScene(oldState.currentScene);
+            oldLevel.data = oldState.CurrentScene;
+            StartCoroutine(SwitchScene(oldState.currentScene, newGameState.currentScene));
+        }
+
+        public void Save() => SaveLoadManager.Save();
+
+        public void Load() => SaveLoadManager.Load();
+
+        private void OnLoadFailed()
+        {
+            dialogue.StartInteraction(
+                new Interaction(new DialogueLine("System", "No Save Found").AuthorColor(Color.blue).TextColor(Color.white))
+            );
         }
 
     }

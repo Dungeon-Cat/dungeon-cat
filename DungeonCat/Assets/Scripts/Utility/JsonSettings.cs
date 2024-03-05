@@ -12,7 +12,8 @@ namespace Scripts.Utility
             {
                 new Vector2Converter()
             },
-            Formatting = Formatting.Indented
+            Formatting = Formatting.Indented,
+            TypeNameHandling = TypeNameHandling.Auto
         };
     }
 

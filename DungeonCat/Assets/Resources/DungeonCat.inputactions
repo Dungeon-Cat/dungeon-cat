@@ -283,6 +283,17 @@
                 },
                 {
                     "name": "",
+                    "id": "e93ea8a5-1425-444c-826c-ebbd4208e531",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tap to Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9579a70b-a4b1-436d-a33a-57bdcb2f9bc0",
                     "path": "<Mouse>/position",
                     "interactions": "",
