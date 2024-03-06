@@ -55,6 +55,10 @@ namespace Scripts.Data
         /// </summary>
         public void DropAllItems()
         {
+            foreach (var item in inventory.items.Where(item => !item.IsEmpty()))
+            {
+                item.GetItemDef().OnDrop(this);
+            }
             inventory.DropAllItems(ItemDropPos());
         }
 
@@ -65,6 +69,7 @@ namespace Scripts.Data
         /// <param name="desiredPos"></param>
         public void DropItem(ItemData itemData, Vector2? desiredPos = null)
         {
+            itemData.GetItemDef().OnDrop(this);
             inventory.DropItem(itemData, ItemDropPos(desiredPos));
         }
 
@@ -75,6 +80,7 @@ namespace Scripts.Data
         /// <param name="desiredPos"></param>
         public void DropItem(int slot, Vector2? desiredPos = null)
         {
+            inventory.items[slot].GetItemDef().OnDrop(this);
             inventory.DropItem(slot, ItemDropPos(desiredPos));
         }
 
