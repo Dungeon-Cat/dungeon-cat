@@ -13,6 +13,11 @@ namespace Scripts.Components.Room3
         public ToggleWall[] blueWalls;
         public ToggleWall[] redWalls;
 
+        public MovableEntity yarn;
+        public GameObject yarnStart;
+
+        public DoorEntity exit;
+
         public void Awake()
         {
             UpdateSwitch();
@@ -39,6 +44,17 @@ namespace Scripts.Components.Room3
             {
                 wall.SetOpen(switchState);
             }
+        }
+
+        public void OnYarnStatueInteract()
+        {
+            yarn.GetComponent<Rigidbody2D>().position = yarnStart.transform.position;
+            yarn.collider2d.isTrigger = false;
+        }
+
+        public void OnGoalReached()
+        {
+            exit.SetOpen(true);
         }
     }
 }
