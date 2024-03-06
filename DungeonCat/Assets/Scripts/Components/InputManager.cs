@@ -12,7 +12,7 @@ namespace Scripts.Components
     public class InputManager : MonoBehaviour
     {
         private const float Speed = 50;
-        private const float NextWaypointDistance = 3;
+        private const float NextWaypointDistance = 2;
 
         private static InputActions actions;
 
@@ -149,14 +149,16 @@ namespace Scripts.Components
             var speedFactor = reachedEndOfPath ? Mathf.Sqrt(distanceToWaypoint / NextWaypointDistance) : 1f;
             // Direction to the next waypoint
             // Normalize it so that it has a length of 1 world unit
-            Vector3 dir = (path.vectorPath[currentWaypoint] - seeker.transform.position).normalized;
+            var dir = (path.vectorPath[currentWaypoint] - seeker.transform.position).normalized;
             // Multiply the direction by our desired speed to get a velocity
-            Vector3 velocity = dir * (Speed * speedFactor);
+            var velocity = dir * (Speed * speedFactor);
 
             // If you are writing a 2D game you should remove the CharacterController code above and instead move the transform directly by uncommenting the next line
             var cat = UnityState.Instance.cat;
             cat.data.facing = dir;
-            seeker.transform.Translate(velocity * Time.deltaTime);
+            // seeker.transform.Translate(velocity * Time.deltaTime);
+            var movement = velocity * (Time.deltaTime * cat.body.drag * cat.body.drag);
+            cat.body.AddForce(movement);
             cat.SyncToData();
 
             if (reachedEndOfPath && distanceToWaypoint >= lastDistance)
