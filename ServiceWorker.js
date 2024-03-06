@@ -1,4 +1,4 @@
-const cacheName = "DungeonCat-DungeonCat-0.0.147";
+const cacheName = "DungeonCat-DungeonCat-0.0.149";
 const contentToCache = [
     "Build/WebGL.loader.js",
     "Build/WebGL.framework.js.unityweb",
