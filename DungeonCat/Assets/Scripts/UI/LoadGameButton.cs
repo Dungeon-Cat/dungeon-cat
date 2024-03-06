@@ -1,4 +1,5 @@
-﻿using Scripts.Data;
+﻿using System.Collections;
+using Scripts.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,15 +19,18 @@ namespace Scripts.UI
 
         public void LoadGame()
         {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-            SceneManager.LoadScene(GameState.RootScene);
+            StartCoroutine(nameof(LoadGameAsync));
         }
-        
-        // This is an unintuitive way to do this, but it avoids ever having multiple InputSystems, Main Cameras, Audio Listeners, etc at the same time
-        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+
+        private IEnumerator LoadGameAsync()
         {
-            SaveLoadManager.Load();   
-            SceneManager.sceneLoaded -= OnSceneLoaded;
+            yield return SceneManager.LoadSceneAsync(GameState.RootScene, LoadSceneMode.Additive);
+
+            yield return null;
+
+            SaveLoadManager.Load();
+
+            yield return SceneManager.UnloadSceneAsync("MainMenu");
         }
     }
 }

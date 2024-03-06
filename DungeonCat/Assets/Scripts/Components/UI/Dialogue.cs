@@ -6,28 +6,35 @@ using TMPro;
 using UnityEngine;
 using Scripts.Components.CommonEntities;
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+
 #nullable enable
 
 namespace Scripts.Components.UI
 {
-    public class Dialogue : EntityComponent<DialogueData>
+    public class Dialogue : MonoBehaviour
     {
+        public TMP_Text authorVis, textVis, option1, option2, option3, option4, instructions;
+        public Queue<Interaction> Interactions = new();
+
         private Interaction? _currentInteraction;
         private IEnumerator? _coroutine;
         private bool _inInteractionChain, _displayingIncrementally, _skipDisplay, _enableBoxSelection;
         private readonly List<TMP_Text> _dialogueOptions = new();
         public const string DefaultDialogueOption = "";
         private int _boxToProgress = -1;
-        
+
+        private bool _dialogueClicked;
+
         public void Awake()
         {
             gameObject.SetActive(false);
-            data.textVis.text = "";
-            data.authorVis.text = "";
-            _dialogueOptions.Add(data.option1);
-            _dialogueOptions.Add(data.option2);
-            _dialogueOptions.Add(data.option3);
-            _dialogueOptions.Add(data.option4);
+            textVis.text = "";
+            authorVis.text = "";
+            _dialogueOptions.Add(option1);
+            _dialogueOptions.Add(option2);
+            _dialogueOptions.Add(option3);
+            _dialogueOptions.Add(option4);
             foreach (var tmpText in _dialogueOptions)
             {
                 tmpText.text = "";
@@ -35,15 +42,29 @@ namespace Scripts.Components.UI
             }
         }
 
+        private void Start()
+        {
+            if (InputManager.playerInput.currentControlScheme != InputManager.Keyboard)
+            {
+                instructions.SetText("Tap to continue...");
+            }
+        }
+
+        private bool DialogueInteractedWith() => InputManager.Actions.Player.Interact.WasPressedThisFrame() || _dialogueClicked;
+
+        public void OnDialogueClicked() => _dialogueClicked = true;
+
         public void Update()
         {
-            if (_displayingIncrementally)
+            if (_displayingIncrementally && DialogueInteractedWith())
             {
-                if (InputManager.Actions.Player.Interact.IsPressed())
-                {
-                    _skipDisplay = true;
-                }
+                _skipDisplay = true;
             }
+        }
+
+        private void LateUpdate()
+        {
+            _dialogueClicked = false;
         }
 
         public void StartInteraction(Interaction interaction)
@@ -54,9 +75,10 @@ namespace Scripts.Components.UI
             }
             else
             {
-                data.Interactions.Enqueue(interaction);
+                Interactions.Enqueue(interaction);
             }
             if (_inInteractionChain) return;
+
             _inInteractionChain = true;
             CurrentInteraction();
         }
@@ -64,12 +86,14 @@ namespace Scripts.Components.UI
         public void ProgressBox(int i)
         {
             if (!_enableBoxSelection) return;
+
             _boxToProgress = i;
         }
 
         private void CurrentInteraction()
         {
             if (!_inInteractionChain) return;
+
             gameObject.SetActive(_currentInteraction != null);
             if (_currentInteraction != null)
             {
@@ -86,25 +110,27 @@ namespace Scripts.Components.UI
         private void ProgressInteractionWithOption(string dialogueOption)
         {
             if (_currentInteraction == null) return;
+
             var result = _currentInteraction.GetNext(dialogueOption);
-            
+
             if (result == null)
             {
-                _currentInteraction = data.Interactions.Count > 0 ? data.Interactions.Dequeue() : null;
+                _currentInteraction = Interactions.Count > 0 ? Interactions.Dequeue() : null;
                 CurrentInteraction();
                 return;
             }
             Display(result);
         }
-        
+
         private void ProgressInteractionWithDefault()
         {
             if (_currentInteraction == null) return;
+
             var result = _currentInteraction.GetNext();
-            
+
             if (result == null)
             {
-                _currentInteraction = data.Interactions.Count > 0 ? data.Interactions.Dequeue() : null;
+                _currentInteraction = Interactions.Count > 0 ? Interactions.Dequeue() : null;
                 CurrentInteraction();
                 return;
             }
@@ -118,27 +144,29 @@ namespace Scripts.Components.UI
                 StopCoroutine(_coroutine);
             }
             if (line == null) return;
-            _coroutine = TypeSentence(line); 
-            StartCoroutine(_coroutine); 
+
+            _coroutine = TypeSentence(line);
+            StartCoroutine(_coroutine);
         }
-        
+
         private IEnumerator TypeSentence(DialogueLine line)
         {
-            data.authorVis.text = line.author;
-            data.authorVis.color = line.authorColor;
-            data.textVis.text = "";
-            data.textVis.color = line.textColor;
-            
+            authorVis.text = line.author;
+            authorVis.color = line.authorColor;
+            textVis.text = "";
+            textVis.color = line.textColor;
+
             _displayingIncrementally = true;
             foreach (var letter in line.text)
             {
-                data.textVis.text += letter;
+                textVis.text += letter;
                 yield return new WaitForSeconds(0.05f);
+
                 if (_skipDisplay) break;
             }
             _skipDisplay = false;
             _displayingIncrementally = false;
-            data.textVis.text = line.text;
+            textVis.text = line.text;
             yield return new WaitForSeconds(0.05f);
 
             var next = DefaultDialogueOption;
@@ -154,31 +182,33 @@ namespace Scripts.Components.UI
                 _enableBoxSelection = true;
                 // temporarily enable box selection
                 yield return new WaitUntil(() => _boxToProgress >= 0 && _boxToProgress < line.Options.Count);
+
                 _enableBoxSelection = false;
-                
+
                 next = _dialogueOptions[_boxToProgress].text;
                 _boxToProgress = -1;
             }
             else
             {
-                yield return new WaitUntil(InputManager.Actions.Player.Interact.IsPressed);
+                yield return new WaitUntil(DialogueInteractedWith);
+
                 _dialogueOptions[0].enabled = true;
                 (_dialogueOptions[0].text, _dialogueOptions[0].color) = line.GetDefaultOption().GetValueOrDefault(("", Color.black));
             }
-            
+
             yield return new WaitForSeconds(0.10f);
-            
+
             foreach (var option in _dialogueOptions)
             {
                 option.text = "";
                 option.color = Color.black;
                 option.enabled = false;
             }
-            
-            data.textVis.text = "";
-            data.textVis.color = Color.white;
-            data.authorVis.text = "";
-            data.textVis.color = Color.white;
+
+            textVis.text = "";
+            textVis.color = Color.white;
+            authorVis.text = "";
+            textVis.color = Color.white;
 
             if (line.HasOptions())
             {
@@ -190,7 +220,7 @@ namespace Scripts.Components.UI
             }
         }
     }
-    
+
     /// <summary>
     /// A class representing a line of dialogue. A fluent interface largely following the
     /// configuration pattern -- the class can be configured via a series of chained methods
@@ -234,13 +264,13 @@ namespace Scripts.Components.UI
             authorColor = color;
             return this;
         }
-        
+
         public DialogueLine TextColor(Color color)
         {
             textColor = color;
             return this;
         }
-        
+
         public DialogueLine AddOption(string option, DialogueLine node, Color color)
         {
             if (_defaultNext != null)
@@ -253,22 +283,22 @@ namespace Scripts.Components.UI
             _options.Add(option, node);
             return this;
         }
-        
+
         public DialogueLine AddOption(string option, DialogueLine node)
         {
             return AddOption(option, node, Color.black);
         }
-        
+
         public DialogueLine AddDefault(DialogueLine node)
         {
             return AddDefault("", node);
         }
-        
+
         public DialogueLine AddDefault(string option, DialogueLine node)
         {
             return AddDefault(option, node, Color.black);
         }
-        
+
         public DialogueLine AddDefault(string option, DialogueLine node, Color color)
         {
             if (_defaultNext != null)
@@ -283,9 +313,11 @@ namespace Scripts.Components.UI
         public DialogueLine? GetNext(string option)
         {
             if (_options == null) return null;
+
             EndCallbacks();
             _options.TryGetValue(option, out var next);
             if (next == null) return next;
+
             next.StartCallbacks();
             return next;
         }
@@ -309,7 +341,7 @@ namespace Scripts.Components.UI
                 callback.Invoke();
             }
         }
-        
+
         // A node is responsible for calling its own EndCallbacks.
         private void EndCallbacks()
         {
@@ -324,7 +356,7 @@ namespace Scripts.Components.UI
             _callbacksOnStart.Add(action);
             return this;
         }
-        
+
         public DialogueLine AddEndCallBack(Action action)
         {
             _callbacksOnEnd.Add(action);
@@ -344,25 +376,27 @@ namespace Scripts.Components.UI
         // A node doesn't know whether it's the end, so to end an interaction, we have a
         // separate set of callbacks.
         private List<Action> _onEndCallbacks = new();
-        
+
         public Interaction(DialogueLine curr)
         {
             _curr = curr;
         }
-        
+
         public DialogueLine? First()
         {
             if (_curr == null) return null;
+
             _curr.StartCallbacks();
             return _curr;
         }
-        
+
         public DialogueLine? GetNext(string dialogueOption = Dialogue.DefaultDialogueOption)
         {
             if (_curr == null) return null;
+
             _curr = _curr.HasOptions() ? _curr.GetNext(dialogueOption) : _curr.GetNext();
             if (_curr != null) return _curr;
-            
+
             EndCallbacks();
             return null;
         }
@@ -379,17 +413,18 @@ namespace Scripts.Components.UI
                 action.Invoke();
             }
         }
-        
+
         // Produces an interaction from an author and a list of text options.
         public static Interaction Basic(string author, IEnumerable<string> iterator)
         {
             DialogueLine curr = new(author, "");
             DialogueLine? next = null;
-            
+
             Interaction interaction = new(curr);
             foreach (var text in iterator)
             {
                 if (text == null) return interaction;
+
                 if (next != null)
                 {
                     curr.AddDefault(next);

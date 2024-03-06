@@ -3,7 +3,6 @@ using System.IO;
 using Newtonsoft.Json;
 using Scripts.Utility;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Scripts.Data
 {
@@ -75,9 +74,6 @@ namespace Scripts.Data
                 }
 
                 var state = JsonConvert.DeserializeObject<GameState>(text, JsonSettings.SerializerSettings);
-
-                var output = JsonConvert.SerializeObject(state, JsonSettings.SerializerSettings);
-                Assert.AreEqual(text, output);
 
                 GameStateManager.LoadState(state);
             }

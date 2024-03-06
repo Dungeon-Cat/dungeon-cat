@@ -48,7 +48,7 @@ namespace Scripts.Components
         {
             var scene = SceneManager.GetSceneByName(sceneName);
 
-            return !scene.IsValid() ? null : scene.GetRootGameObjects().FirstNonNull(o => o.GetComponent<DungeonLevel>());
+            return !scene.IsValid() || !scene.GetRootGameObjects().Any() ? null : scene.GetRootGameObjects().FirstNonNull(o => o.GetComponent<DungeonLevel>());
 
         }
 
