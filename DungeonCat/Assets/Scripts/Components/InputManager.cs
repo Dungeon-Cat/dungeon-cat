@@ -109,9 +109,10 @@ namespace Scripts.Components
             var cat = UnityState.Instance.cat;
             cat.data.facing = input;
 
-            var movement = input * (Time.deltaTime * Speed);
-
-            cat.transform.Translate(movement.x, movement.y, 0);
+            var movement = input * (Time.deltaTime * Speed * cat.body.drag * cat.body.drag);
+            
+            cat.body.AddForce(movement);
+            // cat.transform.Translate(movement.x, movement.y, 0);
             cat.SyncToData();
             path = null;
         }
