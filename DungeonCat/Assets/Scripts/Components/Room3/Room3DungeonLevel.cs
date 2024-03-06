@@ -13,9 +13,18 @@ namespace Scripts.Components.Room3
         public ToggleWall[] blueWalls;
         public ToggleWall[] redWalls;
 
+        public void Awake()
+        {
+            UpdateSwitch();
+        }
         public void OnSwitchChange()
         {
             switchState = !switchState; 
+            UpdateSwitch();
+        }
+
+        private void UpdateSwitch()
+        {
             foreach (var _switch in switches)
             {
                 _switch.SetOpen(switchState);
@@ -23,12 +32,12 @@ namespace Scripts.Components.Room3
 
             foreach (var wall in blueWalls)
             {
-                wall.SetOpen(switchState);
+                wall.SetOpen(!switchState); 
             }
 
             foreach (var wall in redWalls)
             {
-                wall.SetOpen(!switchState);
+                wall.SetOpen(switchState);
             }
         }
     }
