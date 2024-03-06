@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!213 &21300000
 Sprite:
@@ -22,7 +22,7 @@ Sprite:
   m_AtlasName: 
   m_PackingTag: 
   m_RenderDataKey:
-    29c9cded5e558164aaf8c9bf08aa1510: 21300142
+    e36a0e7349ab2d646a4f8da20029e86c: 21300000
   m_AtlasTags: []
   m_SpriteAtlas: {fileID: 0}
   m_RD:
