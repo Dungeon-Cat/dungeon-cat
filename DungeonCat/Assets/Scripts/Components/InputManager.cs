@@ -6,15 +6,20 @@ using Scripts.UI;
 using Scripts.Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace Scripts.Components
 {
     public class InputManager : MonoBehaviour
     {
+        public const string Keyboard = "Keyboard&Mouse";
+        
         private const float Speed = 50;
-        private const float NextWaypointDistance = 3;
+        private const float NextWaypointDistance = 2;
 
         private static InputActions actions;
+
+        public static PlayerInput playerInput;
 
         private Seeker seeker;
         private Path path;
@@ -23,6 +28,7 @@ namespace Scripts.Components
 
         private void Start()
         {
+            playerInput = GetComponent<PlayerInput>();
             seeker = UnityState.Instance.cat.GetComponent<Seeker>();
             InvokeRepeating(nameof(CheckPath), 0, .2f);
         }
@@ -146,17 +152,18 @@ namespace Scripts.Components
             }
             // Slow down smoothly upon approaching the end of the path
             // This value will smoothly go from 1 to 0 as the agent approaches the last waypoint in the path.
-            var speedFactor = reachedEndOfPath ? Mathf.Sqrt(distanceToWaypoint / NextWaypointDistance) : 1f;
             // Direction to the next waypoint
             // Normalize it so that it has a length of 1 world unit
-            Vector3 dir = (path.vectorPath[currentWaypoint] - seeker.transform.position).normalized;
+            var dir = (path.vectorPath[currentWaypoint] - seeker.transform.position).normalized;
             // Multiply the direction by our desired speed to get a velocity
-            Vector3 velocity = dir * (Speed * speedFactor);
+            var velocity = dir * Speed;
 
             // If you are writing a 2D game you should remove the CharacterController code above and instead move the transform directly by uncommenting the next line
             var cat = UnityState.Instance.cat;
             cat.data.facing = dir;
-            seeker.transform.Translate(velocity * Time.deltaTime);
+            // seeker.transform.Translate(velocity * Time.deltaTime);
+            var movement = velocity  * (Time.deltaTime * cat.body.drag * cat.body.drag);
+            cat.body.AddForce(movement);
             cat.SyncToData();
 
             if (reachedEndOfPath && distanceToWaypoint >= lastDistance)

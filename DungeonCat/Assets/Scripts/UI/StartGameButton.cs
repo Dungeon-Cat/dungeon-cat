@@ -1,20 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using Scripts.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
-namespace Scripts
+namespace Scripts.UI
 {
     public class StartGameButton : MonoBehaviour
     {
-        public int rootScene;
-        public int startRoom;
-        
         public void StartGame()
         {
-            SceneManager.LoadScene(startRoom);
-            SceneManager.LoadScene(rootScene, LoadSceneMode.Additive);
+            SceneManager.LoadScene(GameState.RootScene);
+            SceneManager.LoadScene(GameState.DefaultRoom, LoadSceneMode.Additive);
         }
     }
 }

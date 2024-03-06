@@ -48,12 +48,8 @@ namespace Scripts.Components
         {
             var scene = SceneManager.GetSceneByName(sceneName);
 
-            if (!scene.IsValid())
-            {
-                Debug.LogError($"Scene {sceneName} was not valid");
-            }
-            
-            return scene.GetRootGameObjects().FirstNonNull(o => o.GetComponent<DungeonLevel>());
+            return !scene.IsValid() || !scene.GetRootGameObjects().Any() ? null : scene.GetRootGameObjects().FirstNonNull(o => o.GetComponent<DungeonLevel>());
+
         }
 
         /// <summary>
@@ -129,9 +125,12 @@ namespace Scripts.Components
             cat.SyncFromData();
 
             var oldLevel = GetScene(oldScene);
-            oldLevel.SyncToData();
+            if (oldLevel != null)
+            {
+                oldLevel.SyncToData();
+                yield return SceneManager.UnloadSceneAsync(oldScene);
+            }
 
-            yield return SceneManager.UnloadSceneAsync(oldScene);
             yield return SceneManager.LoadSceneAsync(newScene, LoadSceneMode.Additive);
 
             var newLevel = GetScene(newScene);
@@ -145,7 +144,10 @@ namespace Scripts.Components
         {
             cat.data = newGameState.cat;
             var oldLevel = GetScene(oldState.currentScene);
-            oldLevel.data = oldState.CurrentScene;
+            if (oldLevel != null)
+            {
+                oldLevel.data = oldState.CurrentScene;
+            }
             StartCoroutine(SwitchScene(oldState.currentScene, newGameState.currentScene));
         }
 
@@ -164,6 +166,7 @@ namespace Scripts.Components
         {
             var astar = gameObject.GetComponent<AstarPath>();
             if (astar.isScanning) return;
+
             using var scan = astar.ScanAsync().GetEnumerator();
             StartCoroutine(scan);
         }
@@ -172,10 +175,11 @@ namespace Scripts.Components
         {
             if (tagName == Boots.FlyingTag)
             {
-                ScanPathfinding();;
+                ScanPathfinding();
+                ;
             }
         }
-        
+
         private void OnTagRemoved(EntityData entity, string tagName)
         {
             if (tagName == Boots.FlyingTag)
