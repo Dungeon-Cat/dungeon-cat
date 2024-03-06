@@ -1,12 +1,12 @@
-#nullable enable
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Scripts.Components.CommonEntities;
 using Scripts.Data;
 using TMPro;
 using UnityEngine;
+using Scripts.Components.CommonEntities;
+
+#nullable enable
 
 namespace Scripts.Components.UI
 {
@@ -14,9 +14,10 @@ namespace Scripts.Components.UI
     {
         private Interaction? _currentInteraction;
         private IEnumerator? _coroutine;
-        private bool _inInteractionChain;
+        private bool _inInteractionChain, _displayingIncrementally, _skipDisplay, _enableBoxSelection;
         private readonly List<TMP_Text> _dialogueOptions = new();
         public const string DefaultDialogueOption = "";
+        private int _boxToProgress = -1;
         
         public void Awake()
         {
@@ -30,6 +31,18 @@ namespace Scripts.Components.UI
             foreach (var tmpText in _dialogueOptions)
             {
                 tmpText.text = "";
+                tmpText.enabled = false;
+            }
+        }
+
+        public void Update()
+        {
+            if (_displayingIncrementally)
+            {
+                if (InputManager.Actions.Player.Interact.IsPressed())
+                {
+                    _skipDisplay = true;
+                }
             }
         }
 
@@ -48,6 +61,12 @@ namespace Scripts.Components.UI
             CurrentInteraction();
         }
 
+        public void ProgressBox(int i)
+        {
+            if (!_enableBoxSelection) return;
+            _boxToProgress = i;
+        }
+
         private void CurrentInteraction()
         {
             if (!_inInteractionChain) return;
@@ -64,10 +83,25 @@ namespace Scripts.Components.UI
             _inInteractionChain = false;
         }
 
-        private void ProgressInteraction(string dialogueOption)
+        private void ProgressInteractionWithOption(string dialogueOption)
         {
             if (_currentInteraction == null) return;
             var result = _currentInteraction.GetNext(dialogueOption);
+            
+            if (result == null)
+            {
+                _currentInteraction = data.Interactions.Count > 0 ? data.Interactions.Dequeue() : null;
+                CurrentInteraction();
+                return;
+            }
+            Display(result);
+        }
+        
+        private void ProgressInteractionWithDefault()
+        {
+            if (_currentInteraction == null) return;
+            var result = _currentInteraction.GetNext();
+            
             if (result == null)
             {
                 _currentInteraction = data.Interactions.Count > 0 ? data.Interactions.Dequeue() : null;
@@ -94,38 +128,75 @@ namespace Scripts.Components.UI
             data.authorVis.color = line.authorColor;
             data.textVis.text = "";
             data.textVis.color = line.textColor;
+            
+            _displayingIncrementally = true;
             foreach (var letter in line.text)
             {
                 data.textVis.text += letter;
                 yield return new WaitForSeconds(0.05f);
+                if (_skipDisplay) break;
             }
+            _skipDisplay = false;
+            _displayingIncrementally = false;
+            data.textVis.text = line.text;
             yield return new WaitForSeconds(0.05f);
-            if (!(line.Options.Count == 1 && line.Options[0].Item1 == ""))
+
+            var next = DefaultDialogueOption;
+            if (line.HasOptions())
             {
                 for (var i = 0; i < line.Options.Count; i++)
                 {
+                    _dialogueOptions[i].enabled = true;
                     var (option, color) = line.Options[i];
                     _dialogueOptions[i].text = option;
                     _dialogueOptions[i].color = color;
                 }
+                _enableBoxSelection = true;
+                // temporarily enable box selection
+                yield return new WaitUntil(() => _boxToProgress >= 0 && _boxToProgress < line.Options.Count);
+                _enableBoxSelection = false;
+                
+                next = _dialogueOptions[_boxToProgress].text;
+                _boxToProgress = -1;
+            }
+            else
+            {
+                yield return new WaitUntil(InputManager.Actions.Player.Interact.IsPressed);
+                _dialogueOptions[0].enabled = true;
+                (_dialogueOptions[0].text, _dialogueOptions[0].color) = line.GetDefaultOption().GetValueOrDefault(("", Color.black));
             }
             
-            yield return new WaitUntil(() => InputManager.Actions.Player.Interact.IsPressed());
             yield return new WaitForSeconds(0.10f);
+            
             foreach (var option in _dialogueOptions)
             {
                 option.text = "";
-                option.color = Color.white;
+                option.color = Color.black;
+                option.enabled = false;
             }
             
             data.textVis.text = "";
             data.textVis.color = Color.white;
             data.authorVis.text = "";
             data.textVis.color = Color.white;
-            ProgressInteraction(DefaultDialogueOption);
+
+            if (line.HasOptions())
+            {
+                ProgressInteractionWithOption(next);
+            }
+            else
+            {
+                ProgressInteractionWithDefault();
+            }
         }
     }
     
+    /// <summary>
+    /// A class representing a line of dialogue. A fluent interface largely following the
+    /// configuration pattern -- the class can be configured via a series of chained methods
+    /// and then passed to Interaction, which will take responsibility for wrapping the
+    /// interface.
+    /// </summary>
     [Serializable]
     public class DialogueLine
     {
@@ -138,12 +209,19 @@ namespace Scripts.Components.UI
         // Most of the time, the default dialogue option to progress to the next
         // next will be 'meow'.
         // Provisional upper limit of four dialogue options.
-        public List<(string, Color)> Options = new();
-        private Dictionary<string, (Color, DialogueLine)> _options = new();
+        public List<(string, Color)> Options { get; } = new();
+
+        private Dictionary<string, DialogueLine>? _options;
+        private ((string, Color), DialogueLine)? _defaultNext;
         // A node in an interaction takes these actions when it is reached.
         // This is to signal choices that might affect the character with whom the
         // dialogue is being taken.
         private List<Action> _callbacksOnStart = new(), _callbacksOnEnd = new();
+
+        public bool HasOptions()
+        {
+            return _options != null;
+        }
 
         public DialogueLine(string author, string text)
         {
@@ -163,26 +241,63 @@ namespace Scripts.Components.UI
             return this;
         }
         
- 
-        public DialogueLine AddNext(DialogueLine node, string option, Color color)
+        public DialogueLine AddOption(string option, DialogueLine node, Color color)
         {
+            if (_defaultNext != null)
+            {
+                throw new Exception("Invalid state, attempting to add a dialogue option to a non-null node.");
+            }
+
+            _options ??= new();
             Options.Add((option, color));
-            _options.Add(option, (color, node));
+            _options.Add(option, node);
             return this;
         }
         
-        public DialogueLine AddNext(DialogueLine node, string option = Dialogue.DefaultDialogueOption)
+        public DialogueLine AddOption(string option, DialogueLine node)
         {
-            return AddNext(node, option, Color.white);
+            return AddOption(option, node, Color.black);
+        }
+        
+        public DialogueLine AddDefault(DialogueLine node)
+        {
+            return AddDefault("", node);
+        }
+        
+        public DialogueLine AddDefault(string option, DialogueLine node)
+        {
+            return AddDefault(option, node, Color.black);
+        }
+        
+        public DialogueLine AddDefault(string option, DialogueLine node, Color color)
+        {
+            if (_defaultNext != null)
+            {
+                throw new Exception("Invalid state, attempting to overwrite immutably set default next line.");
+            }
+
+            _defaultNext = ((option, color), node);
+            return this;
         }
 
         public DialogueLine? GetNext(string option)
         {
+            if (_options == null) return null;
             EndCallbacks();
-            DialogueLine? next = _options.ContainsKey(option) ? _options[option].Item2 : null;
+            _options.TryGetValue(option, out var next);
             if (next == null) return next;
             next.StartCallbacks();
             return next;
+        }
+
+        public DialogueLine? GetNext()
+        {
+            return _defaultNext?.Item2;
+        }
+
+        public (string, Color)? GetDefaultOption()
+        {
+            return _defaultNext?.Item1;
         }
 
         // A node's start callbacks are called by the node that
@@ -245,13 +360,11 @@ namespace Scripts.Components.UI
         public DialogueLine? GetNext(string dialogueOption = Dialogue.DefaultDialogueOption)
         {
             if (_curr == null) return null;
-            _curr = _curr.GetNext(dialogueOption);
-            if (_curr == null)
-            {
-                EndCallbacks();
-                return null;
-            }
-            return _curr;
+            _curr = _curr.HasOptions() ? _curr.GetNext(dialogueOption) : _curr.GetNext();
+            if (_curr != null) return _curr;
+            
+            EndCallbacks();
+            return null;
         }
 
         public void AddEndCallback(Action action)
@@ -279,7 +392,7 @@ namespace Scripts.Components.UI
                 if (text == null) return interaction;
                 if (next != null)
                 {
-                    curr.AddNext(next);
+                    curr.AddDefault(next);
                     curr = next;
                 }
                 curr.text = text;
