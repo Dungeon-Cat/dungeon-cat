@@ -13,6 +13,30 @@ namespace Scripts.Data
 
         private static string GetSavePath() => Path.Combine(Application.persistentDataPath, GetSaveName() + ".json");
 
+        public static bool HasSaveToLoad(out string text)
+        {
+            text = null;
+            try
+            {
+                var path = GetSavePath();
+
+                if (JavascriptFunctions.IsBrowser)
+                {
+                    text = JavascriptFunctions.Load();
+                }
+                else if (File.Exists(path))
+                {
+                    text = File.ReadAllText(path);
+                }
+
+                return !string.IsNullOrEmpty(text);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public static void Save()
         {
             try
@@ -44,19 +68,7 @@ namespace Scripts.Data
         {
             try
             {
-                var path = GetSavePath();
-
-                string text = null;
-                if (JavascriptFunctions.IsBrowser)
-                {
-                    text = JavascriptFunctions.Load();
-                }
-                else if (File.Exists(path))
-                {
-                    text = File.ReadAllText(path);
-                }
-
-                if (string.IsNullOrEmpty(text))
+                if (!HasSaveToLoad(out var text))
                 {
                     GameStateManager.onLoadFailed?.Invoke();
                     return;
