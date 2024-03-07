@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Scripts.Components.Room1
 {
+    /// <summary>
+    /// Monobehavior for Room 1 chest.
+    /// Opens when interacted with.
+    /// </summary>
     public class TutorialChest : MonoBehaviour, IInteractable
     {
         public ChestEntity chest;

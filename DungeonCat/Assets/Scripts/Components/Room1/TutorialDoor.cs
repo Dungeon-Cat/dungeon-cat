@@ -7,8 +7,8 @@ using UnityEngine;
 namespace Scripts.Components.Room1
 {
     /// <summary>
-    /// Controls the behavior of the door in the tutorial.
-    /// Currently opens if key dropped on door.
+    /// MonoBehavior for Room 1 door.
+    /// Door opens when interacted with by player with tutorial key
     /// </summary>
     public class TutorialDoor : MonoBehaviour, IInteractable
     {
