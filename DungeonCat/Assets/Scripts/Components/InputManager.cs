@@ -33,7 +33,7 @@ namespace Scripts.Components
         {
             playerInput = GetComponent<PlayerInput>();
             seeker = UnityState.Instance.cat.GetComponent<Seeker>();
-            InvokeRepeating(nameof(CheckPath), 0, .2f);
+            InvokeRepeating(nameof(CheckPath), 0, .5f);
         }
 
         public static InputActions Actions

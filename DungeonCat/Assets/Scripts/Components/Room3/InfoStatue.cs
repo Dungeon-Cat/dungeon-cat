@@ -13,13 +13,14 @@ namespace Scripts.Components.Room3
     {
         private const string Author = "Witch Statue";
         public bool dialogueTriggered;
-        
+
         public bool CanBeInteractedWith() => !dialogueTriggered;
-        public new void Interact()
+
+        public void Interact()
         {
             dialogueTriggered = true;
             UnityState.Instance.dialogue.StartInteraction(new Interaction(
-                new DialogueLine(Author, "Curiously, these old ruins seem to be built specifically so that somecat can solve them...").AuthorColor(Color.blue).TextColor(Color.black)
+                new DialogueLine(Author, "Curiously, these old ruins seem to be built specifically so that some cat can solve them...").AuthorColor(Color.blue).TextColor(Color.black)
             ));
         }
     }

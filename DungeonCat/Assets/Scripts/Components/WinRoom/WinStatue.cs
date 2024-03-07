@@ -13,9 +13,10 @@ namespace Scripts.Components.WinRoom
     {
         private const string Author = "Witch Statue";
         public bool dialogueTriggered;
-        
+
         public bool CanBeInteractedWith() => !dialogueTriggered;
-        public new void Interact()
+
+        public void Interact()
         {
             dialogueTriggered = true;
             UnityState.Instance.dialogue.StartInteraction(new Interaction(

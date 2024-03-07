@@ -1,5 +1,6 @@
 ﻿using System.Linq;
-using Scripts.Components.Room1;
+using Cainos.PixelArtTopDown_Basic;
+using Scripts.Components.CommonEntities;
 using Scripts.Components.UI;
 using Scripts.Data;
 using Scripts.UI;
@@ -16,7 +17,7 @@ namespace Scripts.Components.Inventory
     public class InventoryItem : MonoBehaviour, IEndDragHandler, IBeginDragHandler
     {
         public Image icon;
-        
+
         public int slot;
 
         public void OnBeginDrag(PointerEventData eventData)
@@ -29,11 +30,11 @@ namespace Scripts.Components.Inventory
             var results = EventSystem.current.RaycastAll(eventData);
 
             var foundInventory = false;
-            
+
             foreach (var result in results)
             {
                 foundInventory |= result.gameObject.HasComponent<Inventory>();
-                
+
                 if (result.gameObject.HasComponent(out InventoryItem inventoryItem) && inventoryItem.slot != slot)
                 {
                     GameStateManager.CurrentState.cat.TryCombine(slot, inventoryItem.slot);
@@ -45,12 +46,12 @@ namespace Scripts.Components.Inventory
             {
                 var pos = Camera.main!.ScreenToWorldPoint(eventData.position);
                 var objectResults = Physics2D.RaycastAll(pos, Vector2.zero);
-                if (objectResults.Length == 0 || objectResults.Any(hit2D => hit2D.transform.gameObject.HasComponent<TutorialDoor>()))
+                if (objectResults.Length == 0 || objectResults.Any(hit2D => hit2D.transform.gameObject.HasComponent<IEntityComponent>() || hit2D.transform.gameObject.HasComponent<PropsAltar>()))
                 {
                     GameStateManager.CurrentState.cat.DropItem(slot, pos);
                 }
             }
-            
+
             UiManager.Instance.isDragging = false;
         }
 
