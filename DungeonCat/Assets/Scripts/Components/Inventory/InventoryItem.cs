@@ -1,4 +1,6 @@
-﻿using Scripts.Components.UI;
+﻿using System.Linq;
+using Scripts.Components.Room1;
+using Scripts.Components.UI;
 using Scripts.Data;
 using Scripts.UI;
 using Scripts.Utility;
@@ -41,24 +43,11 @@ namespace Scripts.Components.Inventory
 
             if (!foundInventory)
             {
-                var pos = eventData.position;
+                var pos = Camera.main!.ScreenToWorldPoint(eventData.position);
                 var objectResults = Physics2D.RaycastAll(pos, Vector2.zero);
-                if (objectResults.Length == 0)
+                if (objectResults.Length == 0 || objectResults.Any(hit2D => hit2D.transform.gameObject.HasComponent<TutorialDoor>()))
                 {
-                    GameStateManager.CurrentState.cat.DropItem(slot, Camera.main!.ScreenToWorldPoint(pos));
-                
-                }
-                else
-                {
-                    foreach (var result in objectResults)
-                    {
-                        if (result.transform.gameObject.HasComponent(out InteractableObject interactable) &&
-                            interactable.CanBeInteractedWith())
-                        {
-                            GameStateManager.CurrentState.cat.DropItem(slot, Camera.main!.ScreenToWorldPoint(pos));
-                            return;
-                        }
-                    }
+                    GameStateManager.CurrentState.cat.DropItem(slot, pos);
                 }
             }
             
