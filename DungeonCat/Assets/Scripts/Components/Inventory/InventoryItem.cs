@@ -41,7 +41,25 @@ namespace Scripts.Components.Inventory
 
             if (!foundInventory)
             {
-                GameStateManager.CurrentState.cat.DropItem(slot, Camera.main!.ScreenToWorldPoint(eventData.position));
+                var pos = eventData.position;
+                var objectResults = Physics2D.RaycastAll(pos, Vector2.zero);
+                if (objectResults.Length == 0)
+                {
+                    GameStateManager.CurrentState.cat.DropItem(slot, Camera.main!.ScreenToWorldPoint(pos));
+                
+                }
+                else
+                {
+                    foreach (var result in objectResults)
+                    {
+                        if (result.transform.gameObject.HasComponent(out InteractableObject interactable) &&
+                            interactable.CanBeInteractedWith())
+                        {
+                            GameStateManager.CurrentState.cat.DropItem(slot, Camera.main!.ScreenToWorldPoint(pos));
+                            return;
+                        }
+                    }
+                }
             }
             
             UiManager.Instance.isDragging = false;

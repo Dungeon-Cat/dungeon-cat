@@ -8852,7 +8852,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -13860,15 +13860,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7947911505737750455, guid: c5bdca1933fde624698bb8c6d6daa44b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 909086995}
-    - targetCorrespondingSourceObject: {fileID: 7947911505737750455, guid: c5bdca1933fde624698bb8c6d6daa44b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 909086996}
+    m_AddedComponents: [{targetCorrespondingSourceObject: {fileID: 7947911505737750455,
+          guid: c5bdca1933fde624698bb8c6d6daa44b, type: 3}, insertIndex: -1, addedObject: {
+          fileID: 909086995}}, {targetCorrespondingSourceObject: {fileID: 7947911505737750455,
+          guid: c5bdca1933fde624698bb8c6d6daa44b, type: 3}, insertIndex: -1, addedObject: {
+          fileID: 909086996}}]
   m_SourcePrefab: {fileID: 100100000, guid: c5bdca1933fde624698bb8c6d6daa44b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

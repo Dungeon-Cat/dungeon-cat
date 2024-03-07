@@ -3,9 +3,9 @@ using Scripts.Components.Room1;
 using Scripts.Components.UI;
 using UnityEngine;
 
-namespace Scripts.Components.WinRoom
+namespace Scripts.Components.Room3
 {
-    public class WinStatue : MonoBehaviour, IInteractable
+    public class InfoStatue : MonoBehaviour, IInteractable
     {
         private const string Author = "Witch Statue";
         public bool dialogueTriggered;
@@ -15,7 +15,7 @@ namespace Scripts.Components.WinRoom
         {
             dialogueTriggered = true;
             UnityState.Instance.dialogue.StartInteraction(new Interaction(
-                new DialogueLine(Author, "You win!").AuthorColor(Color.blue).TextColor(Color.black)
+                new DialogueLine(Author, "Curiously, these old ruins seem to be built specifically so that somecat can solve them...").AuthorColor(Color.blue).TextColor(Color.black)
             ));
         }
     }
