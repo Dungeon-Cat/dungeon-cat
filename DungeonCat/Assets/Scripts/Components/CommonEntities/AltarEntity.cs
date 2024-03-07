@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Scripts.Components.CommonEntities
 {
+    /// <summary>
+    /// Entity with some collection of runes that can be active/inactive
+    /// </summary>
     [RequireComponent(typeof(PropsAltar))]
     public class AltarEntity : EntityComponent<AltarData>
     {

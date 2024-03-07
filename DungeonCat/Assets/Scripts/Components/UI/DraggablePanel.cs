@@ -3,6 +3,9 @@ using UnityEngine.EventSystems;
 
 namespace Scripts.Components.UI
 {
+    /// <summary>
+    /// A UI Panel that can be dragged by player input
+    /// </summary>
     public class DraggablePanel : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
         private RectTransform rectTransform;

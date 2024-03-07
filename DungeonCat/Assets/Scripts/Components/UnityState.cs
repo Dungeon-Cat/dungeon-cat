@@ -11,6 +11,10 @@ using UnityEngine.SceneManagement;
 
 namespace Scripts.Components
 {
+    /// <summary>
+    /// Unity-specific state.
+    /// Handles entities and switching scenes
+    /// </summary>
     public class UnityState : MonoBehaviour
     {
         public Cat cat;

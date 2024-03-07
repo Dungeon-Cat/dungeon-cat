@@ -6,6 +6,10 @@ using UnityEngine;
 
 namespace Scripts.Data
 {
+    /// <summary>
+    /// Manages the state of the game.
+    /// This involves entity and scene management
+    /// </summary>
     public static class GameStateManager
     {
         public static GameState CurrentState { get; private set; }

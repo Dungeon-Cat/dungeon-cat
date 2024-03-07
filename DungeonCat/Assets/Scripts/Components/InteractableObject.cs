@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Scripts.Components
 {
+    /// <summary>
+    /// Object that can be interacted with by a player
+    /// </summary>
     public class InteractableObject : MonoBehaviour
     {
         public const float InteractDistance = 5;

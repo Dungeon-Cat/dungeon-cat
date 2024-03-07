@@ -2,6 +2,9 @@
 
 namespace Scripts.Components.UI
 {
+    /// <summary>
+    /// Script that handles Portrait Mode on some devices
+    /// </summary>
     public class PortraitModeWarning : MonoBehaviour
     {
         public GameObject image;

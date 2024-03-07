@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Scripts.Data
 {
+    /// <summary>
+    /// Manages saving and loading to disk
+    /// </summary>
     public static class SaveLoadManager
     {
         private static string GetSaveName() => "latest";

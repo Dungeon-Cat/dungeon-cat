@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Scripts.Components.Room3
 {
+    /// <summary>
+    /// Yarn in Room 3.
+    /// Can be pushed by the player, and activates a goal when reached
+    /// </summary>
     public class Yarn : MonoBehaviour
     {
         public Collider2D yarnBowlCollider2d;

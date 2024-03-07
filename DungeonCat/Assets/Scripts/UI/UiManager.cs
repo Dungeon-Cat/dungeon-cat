@@ -2,6 +2,9 @@
 
 namespace Scripts.UI
 {
+    /// <summary>
+    /// Manages the UI presented to the player
+    /// </summary>
     public class UiManager : MonoBehaviour
     {
         public Material spriteDefault;

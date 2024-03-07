@@ -10,6 +10,9 @@ using UnityEngine.InputSystem;
 
 namespace Scripts.Components
 {
+    /// <summary>
+    /// Script that handles player input
+    /// </summary>
     public class InputManager : MonoBehaviour
     {
         public const string Keyboard = "Keyboard&Mouse";

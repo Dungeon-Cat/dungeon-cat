@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Scripts.Components.CommonEntities
 {
+    /// <summary>
+    /// Entity that represents an inventory item and exists in worldspace
+    /// </summary>
     public class ItemEntity : EntityComponent<ItemEntityData>
     {
         public SpriteRenderer spriteRenderer;

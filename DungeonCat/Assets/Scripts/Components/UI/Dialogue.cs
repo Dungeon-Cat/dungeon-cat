@@ -12,6 +12,9 @@ using Scripts.Components.CommonEntities;
 
 namespace Scripts.Components.UI
 {
+    /// <summary>
+    /// Dialogue that is presented to the player, with the ability to choose dialogue options
+    /// </summary>
     public class Dialogue : MonoBehaviour
     {
         public TMP_Text authorVis, textVis, option1, option2, option3, option4, instructions;

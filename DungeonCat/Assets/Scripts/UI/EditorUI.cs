@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace Scripts.UI
 {
+    /// <summary>
+    /// Script to scale game correctly in editor
+    /// </summary>
     [RequireComponent(typeof(CanvasScaler))]
     [ExecuteAlways]
     public class EditorUI : MonoBehaviour
