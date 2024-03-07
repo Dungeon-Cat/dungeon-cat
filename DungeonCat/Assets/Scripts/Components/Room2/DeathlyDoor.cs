@@ -1,6 +1,5 @@
 using Scripts.Components.CommonEntities;
 using Scripts.Components.UI;
-using Scripts.Data;
 using Scripts.Definitions.Items;
 using Scripts.Utility;
 using UnityEngine;

@@ -49,17 +49,22 @@ namespace Scripts.Components.Room2
         {
             if (!alreadyTriggered)
             {
+                BootsDialogue();
                 alreadyTriggered = true;
-                UnityState.Instance.dialogue.StartInteraction(new Interaction(
-                    new DialogueLine("Cat", "You see a set of weathered boots appear before you.").AuthorColor(Color.blue)
-                        .AddDefault(new DialogueLine("Cat",
-                                "All of a sudden, little wings sprout from their heels and begin flapping furiously.").AuthorColor(Color.blue)
-                            .AddDefault(new DialogueLine("Cat",
-                                "A little emblem bearing the mark of the caduceus lights up.").AuthorColor(Color.blue)
-                ))));
             }
 
             containerData.DropAllItems(data.position + new Vector2(0, 10));
+        }
+
+        public static void BootsDialogue()
+        {
+            UnityState.Instance.dialogue.StartInteraction(new Interaction(
+                new DialogueLine("Cat", "You see a set of weathered boots appear before you.").AuthorColor(Color.blue)
+                    .AddDefault(new DialogueLine("Cat",
+                            "All of a sudden, little wings sprout from their heels and begin flapping furiously.").AuthorColor(Color.blue)
+                        .AddDefault(new DialogueLine("Cat",
+                                "A little emblem bearing the mark of the caduceus lights up.").AuthorColor(Color.blue)
+                        ))));
         }
     }
 }

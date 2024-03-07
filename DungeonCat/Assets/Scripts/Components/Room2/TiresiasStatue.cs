@@ -1,4 +1,3 @@
-using System;
 using Scripts.Components.CommonEntities;
 using Scripts.Components.UI;
 using UnityEngine;

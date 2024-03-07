@@ -1,7 +1,4 @@
 using Scripts.Components.CommonEntities;
-using Scripts.Data;
-using Scripts.Definitions.Items;
-using Scripts.Utility;
 using UnityEngine;
 
 namespace Scripts.Components.Room2

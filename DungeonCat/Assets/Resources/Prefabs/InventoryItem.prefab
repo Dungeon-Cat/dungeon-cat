@@ -230,6 +230,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 3226348744591768107}
   slot: 0
+  background: {fileID: 3226348744591768107}
+  count: {fileID: 5416295659292085898}
+  name: {fileID: 8666546766816423981}
 --- !u!114 &6964042586355202306
 MonoBehaviour:
   m_ObjectHideFlags: 0
