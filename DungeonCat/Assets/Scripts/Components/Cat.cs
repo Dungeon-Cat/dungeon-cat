@@ -5,11 +5,19 @@ using Scripts.Components.UI;
 using Scripts.Data;
 using Scripts.Definitions.Items;
 using UnityEngine;
+// ReSharper disable Unity.InefficientPropertyAccess
 
 namespace Scripts.Components
 {
     public class Cat : EntityComponent<CatData>
     {
+        private SpriteRenderer spriteRenderer;
+
+        private void Awake()
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
         protected override void Start()
         {
             base.Start();
@@ -20,6 +28,16 @@ namespace Scripts.Components
         private bool seenControlsHint;
 
         private bool seenFirstRoom3Hint;
+
+        private void Update()
+        {
+            spriteRenderer.flipX = data.facing.x switch
+            {
+                < 0 when !spriteRenderer.flipX => true,
+                > 0 when spriteRenderer.flipX => false,
+                _ => spriteRenderer.flipX
+            };
+        }
 
         public void Meow()
         {
@@ -76,7 +94,8 @@ namespace Scripts.Components
                     {
                         SayLine("It looks like I need to get the yarn to that altar over there.");
                         seenFirstRoom3Hint = true;
-                    } else if (!statue.talkedTo)
+                    }
+                    else if (!statue.talkedTo)
                     {
                         SayLine("Hopefully the witch can help me if I ever get the yarn stuck.");
                     }
@@ -84,7 +103,7 @@ namespace Scripts.Components
                     {
                         SayLine("I really don't want to get the yarn stuck in a corner.");
                     }
-                    
+
                     break;
             }
 
