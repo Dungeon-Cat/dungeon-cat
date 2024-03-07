@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Scripts.Components.CommonEntities
 {
+    /// <summary>
+    /// Openable Entity that transitions the game between scenes
+    /// </summary>
     public class DoorEntity : OpenableEntityComponent<DoorEntityData>
     {
         public string goesToScene;

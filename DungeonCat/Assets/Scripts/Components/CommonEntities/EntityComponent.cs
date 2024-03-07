@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Scripts.Components.CommonEntities
 {
+    /// <summary>
+    /// Component that has unique behavior or interactions
+    /// </summary>
+    /// <typeparam name="T">The associated EntityData class</typeparam>
     public abstract class EntityComponent<T> : ComponentWithData<T>, IEntityComponent where T : EntityData
     {
         [HideInInspector]
