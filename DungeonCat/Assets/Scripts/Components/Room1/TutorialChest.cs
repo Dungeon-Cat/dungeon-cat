@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Scripts.Components.Room1
 {
     /// <summary>
-    /// Monobehavior for Room 1 chest.
+    /// Chest in Room 1.
     /// Opens when interacted with.
     /// </summary>
     public class TutorialChest : MonoBehaviour, IInteractable

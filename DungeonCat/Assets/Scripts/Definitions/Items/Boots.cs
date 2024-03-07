@@ -2,6 +2,9 @@ using Scripts.Data;
 
 namespace Scripts.Definitions.Items
 {
+    /// <summary>
+    /// Boots that allow the player character to traverse abyss tiles
+    /// </summary>
     public class Boots : EquipmentDef
     {
         public override string Icon => "Images/Items/hermes_boots";

@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Scripts.Components.Room3
 {
+    /// <summary>
+    /// Yarn Bowl in Room 3.
+    /// Turns on when Yarn is at goal
+    /// </summary>
     public class YarnBowl : MonoBehaviour
     {
         public Yarn yarn;

@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace Scripts.Components
 {
+    /// <summary>
+    /// Entity that represents the player character, a cat
+    /// </summary>
     public class Cat : EntityComponent<CatData>
     {
         protected override void Start()

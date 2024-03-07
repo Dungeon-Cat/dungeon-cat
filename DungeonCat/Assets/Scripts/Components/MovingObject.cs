@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
-
+/// <summary>
+/// Object that can be moved by the player character
+/// </summary>
 // This is an abstract class that has incomplete implementation for moving objects
 public abstract class MovingObject : MonoBehaviour
 {

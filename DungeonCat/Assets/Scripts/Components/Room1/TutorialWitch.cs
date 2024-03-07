@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Scripts.Components.Room1
 {
     /// <summary>
-    /// MonoBehavior for Witch in Room 1.
+    /// Witch in Room 1.
     /// Provides dialogue when interacted with
     /// </summary>
     public class TutorialWitch : MonoBehaviour, IInteractable

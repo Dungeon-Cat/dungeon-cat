@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Scripts.Components.Room3
 {
+    /// <summary>
+    /// Statue in Room 3.
+    /// Provides dialogue and resets Yarn when interacted with
+    /// </summary>
     public class YarnStatue : MonoBehaviour, IInteractable
     {
         private const string Author = "Witch Statue";
