@@ -11,6 +11,7 @@ namespace Scripts.Data
     {
         public const string RootScene = "Root";
         public const string DefaultRoom = "Room1";
+        public const string SecondRoom = "Room2";
 
         public CatData cat;
 
@@ -27,7 +28,8 @@ namespace Scripts.Data
             scenes = new Dictionary<string, SceneData>
             {
                 {RootScene, new SceneData()},
-                {DefaultRoom, new SceneData()}
+                {DefaultRoom, new SceneData()},
+                {SecondRoom, new SceneData()}
             }
         };
     }

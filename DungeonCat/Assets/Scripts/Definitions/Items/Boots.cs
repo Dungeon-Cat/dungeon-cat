@@ -1,4 +1,5 @@
 using Scripts.Data;
+using UnityEngine;
 
 namespace Scripts.Definitions.Items
 {
@@ -10,6 +11,7 @@ namespace Scripts.Definitions.Items
         
         public override void OnPickup(CharacterData character)
         {
+            Debug.Log("If cats could fly");
             character.AddTag(FlyingTag);
         }
 

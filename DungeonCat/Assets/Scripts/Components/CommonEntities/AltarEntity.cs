@@ -1,4 +1,5 @@
-﻿using Cainos.PixelArtTopDown_Basic;
+﻿using System;
+using Cainos.PixelArtTopDown_Basic;
 using Scripts.Data;
 using UnityEngine;
 
@@ -19,6 +20,12 @@ namespace Scripts.Components.CommonEntities
             {
                 GetComponent<PropsAltar>().runes[i].color = data.runes[i] ? Color.white : Color.clear;
             }
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            SyncRunes();
         }
 
         protected override void OnValidateInEditor()

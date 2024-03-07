@@ -9,7 +9,7 @@ namespace Scripts.Components.CommonEntities
         public string goesToScene;
         public Vector2 newCatPos;
         
-        private void OnCollisionEnter2D(Collision2D other)
+        protected void OnCollisionEnter2D(Collision2D other)
         {
             if (IsOpen && other.gameObject.HasComponent(out Cat _))
             {

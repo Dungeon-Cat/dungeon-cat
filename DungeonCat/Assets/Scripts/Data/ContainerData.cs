@@ -11,7 +11,7 @@ namespace Scripts.Data
     /// Stored data for a container or collection of items that will be attached to an entity
     /// </summary>
     [Serializable]
-    public class ContainerData
+    public class ContainerData : Data
     {
         public int slots;
 
