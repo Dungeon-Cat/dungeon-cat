@@ -8829,7 +8829,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -13040,6 +13040,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1845257701}
     m_Modifications:
+    - target: {fileID: 1180415943192740456, guid: 3602842a2e6a046f4971c7e877adb5ad,
+        type: 3}
+      propertyPath: data.scene
+      value: Room2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180415943192740456, guid: 3602842a2e6a046f4971c7e877adb5ad,
+        type: 3}
+      propertyPath: data.position.x
+      value: 38.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180415943192740456, guid: 3602842a2e6a046f4971c7e877adb5ad,
+        type: 3}
+      propertyPath: data.position.y
+      value: 38.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2055102311959635368, guid: 6a057178eb028e94fb93bf39262ea3e8,
         type: 3}
       propertyPath: m_SortingOrder
@@ -13134,21 +13149,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180415943192740456, guid: 3602842a2e6a046f4971c7e877adb5ad,
-        type: 3}
-      propertyPath: data.scene
-      value: Room2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180415943192740456, guid: 3602842a2e6a046f4971c7e877adb5ad,
-        type: 3}
-      propertyPath: data.position.x
-      value: 38.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180415943192740456, guid: 3602842a2e6a046f4971c7e877adb5ad,
-        type: 3}
-      propertyPath: data.position.y
-      value: 38.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
