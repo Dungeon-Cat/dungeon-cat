@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using Scripts.Components.CommonEntities;
 using Scripts.Components.UI;
 using Scripts.Data;
+using Scripts.Definitions.Items;
 using Scripts.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,7 +17,7 @@ namespace Scripts.Components
         public static UnityState Instance { get; private set; }
 
         public Dialogue dialogue;
-        
+
         public bool IsSwitchingScenes { get; private set; }
 
         private void Awake()
@@ -36,12 +38,19 @@ namespace Scripts.Components
             GameStateManager.onSceneSwitched += OnSceneSwitched;
             GameStateManager.onSaveLoaded += OnSaveLoaded;
             GameStateManager.onLoadFailed += OnLoadFailed;
+            GameStateManager.onTagAdded += OnTagAdded;
+            GameStateManager.onTagRemoved += OnTagRemoved;
         }
 
         public static DungeonLevel CurrentScene => GetScene(GameStateManager.CurrentState.currentScene);
 
-        public static DungeonLevel GetScene(string sceneName) =>
-            SceneManager.GetSceneByName(sceneName).GetRootGameObjects().FirstNonNull(o => o.GetComponent<DungeonLevel>());
+        public static DungeonLevel GetScene(string sceneName)
+        {
+            var scene = SceneManager.GetSceneByName(sceneName);
+
+            return !scene.IsValid() || !scene.GetRootGameObjects().Any() ? null : scene.GetRootGameObjects().FirstNonNull(o => o.GetComponent<DungeonLevel>());
+
+        }
 
         /// <summary>
         /// Callback for when an entity is created within the game data to create the corresponding entity game object
@@ -101,6 +110,8 @@ namespace Scripts.Components
             GameStateManager.onSceneSwitched -= OnSceneSwitched;
             GameStateManager.onSaveLoaded -= OnSaveLoaded;
             GameStateManager.onLoadFailed -= OnLoadFailed;
+            GameStateManager.onTagAdded -= OnTagAdded;
+            GameStateManager.onTagRemoved -= OnTagRemoved;
         }
 
         private void OnSceneSwitched(string oldScene, string newScene)
@@ -114,9 +125,12 @@ namespace Scripts.Components
             cat.SyncFromData();
 
             var oldLevel = GetScene(oldScene);
-            oldLevel.SyncToData();
+            if (oldLevel != null)
+            {
+                oldLevel.SyncToData();
+                yield return SceneManager.UnloadSceneAsync(oldScene);
+            }
 
-            yield return SceneManager.UnloadSceneAsync(oldScene);
             yield return SceneManager.LoadSceneAsync(newScene, LoadSceneMode.Additive);
 
             var newLevel = GetScene(newScene);
@@ -130,7 +144,10 @@ namespace Scripts.Components
         {
             cat.data = newGameState.cat;
             var oldLevel = GetScene(oldState.currentScene);
-            oldLevel.data = oldState.CurrentScene;
+            if (oldLevel != null)
+            {
+                oldLevel.data = oldState.CurrentScene;
+            }
             StartCoroutine(SwitchScene(oldState.currentScene, newGameState.currentScene));
         }
 
@@ -143,6 +160,31 @@ namespace Scripts.Components
             dialogue.StartInteraction(
                 new Interaction(new DialogueLine("System", "No Save Found").AuthorColor(Color.blue).TextColor(Color.white))
             );
+        }
+
+        public void ScanPathfinding()
+        {
+            var astar = gameObject.GetComponent<AstarPath>();
+            if (astar.isScanning) return;
+
+            using var scan = astar.ScanAsync().GetEnumerator();
+            StartCoroutine(scan);
+        }
+
+        private void OnTagAdded(EntityData entity, string tagName)
+        {
+            if (tagName == Boots.FlyingTag)
+            {
+                ScanPathfinding();
+            }
+        }
+
+        private void OnTagRemoved(EntityData entity, string tagName)
+        {
+            if (tagName == Boots.FlyingTag)
+            {
+                ScanPathfinding();
+            }
         }
 
     }

@@ -17,7 +17,7 @@ namespace Scripts.UI
 
         private void Update()
         {
-            canvasScaler.scaleFactor = Math.Max(1, Screen.width / 1920f);
+            canvasScaler.scaleFactor = Math.Max(1.5f, Screen.width / 1920f);
         }
     }
 }

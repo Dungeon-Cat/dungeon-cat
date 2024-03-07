@@ -18,21 +18,28 @@ namespace Scripts.Components
 
         public IEnumerable<IEntityComponent> AllEntities => entities.Values.Select(o => o.GetComponent<IEntityComponent>());
         
-        public void Start()
+        public virtual void Start()
         {
             if (started) return;
             started = true;
-            
-            GameStateManager.CurrentState.scenes.TryAdd(gameObject.scene.name, new SceneData());
+
+            if (GameStateManager.CurrentState.scenes.TryGetValue(gameObject.scene.name, out var sceneData))
+            {
+                data = sceneData;
+            }
+            else
+            {
+                GameStateManager.CurrentState.scenes[gameObject.scene.name] = data;
+            }
             
             entities = gameObject.scene
                 .GetRootGameObjects()
                 .SelectMany(o => o.GetComponentsInChildren<IEntityComponent>())
                 .ToDictionary(e => e.Id, e => e.GameObject);
 
-            Debug.Log($"Scene {name} start");
+            Debug.Log($"Scene {gameObject.scene.name} start");
             
-            UnityState.Instance.gameObject.GetComponent<AstarPath>().Scan();
+            UnityState.Instance.ScanPathfinding();
         }
 
         public override void SyncFromData()
@@ -54,6 +61,8 @@ namespace Scripts.Components
                     UnityState.OnEntityCreated(entityData);
                 }
             }
+            
+            
         }
     }
 }
