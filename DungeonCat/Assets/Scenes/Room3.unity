@@ -807,7 +807,7 @@ PrefabInstance:
     - target: {fileID: 5414525912930826128, guid: 3602842a2e6a046f4971c7e877adb5ad,
         type: 3}
       propertyPath: m_Name
-      value: PF Wooden Door
+      value: Exit
       objectReference: {fileID: 0}
     - target: {fileID: 5414525912930826128, guid: 3602842a2e6a046f4971c7e877adb5ad,
         type: 3}
@@ -823,6 +823,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7267497814735801289, guid: 3602842a2e6a046f4971c7e877adb5ad,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7267497814735801289, guid: 3602842a2e6a046f4971c7e877adb5ad,
         type: 3}

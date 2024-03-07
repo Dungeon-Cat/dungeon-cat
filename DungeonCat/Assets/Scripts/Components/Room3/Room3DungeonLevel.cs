@@ -63,6 +63,7 @@ namespace Scripts.Components.Room3
         public void OnGoalReached()
         {
             exit.SetOpen(true);
+            exit.collider2d.isTrigger = false;
         }
     }
 }
