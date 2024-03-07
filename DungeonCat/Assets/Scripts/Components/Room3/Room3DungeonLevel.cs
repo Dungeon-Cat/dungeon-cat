@@ -1,13 +1,17 @@
-﻿using Scripts.Components.CommonEntities;
-using Scripts.Data;
+﻿using System.Collections.Generic;
+using Cainos.PixelArtTopDown_Basic;
+using Scripts.Components.CommonEntities;
 using UnityEngine;
 
 namespace Scripts.Components.Room3
 {
     public class Room3DungeonLevel : DungeonLevel
     {
-        [HideInInspector]
-        public bool switchState;
+        public bool SwitchState
+        {
+            get => data.flags.GetValueOrDefault(nameof(SwitchState), false);
+            private set => data.flags[nameof(SwitchState)] = value;
+        }
         
         public Switch[] switches;
         public ToggleWall[] blueWalls;
@@ -18,13 +22,15 @@ namespace Scripts.Components.Room3
 
         public DoorEntity exit;
 
-        public void Awake()
+        public override void Start()
         {
+            base.Start();
             UpdateSwitch();
         }
+
         public void OnSwitchChange()
         {
-            switchState = !switchState; 
+            SwitchState = !SwitchState; 
             UpdateSwitch();
         }
 
@@ -32,18 +38,20 @@ namespace Scripts.Components.Room3
         {
             foreach (var _switch in switches)
             {
-                _switch.SetOpen(switchState);
+                _switch.SetOpen(SwitchState);
             }
 
             foreach (var wall in blueWalls)
             {
-                wall.SetOpen(!switchState); 
+                wall.SetOpen(!SwitchState); 
             }
 
             foreach (var wall in redWalls)
             {
-                wall.SetOpen(switchState);
+                wall.SetOpen(SwitchState);
             }
+            
+            UnityState.Instance.ScanPathfinding();
         }
 
         public void OnYarnStatueInteract()

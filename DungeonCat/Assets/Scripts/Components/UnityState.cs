@@ -176,7 +176,6 @@ namespace Scripts.Components
             if (tagName == Boots.FlyingTag)
             {
                 ScanPathfinding();
-                ;
             }
         }
 

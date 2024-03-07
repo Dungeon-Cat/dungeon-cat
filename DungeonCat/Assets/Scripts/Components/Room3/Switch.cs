@@ -14,7 +14,7 @@ namespace Scripts.Components.Room3
             return true;
         }
         
-        public new void Interact()
+        public void Interact()
         {
             dungeonLevel.OnSwitchChange();
         }

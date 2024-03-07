@@ -13,6 +13,7 @@ namespace Scripts.Components
         {
             base.Start();
             InputManager.Actions.Player.DropItem.performed += _ => data.DropAllItems();
+            InvokeRepeating(nameof(SyncToData), 1f, 1f);
         }
 
         private bool seenControlsHint;

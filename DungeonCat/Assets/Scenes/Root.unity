@@ -148,6 +148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1936148237237513739, guid: d7ea482c4bfd649fb83a7d29165e53d9,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936148237237513739, guid: d7ea482c4bfd649fb83a7d29165e53d9,
+        type: 3}
       propertyPath: m_Offset.x
       value: 0.3
       objectReference: {fileID: 0}
@@ -165,6 +170,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547500608235498063, guid: d7ea482c4bfd649fb83a7d29165e53d9,
+        type: 3}
+      propertyPath: collider2d
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547500608235498063, guid: d7ea482c4bfd649fb83a7d29165e53d9,
+        type: 3}
+      propertyPath: data.position.x
+      value: -71.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547500608235498063, guid: d7ea482c4bfd649fb83a7d29165e53d9,
+        type: 3}
+      propertyPath: data.position.y
+      value: -6.2
       objectReference: {fileID: 0}
     - target: {fileID: 6547500608235498063, guid: d7ea482c4bfd649fb83a7d29165e53d9,
         type: 3}
@@ -276,10 +296,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1936148237237513739, guid: d7ea482c4bfd649fb83a7d29165e53d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 571205246743789093, guid: d7ea482c4bfd649fb83a7d29165e53d9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1091367763}
     - targetCorrespondingSourceObject: {fileID: 571205246743789093, guid: d7ea482c4bfd649fb83a7d29165e53d9,
         type: 3}
       insertIndex: -1
@@ -858,7 +883,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 50, y: 666.6667}
+  m_Size: {x: 50, y: 600}
   m_EdgeRadius: 0
 --- !u!114 &777635574
 MonoBehaviour:
@@ -1139,6 +1164,41 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!58 &1091367763
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247929945}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -2}
+  serializedVersion: 2
+  m_Radius: 4.5
 --- !u!1 &1097638985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,7 +1309,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1042, y: 50}
+  m_Size: {x: 1028, y: 50}
   m_EdgeRadius: 0
 --- !u!114 &1097638989
 MonoBehaviour:
@@ -1658,7 +1718,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -24.999817, y: 0}
+  m_AnchoredPosition: {x: -24.999786, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!50 &1465575533
@@ -1731,7 +1791,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1042, y: 50}
+  m_Size: {x: 1028, y: 50}
   m_EdgeRadius: 0
 --- !u!114 &1465575535
 MonoBehaviour:
@@ -2026,7 +2086,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 50, y: 666.6667}
+  m_Size: {x: 50, y: 600}
   m_EdgeRadius: 0
 --- !u!114 &1540432396
 MonoBehaviour:
@@ -2389,12 +2449,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACAn+vgbZiTWgIAABEFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VMFy2jAQ/RVG59IBNw2ht5YQ0gMJE9rJxZe1tMYaZMkjyQGS4d+7km3s0unJ8ntvd9+u1v5gUrsKuTd2ZaVYG4Hs24iFM/s06slHPMLO6K18x07zKoUvggii5gW8NIRPQ5gzJXor+Xe9U0E8IbDWMje2XIodLozzjuAclEOirPEhWhP0MWJHeoznIeREp2QWTu90mk9GZzpy1B5tL+2EnaxR1ZorKCsUwXIvTqZ3rXw6aYSa2mk1wTo3SknXemH+VMVet1WBFkOzQgK1Fut/pdcC5a7wIfEw9jnPHfrWk4XTvbQ0oSYp+2GasZXg9o2xN1B1rB8NNSnX/7Djhs6tKR+7qtQEQb6QfP8CJw7OD6Y6hO9729M4nQOoPWQKXwvUT2ZlTa0Fkd7WIbR2mNz3r5fGFgXyfY83Vq/Auvr/3YQezrH340LJMgvU55sG2CoThx1vHi1dy08yHPfCtSkIDS5+O/wFu+ECtcSDtM4T1Xapg73M1DZI2TLOLHRT+4WxGiPcmq5Qg/KnDaXx1xd4xQ3KXjEPED6VtnjLdV/AVUiEe/1kckVtzOFyWa4whzW64rn2SmrsTQfiiea0MFo3+zWcSRe2rW0OfBC2q6X4e7XYHSS32Q3ncDOfzZMkG99+yWcig9ksu5tlME1Y3D2pqU9Qm8ZoOx66Nd0n17Rn3R9ktLJQxV0XFg4r+V6awcilzs2WW0T93GS4GEdLReiTFEshaUBb9F7qeN/sI2XK8D2K9JIojZ0uj95C2mdJWSXfjA9Iyhbxl5GyAF92eWPxTeIhFO+Sndn5D1BLAwQUAAAICAAAgJ/rVkbpdG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0kkWikVmSSXJyoomluaWRUZKumXGaeUpSorl5koV5UqKhkVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAgJ/r4G2Yk1oCAAARBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAgJ/rVkbpdG0AAAB4AAAACQAkAAAAAAAAAAAAAACnAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAF8DAAAAAA==
+    dataString: UEsDBBQAAAgIAACAn+tfsEv/WwIAABMFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzk0GXBpCby0hpIckTEgnF1/W0hprkCWPJAdIhv/elWxjl05PiPfert5+yJ9Malch98aurBSPRiD7PmLhzL6MevIBD7A1eiM/sNO8SeGLIIKoeQEvDeGTEOZMid5K/kNvVRCPCay1zI0tl2KLC+O8IzgH5ZAoa3yI1gR9jtiBfq7mIeRIp2QWTh90mo9HJzpy1B5tL+2EnaxR1ZorKCsUwXIvTia3rXwyboSaymk1wTo3SknXemH+WMVaN1WBFkOxQgKVFu+fXn8joEC5LXxIPYx+znOHvnVl4XgnLfWoSct+mqZxJbhdY+0dVB0dREtNysd/2KuGzq0pH7pbqQyCfCH57gWOHJwf9HUI3/XGJ7E/e1A7yBS+FaifzMqaWgsiva1DaO0wuev/ngtbFMh3Pd5YvQDr6v/TCTWcYu2HhZJlFqjraQNslIntjrNHS4P5RYbjZrg2BaHBxW+Hr7AdrlBL3EvrPFFtlTrYy0xtg5QtY89CNbVfGKsxwq3pCjUof1xTGn85wAtucO0Fcw/hsbSXt1z3Bi5CItzrx+MLam3252G5wuwf0RXPtVdSY286EE/Up4XRutmvYU+6sE1tc+CDsG0txd+rxW4hucmmnMN0PpsnSXZ18zWfiQxms+x2lsEkYXH3pKY6Qa0bo217aGq6T65pz7pvyGhloYq7LizsV/KjNIOWS52bDbeI+rnJcDaOli6hRymWQlKDNui91HHe7DNlyvAdivScKI2VLg/eQtpnSVkl340PSMoW8aORsgCfd3lt8V3iPlzeJTux0x9QSwMEFAAACAgAAICf61ZG6XRtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tJJFopFZkklycqKJpbmlkVGSrplxmnlKUqK5eZKFeVKioZFSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAICf61+wS/9bAgAAEwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAICf61ZG6XRtAAAAeAAAAAkAJAAAAAAAAAAAAAAAqAIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABgAwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
     cacheStartup: 0
-  showNavGraphs: 0
+  showNavGraphs: 1
   showUnwalkableNodes: 1
   debugMode: 0
   debugFloor: 0

@@ -6,12 +6,14 @@ namespace Scripts.Components.Room3
     public class Yarn : MonoBehaviour
     {
         public Collider2D yarnBowlCollider2d;
+        
         public Room3DungeonLevel dungeonLevel;
+        
         public void Update()
         {
             if (IsAtGoal())
             {
-                GetComponent<Collider2D>().isTrigger = true;
+                // GetComponent<Collider2D>().isTrigger = true;
                 dungeonLevel.OnGoalReached();
             }
         }

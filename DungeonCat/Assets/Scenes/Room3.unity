@@ -181,6 +181,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4405790625516412817, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.29397696
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405790625516412817, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.35252863
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405790625516412817, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0032527223
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405790625516412817, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0043447316
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545329355568822466, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: data.id
+      value: Switch3
+      objectReference: {fileID: 0}
     - target: {fileID: 6545329355568822466, guid: 726edabb5bf32f3429de5719a2f54c94,
         type: 3}
       propertyPath: dungeonLevel
@@ -270,7 +295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 113261851}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,6 +329,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1845257701}
     m_Modifications:
+    - target: {fileID: 2128395779313173791, guid: c5bdca1933fde624698bb8c6d6daa44b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6250821296113964330, guid: c5bdca1933fde624698bb8c6d6daa44b,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6250821296113964330, guid: c5bdca1933fde624698bb8c6d6daa44b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868958710751573116, guid: c5bdca1933fde624698bb8c6d6daa44b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7947911505737750448, guid: c5bdca1933fde624698bb8c6d6daa44b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -317,12 +362,12 @@ PrefabInstance:
     - target: {fileID: 7947911505737750448, guid: c5bdca1933fde624698bb8c6d6daa44b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7947911505737750448, guid: c5bdca1933fde624698bb8c6d6daa44b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7947911505737750448, guid: c5bdca1933fde624698bb8c6d6daa44b,
         type: 3}
@@ -369,13 +414,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yarn Bowl
       objectReference: {fileID: 0}
+    - target: {fileID: 9183256227791019032, guid: c5bdca1933fde624698bb8c6d6daa44b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7947911505737750455, guid: c5bdca1933fde624698bb8c6d6daa44b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1752561297}
   m_SourcePrefab: {fileID: 100100000, guid: c5bdca1933fde624698bb8c6d6daa44b, type: 3}
---- !u!4 &227108526 stripped
-Transform:
+--- !u!224 &227108526 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 7947911505737750448, guid: c5bdca1933fde624698bb8c6d6daa44b,
     type: 3}
   m_PrefabInstance: {fileID: 227108525}
@@ -400,7 +454,7 @@ GameObject:
   - component: {fileID: 267404810}
   - component: {fileID: 267404809}
   - component: {fileID: 267404811}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Yarn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    id: 
+    id: Yarn
     destroyed: 0
     scene: Room3
     position: {x: -63.25, y: -2.75}
@@ -507,7 +561,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -769,7 +823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    id: 
+    id: ExitDoor
     destroyed: 0
     scene: Room3
     position: {x: 0, y: -5.5}
@@ -847,6 +901,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4405790625516412817, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.28750724
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405790625516412817, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.34527218
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405790625516412817, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0018050298
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405790625516412817, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0012902915
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545329355568822466, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: data.id
+      value: Switch2
+      objectReference: {fileID: 0}
     - target: {fileID: 6545329355568822466, guid: 726edabb5bf32f3429de5719a2f54c94,
         type: 3}
       propertyPath: dungeonLevel
@@ -902,6 +981,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Red Toggle Wall 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384139213629356310, guid: bb3c8f14d2859544fb80ee75815f6349,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456329067017518351, guid: bb3c8f14d2859544fb80ee75815f6349,
+        type: 3}
+      propertyPath: data.id
+      value: Red3
       objectReference: {fileID: 0}
     - target: {fileID: 4456329067017518351, guid: bb3c8f14d2859544fb80ee75815f6349,
         type: 3}
@@ -1032,7 +1121,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   started: 0
-  switchState: 0
   switches:
   - {fileID: 3656166048921746914}
   - {fileID: 660349729}
@@ -8911,7 +8999,7 @@ GameObject:
   - component: {fileID: 933216954}
   - component: {fileID: 933216953}
   - component: {fileID: 933216952}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13083,6 +13171,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Toggle Wall 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4384139213629356310, guid: bb3c8f14d2859544fb80ee75815f6349,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456329067017518351, guid: bb3c8f14d2859544fb80ee75815f6349,
+        type: 3}
+      propertyPath: data.id
+      value: Red2
+      objectReference: {fileID: 0}
     - target: {fileID: 4456329067017518351, guid: bb3c8f14d2859544fb80ee75815f6349,
         type: 3}
       propertyPath: data.position.x
@@ -13179,6 +13277,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Toggle Wall 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1094215480690970017, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1354679236538821887, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13231,6 +13334,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3508993545754044532, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
         type: 3}
+      propertyPath: data.id
+      value: Blue2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508993545754044532, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
+        type: 3}
       propertyPath: data.position.x
       value: 30.25
       objectReference: {fileID: 0}
@@ -13274,6 +13382,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Red Toggle Wall 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384139213629356310, guid: bb3c8f14d2859544fb80ee75815f6349,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456329067017518351, guid: bb3c8f14d2859544fb80ee75815f6349,
+        type: 3}
+      propertyPath: data.id
+      value: Red5
       objectReference: {fileID: 0}
     - target: {fileID: 4456329067017518351, guid: bb3c8f14d2859544fb80ee75815f6349,
         type: 3}
@@ -13431,7 +13549,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 3
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.234375, y: 0.90625, z: 0}
   m_MaxChunkCount: 16
@@ -14402,6 +14520,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Toggle Wall 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1094215480690970017, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1354679236538821887, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14451,6 +14574,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508993545754044532, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
+        type: 3}
+      propertyPath: data.id
+      value: Blue1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16509,7 +16637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1546487134}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16529,11 +16657,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4964480154122479813}
   - {fileID: 1015192758}
   - {fileID: 877553559}
-  - {fileID: 4964480154122479813}
-  - {fileID: 1327363612}
   - {fileID: 2027411861}
+  - {fileID: 1327363612}
   m_Father: {fileID: 1700447987}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1550976252
@@ -16548,6 +16676,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Blue Toggle Wall 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1094215480690970017, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1354679236538821887, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
         type: 3}
@@ -16601,6 +16734,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3508993545754044532, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
         type: 3}
+      propertyPath: data.id
+      value: Blue3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508993545754044532, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
+        type: 3}
       propertyPath: data.position.x
       value: -24.75
       objectReference: {fileID: 0}
@@ -16643,7 +16781,7 @@ GameObject:
   - component: {fileID: 1700447987}
   - component: {fileID: 1700447989}
   - component: {fileID: 1700447988}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: Toggle Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16754,6 +16892,38 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1752561294 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7947911505737750455, guid: c5bdca1933fde624698bb8c6d6daa44b,
+    type: 3}
+  m_PrefabInstance: {fileID: 227108525}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1752561295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2440844624711060802, guid: c5bdca1933fde624698bb8c6d6daa44b,
+    type: 3}
+  m_PrefabInstance: {fileID: 227108525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752561294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7edd0f787bc46de479f0d96bba16e2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1752561297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752561294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930a7317630444f795cb4cdf833cdbe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yarn: {fileID: 267404811}
+  altar: {fileID: 1752561295}
 --- !u!1 &1845257700
 GameObject:
   m_ObjectHideFlags: 0
@@ -16822,6 +16992,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Toggle Wall 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1094215480690970017, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1354679236538821887, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16874,6 +17049,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3508993545754044532, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
         type: 3}
+      propertyPath: data.id
+      value: Blue4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508993545754044532, guid: 5a5918ecfbbb5d642af5d37f064e3e58,
+        type: 3}
       propertyPath: data.position.x
       value: -24.75
       objectReference: {fileID: 0}
@@ -16917,6 +17097,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Red Toggle Wall 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384139213629356310, guid: bb3c8f14d2859544fb80ee75815f6349,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456329067017518351, guid: bb3c8f14d2859544fb80ee75815f6349,
+        type: 3}
+      propertyPath: data.id
+      value: Red4
       objectReference: {fileID: 0}
     - target: {fileID: 4456329067017518351, guid: bb3c8f14d2859544fb80ee75815f6349,
         type: 3}
@@ -17048,6 +17238,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Toggle Wall 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4384139213629356310, guid: bb3c8f14d2859544fb80ee75815f6349,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456329067017518351, guid: bb3c8f14d2859544fb80ee75815f6349,
+        type: 3}
+      propertyPath: data.id
+      value: Red1
+      objectReference: {fileID: 0}
     - target: {fileID: 4456329067017518351, guid: bb3c8f14d2859544fb80ee75815f6349,
         type: 3}
       propertyPath: data.position.x
@@ -17170,6 +17370,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405790625516412817, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.2798071
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405790625516412817, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.33607712
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405790625516412817, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.000000029802322
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405790625516412817, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0031510144
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545329355568822466, guid: 726edabb5bf32f3429de5719a2f54c94,
+        type: 3}
+      propertyPath: data.id
+      value: Switch1
       objectReference: {fileID: 0}
     - target: {fileID: 6545329355568822466, guid: 726edabb5bf32f3429de5719a2f54c94,
         type: 3}
