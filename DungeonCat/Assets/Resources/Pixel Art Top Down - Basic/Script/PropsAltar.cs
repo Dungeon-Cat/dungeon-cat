@@ -8,6 +8,7 @@ namespace Cainos.PixelArtTopDown_Basic
 
     public class PropsAltar : MonoBehaviour
     {
+        public bool differentRuneColors;
         public List<SpriteRenderer> runes;
         public float lerpSpeed;
 
@@ -26,6 +27,8 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void Update()
         {
+            if (differentRuneColors) return;
+            
             curColor = Color.Lerp(curColor, targetColor, lerpSpeed * Time.deltaTime);
 
             foreach (var r in runes)

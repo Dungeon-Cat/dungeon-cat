@@ -404,9 +404,10 @@ namespace Scripts.Components.UI
             return null;
         }
 
-        public void AddEndCallback(Action action)
+        public Interaction AddEndCallback(Action action)
         {
             _onEndCallbacks.Add(action);
+            return this;
         }
 
         private void EndCallbacks()

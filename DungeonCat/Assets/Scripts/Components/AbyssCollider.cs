@@ -11,15 +11,18 @@ namespace Scripts.Components
     public class AbyssCollider : MonoBehaviour
     {
         private TilemapCollider2D collider2d;
+        private CompositeCollider2D compositeCollider2D;
 
         private void Awake()
         {
             collider2d = GetComponent<TilemapCollider2D>();
+            compositeCollider2D = GetComponent<CompositeCollider2D>();
         }
 
-        private void Update()
+        public void Update()
         {
             collider2d.enabled = !UnityState.Instance.cat.data.tags.Contains(Boots.FlyingTag);
+            compositeCollider2D.enabled = !UnityState.Instance.cat.data.tags.Contains(Boots.FlyingTag);
         }
     }
 }

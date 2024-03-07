@@ -1,5 +1,6 @@
 ﻿using Scripts.Components.CommonEntities;
 using Scripts.Components.Room1;
+using Scripts.Components.Room2;
 using Scripts.Components.Room3;
 using Scripts.Components.UI;
 using Scripts.Data;
@@ -22,6 +23,7 @@ namespace Scripts.Components
 
         private bool seenControlsHint;
 
+        private bool seenFirstRoom2Hint;
         private bool seenFirstRoom3Hint;
 
         public void Meow()
@@ -71,6 +73,26 @@ namespace Scripts.Components
                     }
                     break;
                 case "Room2":
+                    var altarChest = FindObjectOfType<AltarChest>();
+                    var bootCount = data.inventory.Find<Boots>();
+
+                    if (!seenFirstRoom2Hint)
+                    {
+                        SayLine("It looks like items are heavy enough to activate these altars");
+                        seenFirstRoom2Hint = true;
+                    } 
+                    else if (bootCount > 0)
+                    {
+                        SayLine("With these boots I can fly to the other side");
+                    } else if (!altarChest.chest.IsOpen)
+                    {
+                        SayLine("Maybe that chest will open once all 4 runes are lit up.");
+                    }
+                    else
+                    {
+                        SayLine("Seems like I need both of those pillars lit up to open the door.");
+                    }
+                    
                     break;
                 case "Room3":
                     var statue = FindObjectOfType<YarnStatue>();
