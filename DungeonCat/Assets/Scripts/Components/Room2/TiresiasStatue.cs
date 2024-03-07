@@ -8,7 +8,7 @@ namespace Scripts.Components.Room2
     public class TiresiasStatue : MonoBehaviour, IInteractable
     {
         public static TiresiasStatue Instance { get; private set; }
-
+        
         public TiresiasStatue()
         {
             if (Instance == null)
@@ -24,13 +24,13 @@ namespace Scripts.Components.Room2
 
         private const string Author = "Tiresias";
 
-        public bool dialogueTriggered;
+        public static bool DialogueTriggered;
 
-        public bool CanBeInteractedWith() => !dialogueTriggered;
+        public bool CanBeInteractedWith() => !DialogueTriggered;
 
         public void Interact()
         {
-            dialogueTriggered = true;
+            DialogueTriggered = true;
             UnityState.Instance.dialogue.StartInteraction(new Interaction(
                 new DialogueLine("Cat", "A statue... its eyes are closed.").AuthorColor(Color.blue)
                     .AddDefault(new DialogueLine("Statue", "Do I hear someone? It has been a long time since anyone came down here... I cannot see you. Long ago, I was blinded.").AuthorColor(Color.red)

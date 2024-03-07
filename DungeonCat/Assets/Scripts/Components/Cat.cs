@@ -1,5 +1,6 @@
 ﻿using Scripts.Components.CommonEntities;
 using Scripts.Components.Room1;
+using Scripts.Components.Room3;
 using Scripts.Components.UI;
 using Scripts.Data;
 using Scripts.Definitions.Items;
@@ -13,9 +14,12 @@ namespace Scripts.Components
         {
             base.Start();
             InputManager.Actions.Player.DropItem.performed += _ => data.DropAllItems();
+            InvokeRepeating(nameof(SyncToData), 1f, 1f);
         }
 
         private bool seenControlsHint;
+
+        private bool seenFirstRoom3Hint;
 
         public void Meow()
         {
@@ -58,10 +62,29 @@ namespace Scripts.Components
                     {
                         SayLine("Into the dungeon I go!");
                     }
+                    else
+                    {
+                        SayLine("I need to find a way to get this door open.");
+                    }
                     break;
                 case "Room2":
                     break;
                 case "Room3":
+                    var statue = FindObjectOfType<YarnStatue>();
+
+                    if (!seenFirstRoom3Hint)
+                    {
+                        SayLine("It looks like I need to get the yarn to that altar over there.");
+                        seenFirstRoom3Hint = true;
+                    } else if (!statue.talkedTo)
+                    {
+                        SayLine("Hopefully the witch can help me if I ever get the yarn stuck.");
+                    }
+                    else
+                    {
+                        SayLine("I really don't want to get the yarn stuck in a corner.");
+                    }
+                    
                     break;
             }
 
@@ -71,7 +94,6 @@ namespace Scripts.Components
             SayLine(InputManager.playerInput.currentControlScheme == InputManager.Keyboard
                 ? "Use WASD to move, and Space to interact with objects."
                 : "Tap on the ground to move, and tap on objects to interact with them.");
-
 
 
         private static void SayLine(string text)

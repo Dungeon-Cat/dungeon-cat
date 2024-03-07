@@ -26,10 +26,10 @@ namespace Scripts.Components.Room2
         protected override void Start()
         {
             Instance = this;
-            if (!GameStateManager.CurrentState.currentScene.Equals("Room2"))
-            {
-                GameStateManager.SwitchScene("Room2", new Vector2{x = 0, y = -50});
-            }
+            // if (!GameStateManager.CurrentState.currentScene.Equals("Room2"))
+            // {
+            //     GameStateManager.SwitchScene("Room2", new Vector2{x = 0, y = -50});
+            // }
             containerData.TryAddToSlot(ItemData.Create<Boots>(), 0);
         }
 
