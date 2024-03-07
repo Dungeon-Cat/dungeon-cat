@@ -5,9 +5,6 @@ using UnityEngine;
 
 namespace Scripts.Components.WinRoom
 {
-    /// <summary>
-    /// Controls the behavior of the Witch in the tutorial.
-    /// </summary>
     public class WinStatue : MonoBehaviour, IInteractable
     {
         private const string Author = "Witch Statue";
