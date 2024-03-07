@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace Scripts.Components.Inventory
 {
+    /// <summary>
+    /// Component that handles the player inventory, opening/closing and saving
+    /// </summary>
     public class InventoryManager : MonoBehaviour
     {
 

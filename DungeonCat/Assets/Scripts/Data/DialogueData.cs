@@ -6,7 +6,7 @@ using TMPro;
 namespace Scripts.Data
 {
     /// <summary>
-    /// The player controlled character
+    /// Data for a given dialogue
     /// </summary>
     [Serializable]
     public class DialogueData : EntityData

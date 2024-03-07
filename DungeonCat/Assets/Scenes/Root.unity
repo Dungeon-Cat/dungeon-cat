@@ -927,7 +927,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 50, y: 600}
+  m_Size: {x: 50, y: 770}
   m_EdgeRadius: 0
 --- !u!114 &777635574
 MonoBehaviour:
@@ -1374,7 +1374,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1028, y: 50}
+  m_Size: {x: 1330.0001, y: 50}
   m_EdgeRadius: 0
 --- !u!114 &1097638989
 MonoBehaviour:
@@ -1783,7 +1783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -24.999786, y: 0}
+  m_AnchoredPosition: {x: -24.999756, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!50 &1465575533
@@ -1856,7 +1856,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1028, y: 50}
+  m_Size: {x: 1330.0001, y: 50}
   m_EdgeRadius: 0
 --- !u!114 &1465575535
 MonoBehaviour:
@@ -2151,7 +2151,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 50, y: 600}
+  m_Size: {x: 50, y: 770}
   m_EdgeRadius: 0
 --- !u!114 &1540432396
 MonoBehaviour:
@@ -2833,6 +2833,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397732710328981717, guid: f50cc04038dbe534684926cc6e976a5d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5816125948341249866, guid: f50cc04038dbe534684926cc6e976a5d,
         type: 3}

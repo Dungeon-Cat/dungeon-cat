@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Scripts.Components.Room3
 {
+    /// <summary>
+    /// Script for root object of Room 3
+    /// </summary>
     public class Room3DungeonLevel : DungeonLevel
     {
         public bool SwitchState

@@ -5,7 +5,8 @@ using UnityEngine;
 namespace Scripts.Components.Room1
 {
     /// <summary>
-    /// Controls the behavior of the Witch in the tutorial.
+    /// Witch in Room 1.
+    /// Provides dialogue when interacted with
     /// </summary>
     public class TutorialWitch : MonoBehaviour, IInteractable
     {

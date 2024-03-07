@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace Scripts.UI
 {
+    /// <summary>
+    /// UI Button that loads game state when pressed
+    /// </summary>
     [RequireComponent(typeof(Button))]
     public class LoadGameButton : MonoBehaviour
     {

@@ -27,7 +27,7 @@ namespace Scripts.Data
             scenes = new Dictionary<string, SceneData>
             {
                 {RootScene, new SceneData()},
-                {DefaultRoom, new SceneData()}
+                {DefaultRoom, new SceneData()},
             }
         };
     }

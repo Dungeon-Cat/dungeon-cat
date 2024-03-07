@@ -2,6 +2,10 @@
 using UnityEngine;
 namespace Scripts.Components
 {
+    /// <summary>
+    /// Component that has data that can be saved/loaded from disk
+    /// </summary>
+    /// <typeparam name="T">The Data Object being stored</typeparam>
     public abstract class ComponentWithData<T> : MonoBehaviour, IComponentWithData where T : Data.Data
     {
         [SerializeField]

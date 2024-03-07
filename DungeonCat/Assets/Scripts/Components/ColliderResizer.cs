@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 namespace Scripts.Components
 {
+    /// <summary>
+    ///  Script that resizes Collider2D 
+    /// </summary>
     [RequireComponent(typeof(RectTransform))]
     [RequireComponent(typeof(BoxCollider2D))]
     [ExecuteAlways]

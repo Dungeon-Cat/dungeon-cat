@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 namespace Scripts.Data
 {
+    /// <summary>
+    /// Data for a scene, including the entities and tags for it
+    /// </summary>
     [Serializable]
     public class SceneData : Data
     {

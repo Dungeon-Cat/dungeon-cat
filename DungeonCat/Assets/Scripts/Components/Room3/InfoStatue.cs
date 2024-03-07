@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace Scripts.Components.Room3
 {
+    /// <summary>
+    /// Info Statue in Room 3.
+    /// Provides dialogue when interacted with
+    /// </summary>
     public class InfoStatue : MonoBehaviour, IInteractable
     {
         private const string Author = "Witch Statue";
