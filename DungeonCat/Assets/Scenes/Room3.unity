@@ -781,8 +781,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 654613785}
   openSprite: {fileID: 21300160, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   closedSprite: {fileID: 21300158, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
-  goesToScene: Room1
-  newCatPos: {x: 0, y: 0}
+  goesToScene: WinRoom
+  newCatPos: {x: 0, y: -40}
 --- !u!212 &654613785 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2055102311959635368, guid: 6a057178eb028e94fb93bf39262ea3e8,
